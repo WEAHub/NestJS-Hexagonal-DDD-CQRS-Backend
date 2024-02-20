@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    container_name: shopy-db
+    image: postgres:13
+    environment:
+      POSTGRES_DB: shopy
+      POSTGRES_USER: shopy
+      POSTGRES_PASSWORD: shopy
+    volumes:
+      - postgresql_bin:/usr/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+      - ./shopy.sql:/docker-entrypoint-initdb.d/shopy.sql
+      - ./files:/files
+    ports:
+      - 5432:5432
+    networks:
+      - db
+
+  pgadmin:  
+    container_name: pgadmin4_container  
+    image: dpage/pgadmin4  
+    restart: always  
+    environment:  
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com  
+      PGADMIN_DEFAULT_PASSWORD: root  
+    ports:  
+      - "5050:80"
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  pgadmin_root_prefs:
+    driver: local
+  postgresql_data:
+    driver: local
+  postgresql_bin:
+    driver: local
