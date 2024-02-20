@@ -1,10 +1,10 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger'
 
 export class AppResponse {
     @ApiProperty()
-    status: number;
+    status: number
     @ApiProperty()
-    message: string;
+    message: string
     @ApiProperty({ nullable: true })
     data?: any
 }

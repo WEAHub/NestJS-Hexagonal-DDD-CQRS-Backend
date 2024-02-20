@@ -1,13 +1,13 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger'
 
 export class LoginRequest {
-	@ApiProperty({
-		description: 'user email',
-	})
-	email: string;
+    @ApiProperty({
+        description: 'user email',
+    })
+    email: string
 
-	@ApiProperty({
-		description: 'user password',
-	})
-	password: string;
+    @ApiProperty({
+        description: 'user password',
+    })
+    password: string
 }

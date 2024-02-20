@@ -1,29 +1,29 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { UserLocation } from '../types/location.type';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { UserLocation } from '../types/location.type'
 
 @Entity({ name: 'users' })
 export class UserEntity {
     @PrimaryGeneratedColumn({ name: 'user_id' })
-    id: number;
-    
+    id: number
+
     @Column({ name: 'user_firstname' })
-    firstName: string;
-    
+    firstName: string
+
     @Column({ name: 'user_lastname' })
-    lastName: string;
-    
+    lastName: string
+
     @Column({ name: 'user_password' })
-    password: string;
-    
+    password: string
+
     @Column({ name: 'user_avatar' })
-    avatar: string;
-    
+    avatar: string
+
     @Column({ name: 'user_location', type: 'json' })
-    location: UserLocation;
-    
+    location: UserLocation
+
     @Column({ name: 'user_email' })
-    email: string;
-    
+    email: string
+
     @Column({ name: 'user_phone' })
-    phone: string;
+    phone: string
 }

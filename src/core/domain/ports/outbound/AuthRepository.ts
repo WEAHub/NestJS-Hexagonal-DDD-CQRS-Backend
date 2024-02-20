@@ -1,5 +1,5 @@
-import { User } from "../../interfaces/User";
+import { User } from '../../interfaces/User'
 
 export interface AuthRepository {
-  findByEmail(email: string): Promise<User>
+    findByEmail(email: string): Promise<User>
 }

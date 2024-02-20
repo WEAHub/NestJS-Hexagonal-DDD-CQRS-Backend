@@ -1,5 +1,5 @@
 export interface Token {
-  sub: number,
-  username: string;
-  email: string;
+    sub: number
+    username: string
+    email: string
 }

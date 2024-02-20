@@ -1,4 +1,4 @@
 export interface LoginSuccessDto {
-  accessToken: string;
-  refreshToken: string;
+    accessToken: string
+    refreshToken: string
 }

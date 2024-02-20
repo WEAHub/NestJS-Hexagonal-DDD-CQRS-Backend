@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DatabaseConfig } from '../../shared/config/database.config';
-import { TransactionProvider } from './providers/transaction.provider';
-import { ProductEntity } from './entities/product.entity';
-import { CategoryEntity } from './entities/category.entity';
-import { UserEntity } from './entities/user.entity';
+import { Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { DatabaseConfig } from '../../shared/config/database.config'
+import { TransactionProvider } from './providers/transaction.provider'
+import { ProductEntity } from './entities/product.entity'
+import { CategoryEntity } from './entities/category.entity'
+import { UserEntity } from './entities/user.entity'
 
 @Module({
     imports: [
@@ -20,23 +20,15 @@ import { UserEntity } from './entities/user.entity';
                     username: database.user,
                     password: database.password,
                     database: database.name,
-                    entities: [
-                        ProductEntity, 
-                        CategoryEntity,
-                        UserEntity
-                    ],
+                    entities: [ProductEntity, CategoryEntity, UserEntity],
                     synchronize: false,
-                    logging: ['query']
+                    logging: ['query'],
                 }
             },
             inject: [ConfigService],
-        })
+        }),
     ],
-    providers: [
-        TransactionProvider
-    ],
-    exports: [
-        TransactionProvider
-    ]
+    providers: [TransactionProvider],
+    exports: [TransactionProvider],
 })
 export class ShopyDatabaseModule {}

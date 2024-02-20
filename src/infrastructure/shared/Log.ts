@@ -1,4 +1,4 @@
-import { Logger } from "@nestjs/common";
+import { Logger } from '@nestjs/common'
 
 export class Log {
     static info(msg: string, foo?: any) {

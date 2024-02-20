@@ -1,7 +1,6 @@
-import { EventBase } from "./DomainEvent";
+import { EventBase } from './DomainEvent'
 
 export abstract class AggregateRoot {
-
     private events: EventBase[] = []
 
     record(event: EventBase) {
@@ -9,8 +8,8 @@ export abstract class AggregateRoot {
     }
 
     pullEvents() {
-        const domainEvents = this.events.slice();
-        this.events = [];
-        return domainEvents;
+        const domainEvents = this.events.slice()
+        this.events = []
+        return domainEvents
     }
 }

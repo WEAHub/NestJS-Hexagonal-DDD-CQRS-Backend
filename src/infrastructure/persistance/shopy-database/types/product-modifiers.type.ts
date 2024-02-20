@@ -1,3 +1,3 @@
 export interface ProductModifier {
-  discountPercentage: number;
+    discountPercentage: number
 }
