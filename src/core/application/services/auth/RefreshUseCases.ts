@@ -11,8 +11,10 @@ export class RefreshTokenUseCases {
     async refreshToken(user: Token): Promise<LoginSuccessDto> {
         const _user: Partial<User> = {
             id: user.sub,
+            firstName: user.username,
             ...user,
         }
+
         const accessToken: string =
             await this.tokenService.generateAccessToken(_user)
         const refreshToken: string =
@@ -25,11 +27,4 @@ export class RefreshTokenUseCases {
 
         return refreshResponse
     }
-}
-
-export const RefreshTokenUseCasesProvider = {
-    provide: RefreshTokenUseCases,
-    useFactory: (tokenService: TokenService) =>
-        new RefreshTokenUseCases(tokenService),
-    inject: [TokenService],
 }

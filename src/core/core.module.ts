@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { AuthServiceProvider } from './domain/services/AuthService'
-import {
-    LoginUseCases,
-    LoginUseCasesProvider,
-} from './application/services/auth/LoginUseCases'
+import { LoginUseCases } from './application/services/auth/LoginUseCases'
 import { LoginHandler } from './application/features/commands/auth/handlers/LoginHandler'
 import { PersistenceModule } from '@infrastructure/persistance/persistence.module'
 import { AdaptersModule } from '@infrastructure/adapters/adapters.module'
@@ -13,7 +10,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { TokenServiceProvider } from './domain/services/TokenService'
 import { PasswordService } from './domain/services/PasswordService'
 import { RefreshTokenHandler } from './application/features/commands/auth/handlers/RefreshToken'
-import { RefreshTokenUseCasesProvider } from './application/services/auth/RefreshUseCases'
+import { RefreshTokenUseCases } from './application/services/auth/RefreshUseCases'
 import { UserUseCases } from './application/services/user/UserUseCases'
 import { UserServiceProvider } from './domain/services/UserService'
 import { GetUserQueryHandler } from './application/features/queries/user/handlers/GetUserQueryHandler'
@@ -30,8 +27,8 @@ const queryHandlers = [
 ]
 
 const useCases = [
-    LoginUseCasesProvider, //
-    RefreshTokenUseCasesProvider,
+    LoginUseCases, //
+    RefreshTokenUseCases,
     UserUseCases,
 ]
 
@@ -44,10 +41,10 @@ const services = [
 ]
 
 const providers = [
+    ...services,
+    ...useCases,
     ...commandHandlers, //
     ...queryHandlers,
-    ...useCases,
-    ...services,
 ]
 
 @Module({

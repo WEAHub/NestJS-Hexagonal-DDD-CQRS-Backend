@@ -41,13 +41,3 @@ export class LoginUseCases {
         return loginResponse
     }
 }
-
-export const LoginUseCasesProvider = {
-    provide: LoginUseCases,
-    useFactory: (
-        authService: AuthService,
-        tokenService: TokenService,
-        passwordService: PasswordService,
-    ) => new LoginUseCases(authService, tokenService, passwordService),
-    inject: [AuthService, TokenService, PasswordService],
-}
