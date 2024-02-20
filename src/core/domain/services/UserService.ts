@@ -2,11 +2,16 @@ import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundEx
 import { User } from '../interfaces/User'
 import { UserRepository } from '../ports/outbound/UserRepository'
 import { USER_REPOSITORY } from '@infrastructure/adapters/adapters.module'
+import { ValidationException } from '@core/shared/exception/ValidationException'
 
 export class UserService {
     constructor(private readonly user: UserRepository) {}
 
     async getUser(userId: number): Promise<User> {
+        if (!userId && userId !== 0) {
+            throw new ValidationException(`Invalid id(id=${userId})`)
+        }
+
         const user: User = await this.user.findById(userId)
 
         if (!user) {
