@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core'
 import { PublicGuard } from './guards/public.guard'
 import { JwtStrategy } from './auth-strategies/jwt.strategy'
 import { JwtRefreshStrategy } from './auth-strategies/jwt-refresh.strategy'
+import { UserController } from './controllers/user/getUser.controller'
 
 @Module({
     imports: [CoreModule, PassportModule],
@@ -14,6 +15,7 @@ import { JwtRefreshStrategy } from './auth-strategies/jwt-refresh.strategy'
         //AUTH
         LoginController,
         RefreshTokenController,
+        UserController,
     ],
     providers: [
         JwtStrategy,

@@ -14,25 +14,38 @@ import { TokenServiceProvider } from './domain/services/TokenService'
 import { PasswordService } from './domain/services/PasswordService'
 import { RefreshTokenHandler } from './application/features/commands/auth/handlers/RefreshToken'
 import { RefreshTokenUseCasesProvider } from './application/services/auth/RefreshUseCases'
+import { UserUseCases } from './application/services/user/UserUseCases'
+import { UserServiceProvider } from './domain/services/UserService'
+import { GetUserQueryHandler } from './application/features/queries/user/handlers/GetUserQueryHandler'
 
 export const EVENTBUS = 'EVENTBUS'
 
-const commandHandlers = [LoginHandler, RefreshTokenHandler]
+const commandHandlers = [
+    LoginHandler, //
+    RefreshTokenHandler,
+]
+
+const queryHandlers = [
+    GetUserQueryHandler, //
+]
 
 const useCases = [
     LoginUseCasesProvider, //
     RefreshTokenUseCasesProvider,
+    UserUseCases,
 ]
 
 const services = [
     AuthServiceProvider,
     TokenServiceProvider,
+    UserServiceProvider,
     EventBusPublisherService,
     PasswordService,
 ]
 
 const providers = [
     ...commandHandlers, //
+    ...queryHandlers,
     ...useCases,
     ...services,
 ]
