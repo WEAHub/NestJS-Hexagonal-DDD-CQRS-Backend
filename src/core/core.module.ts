@@ -19,7 +19,10 @@ export const EVENTBUS = 'EVENTBUS'
 
 const commandHandlers = [LoginHandler, RefreshTokenHandler]
 
-const useCases = [LoginUseCasesProvider, RefreshTokenUseCasesProvider]
+const useCases = [
+    LoginUseCasesProvider, //
+    RefreshTokenUseCasesProvider,
+]
 
 const services = [
     AuthServiceProvider,
@@ -28,7 +31,11 @@ const services = [
     PasswordService,
 ]
 
-const providers = [...commandHandlers, ...useCases, ...services]
+const providers = [
+    ...commandHandlers, //
+    ...useCases,
+    ...services,
+]
 
 @Module({
     imports: [
@@ -44,6 +51,11 @@ const providers = [...commandHandlers, ...useCases, ...services]
             useExisting: EventBusPublisherService,
         },
     ],
-    exports: [LoginUseCases, CqrsModule, AdaptersModule, ...providers],
+    exports: [
+        LoginUseCases, //
+        CqrsModule,
+        AdaptersModule,
+        ...providers,
+    ],
 })
 export class CoreModule {}
