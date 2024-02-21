@@ -20,6 +20,24 @@ export class UserService {
 
         return user
     }
+
+    async create(user: User): Promise<User> {
+        return await this.user.create(user)
+    }
+
+    async save(user: User): Promise<User> {
+        return await this.user.save(user)
+    }
+
+    async checkUser(email: string): Promise<User> {
+        const _user: User = await this.user.findByEmail(email)
+
+        if (_user) {
+            throw new ValidationException(`${email}Email already exists`)
+        }
+
+        return _user
+    }
 }
 
 export const UserServiceProvider = {

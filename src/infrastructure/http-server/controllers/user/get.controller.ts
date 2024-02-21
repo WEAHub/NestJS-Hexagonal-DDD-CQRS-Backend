@@ -1,20 +1,18 @@
 import { Controller, Get, UseFilters } from '@nestjs/common'
 import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
-import { CommandBus, QueryBus } from '@nestjs/cqrs'
+import { QueryBus } from '@nestjs/cqrs'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
 import { CurrentUser } from '@infrastructure/http-server/decorators/current-user.decorator'
 import { Token } from '@core/auth/domain/interfaces/Token'
 import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
 import { User } from '@core/user/domain/interfaces/User'
+import { GetUserControllerPort } from '@core/user/domain/ports/outbound/controllers/getUser.controller'
 
-@ApiTags('User')
+@ApiTags('Get User Controller')
 @UseFilters(GlobalExceptionFilter)
 @Controller('user')
-export class UserController {
-    constructor(
-        private command: CommandBus,
-        private query: QueryBus,
-    ) {}
+export class GetUserController implements GetUserControllerPort<Token, User> {
+    constructor(private query: QueryBus) {}
 
     @ApiInternalServerErrorResponse({ description: 'Error server' })
     @Get()

@@ -10,7 +10,7 @@ import { Token } from '@core/auth/domain/interfaces/Token'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 import { RefreshTokenControllerPort } from '@core/auth/domain/ports/outbound/controllers/refresh-token.controller.interface'
 
-@ApiTags('Auth')
+@ApiTags('Auth Refresh Controller')
 @UseFilters(GlobalExceptionFilter)
 @Controller('auth')
 export class RefreshTokenController

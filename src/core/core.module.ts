@@ -13,8 +13,8 @@ const featureModules = [
 
 @Module({
     imports: [
-        CqrsModule,
         JwtModule.register({ global: true }),
+        CqrsModule,
         PersistenceModule,
         AdaptersModule,
         ...featureModules,

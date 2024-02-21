@@ -6,12 +6,14 @@ import { CqrsModule } from '@nestjs/cqrs'
 import { GetUserQueryHandler } from './application/entrypoint/queries/handlers/GetUserQueryHandler'
 import { UserUseCases } from './application/services/UserUseCases'
 import { UserServiceProvider } from './domain/services/UserService'
+import { CreateUserCommandHandler } from './application/entrypoint/commands/handlers/CreateUserHandler'
+import { PasswordService } from '@core/shared/domain/services/PasswordService'
 
 const eventHandlers = []
-const commandHandlers = []
+const commandHandlers = [CreateUserCommandHandler]
 const queryHandlers = [GetUserQueryHandler]
 const useCases = [UserUseCases]
-const services = [UserServiceProvider]
+const services = [UserServiceProvider, PasswordService]
 
 const providers = [
     ...services,

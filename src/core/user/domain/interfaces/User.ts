@@ -1,7 +1,7 @@
 import { UserLocation } from './UserLocation'
 
 export class User {
-    id: number
+    id?: number
     firstName: string
     lastName: string
     password: string

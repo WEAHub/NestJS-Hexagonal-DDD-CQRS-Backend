@@ -3,7 +3,7 @@ export type EventName = string
 import { v4 as uuidv4 } from 'uuid'
 
 function generateId() {
-    return new uuidv4()
+    return uuidv4()
 }
 
 export abstract class EventBase {
