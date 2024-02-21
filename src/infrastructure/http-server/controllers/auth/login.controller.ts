@@ -1,11 +1,11 @@
 import { Body, Controller, Post, UseFilters } from '@nestjs/common'
 import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
-import { LoginSuccessDto } from '@core/shared/dto/LoginSuccess.dto'
-import { LoginCommand } from '@application/features/commands/auth/Login'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
 import { LoginRequest } from '../../model/auth/login.request'
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'
+import { LoginCommand } from '@core/auth/application/entrypoint/commands/Login'
+import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 
 @ApiTags('Auth')
 @UseFilters(GlobalExceptionFilter)

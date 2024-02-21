@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common'
-import { EventBase } from '../../../core/shared/DomainEvent'
-import { EventSubscriber } from '../../../core/shared/DomainEventSubscriber'
-import { DomainEventBus } from '../../../core/shared/DomainEventBus'
+import { EventBase } from '../../../core/shared/ddd/DomainEvent'
+import { EventSubscriber } from '../../../core/shared/ddd/DomainEventSubscriber'
+import { DomainEventBus } from '../../../core/shared/ddd/DomainEventBus'
 
 @Injectable()
 export class InMemoryEventBus implements DomainEventBus {

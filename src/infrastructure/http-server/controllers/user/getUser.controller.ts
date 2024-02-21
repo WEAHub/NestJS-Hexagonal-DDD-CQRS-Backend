@@ -3,9 +3,9 @@ import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
 import { CurrentUser } from '@infrastructure/http-server/decorators/current-user.decorator'
-import { Token } from '@core/domain/interfaces/Token'
-import { User } from '@core/domain/interfaces/User'
-import { GetUserQuery } from '@core/application/features/queries/user/GetUserQuery'
+import { Token } from '@core/auth/domain/interfaces/Token'
+import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
+import { User } from '@core/user/domain/interfaces/User'
 
 @ApiTags('User')
 @UseFilters(GlobalExceptionFilter)

@@ -1,13 +1,13 @@
 import { Controller, Get, UseFilters, UseGuards } from '@nestjs/common'
 import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
-import { LoginSuccessDto } from '@core/shared/dto/LoginSuccess.dto'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
-import { RefreshTokenCommand } from '@core/application/features/commands/auth/RefreshToken'
 import { CurrentUser } from '@infrastructure/http-server/decorators/current-user.decorator'
-import { Token } from '@core/domain/interfaces/Token'
 import { RefreshJwtGuard } from '@infrastructure/http-server/guards/jwt-refresh.guard'
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'
+import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/RefreshToken'
+import { Token } from '@core/auth/domain/interfaces/Token'
+import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 
 @ApiTags('Auth')
 @UseFilters(GlobalExceptionFilter)

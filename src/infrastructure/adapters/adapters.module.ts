@@ -3,9 +3,8 @@ import { InMemoryEventBus } from './eventbus/in-memory-event-bus.service'
 import { PersistenceModule } from '../persistance/persistence.module'
 import { PostgresAuthRepository } from './domain/postgres-auth.repository'
 import { PostgresUserRepository } from './domain/postgres-user.repository'
-
-export const AUTH_REPOSITORY = 'AUTH_REPOSITORY'
-export const USER_REPOSITORY = 'USER_REPOSITORY'
+import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
+import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositories'
 
 const providers = [
     PostgresAuthRepository,

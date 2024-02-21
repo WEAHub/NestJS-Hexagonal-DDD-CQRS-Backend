@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { User } from '@core/domain/interfaces/User'
 import { UserEntity } from '@db-entities/user.entity'
 import { Repository } from 'typeorm'
-import { UserRepository } from '@core/domain/ports/outbound/UserRepository'
+import { UserRepository } from '@core/user/domain/ports/outbound/repositories/UserRepository'
+import { User } from '@core/user/domain/interfaces/User'
 
 @Injectable()
 export class PostgresUserRepository implements UserRepository {

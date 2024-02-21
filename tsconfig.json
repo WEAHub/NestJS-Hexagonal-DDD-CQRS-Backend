@@ -19,8 +19,9 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@core/*": ["src/core/*"],
-      "@domain/*": ["src/core/domain/*"],
-      "@application/*": ["src/core/application/*"],
+      "@core-shared/*": ["src/core/shared/*"],
+      "@core-user/*": ["src/core/user/*"],
+      "@core-auth/*": ["src/core/auth/*"],
       "@infrastructure/*": ["src/infrastructure/*"],
       "@controllers/*": ["src/infrastructure/http-server/controllers/*"],
       "@db-entities/*": ["src/infrastructure/persistance/shopy-database/entities/*"]
