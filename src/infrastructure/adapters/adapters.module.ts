@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { InMemoryEventBus } from './eventbus/in-memory-event-bus.service'
+import { InMemoryEventBus } from '../../core/shared/domain/services/eventbus/in-memory-event-bus.service'
 import { PersistenceModule } from '../persistance/persistence.module'
 import { PostgresAuthRepository } from './domain/postgres-auth.repository'
 import { PostgresUserRepository } from './domain/postgres-user.repository'

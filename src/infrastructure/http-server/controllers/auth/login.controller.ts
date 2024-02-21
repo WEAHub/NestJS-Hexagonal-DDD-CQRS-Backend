@@ -6,15 +6,15 @@ import { LoginRequest } from '../../model/auth/login.request'
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'
 import { LoginCommand } from '@core/auth/application/entrypoint/commands/Login'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
+import { LoginControllerPort } from '@core/auth/domain/ports/outbound/controllers/login.controller.interface'
 
 @ApiTags('Auth')
 @UseFilters(GlobalExceptionFilter)
 @Controller('auth')
-export class LoginController {
-    constructor(
-        private command: CommandBus,
-        private query: QueryBus,
-    ) {}
+export class LoginController
+    implements LoginControllerPort<LoginRequest, LoginSuccessDto>
+{
+    constructor(private command: CommandBus) {}
 
     @Public()
     @ApiInternalServerErrorResponse({ description: 'Error server' })

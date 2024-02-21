@@ -24,7 +24,7 @@ export class UserService {
 
 export const UserServiceProvider = {
     provide: UserService,
+    inject: [USER_REPOSITORY],
     useFactory: (userRepository: UserRepository) =>
         new UserService(userRepository),
-    inject: [USER_REPOSITORY],
 }

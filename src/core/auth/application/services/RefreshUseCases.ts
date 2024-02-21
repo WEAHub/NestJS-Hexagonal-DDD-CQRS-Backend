@@ -1,4 +1,3 @@
-
 import { Token } from '@core/auth/domain/interfaces/Token'
 import { TokenService } from '@core/auth/domain/services/TokenService'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'

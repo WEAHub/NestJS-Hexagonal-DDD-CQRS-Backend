@@ -8,15 +8,15 @@ import { Public } from '@infrastructure/http-server/decorators/is-public.decorat
 import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/RefreshToken'
 import { Token } from '@core/auth/domain/interfaces/Token'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
+import { RefreshTokenControllerPort } from '@core/auth/domain/ports/outbound/controllers/refresh-token.controller.interface'
 
 @ApiTags('Auth')
 @UseFilters(GlobalExceptionFilter)
 @Controller('auth')
-export class RefreshTokenController {
-    constructor(
-        private command: CommandBus,
-        private query: QueryBus,
-    ) {}
+export class RefreshTokenController
+    implements RefreshTokenControllerPort<Token, LoginSuccessDto>
+{
+    constructor(private command: CommandBus) {}
 
     @Public()
     @UseGuards(RefreshJwtGuard)
