@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseFilters } from '@nestjs/common'
 import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
-import { CommandBus, QueryBus } from '@nestjs/cqrs'
+import { CommandBus } from '@nestjs/cqrs'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
 import { LoginRequest } from '../../model/auth/login.request'
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'

@@ -1,11 +1,11 @@
 import { LoginDto } from '@core/auth/shared/dto/Login.dto'
 import { User } from '@core/user/domain/interfaces/User'
-import { EVENTBUS } from '@core/core.module'
 import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
-import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
 import { EventBusPublisher } from '@core/shared/domain/ports/inbound/EventBusPublisher'
 import { UserLoginEvent } from '@core/auth/application/events/UserLoginEvent'
 import { AuthRepository } from '../ports/outbound/repositories/AuthRepository'
+import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
+import { EVENTBUS } from '@core/shared/domain/services/eventbus/event-bus.provider.module'
 
 export class AuthService {
     constructor(
@@ -28,3 +28,9 @@ export class AuthService {
     }
 }
 
+export const AuthServiceProvider = {
+    provide: AuthService,
+    inject: [AUTH_REPOSITORY, EVENTBUS],
+    useFactory: (authRepository: AuthRepository, eventbus: EventBusPublisher) =>
+        new AuthService(authRepository, eventbus),
+}

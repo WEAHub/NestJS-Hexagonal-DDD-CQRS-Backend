@@ -1,6 +1,6 @@
 import { Controller, Get, UseFilters, UseGuards } from '@nestjs/common'
 import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
-import { CommandBus, QueryBus } from '@nestjs/cqrs'
+import { CommandBus } from '@nestjs/cqrs'
 import { GlobalExceptionFilter } from '../../exception-filters/global-exception.filter'
 import { CurrentUser } from '@infrastructure/http-server/decorators/current-user.decorator'
 import { RefreshJwtGuard } from '@infrastructure/http-server/guards/jwt-refresh.guard'
