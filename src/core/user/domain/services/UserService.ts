@@ -6,6 +6,7 @@ import { UserRepository } from '../ports/outbound/repositories/UserRepository'
 import { HttpException, HttpStatus } from '@nestjs/common'
 import { UserServicePort } from '../ports/inbound/services/UserService'
 import { SaveOptions } from 'typeorm'
+import { ApplicationException } from '@core/shared/exception/ApplicationException'
 
 export class UserService implements UserServicePort {
     constructor(private readonly user: UserRepository) {}
@@ -18,7 +19,7 @@ export class UserService implements UserServicePort {
         const user: User = await this.user.findById(userId)
 
         if (!user) {
-            throw new EntityNotFoundException(`User(id="${userId}") Not found`)
+            throw new ApplicationException(`User(id="${userId}") Not found`)
         }
 
         return user

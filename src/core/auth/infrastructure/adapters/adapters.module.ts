@@ -23,10 +23,7 @@ const providers = [
 ]
 
 @Module({
-    imports: [
-        CqrsModule,
-        TypeOrmModule.forFeature([UserEntity]),
-    ],
+    imports: [CqrsModule, TypeOrmModule.forFeature([UserEntity])],
     providers: providers,
     controllers,
     exports: providers,

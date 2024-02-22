@@ -15,6 +15,5 @@ const featureModules = [
         CqrsModule,
         ...featureModules,
     ],
-    exports: [CqrsModule],
 })
 export class CoreModule {}

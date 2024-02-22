@@ -8,11 +8,7 @@ import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 
 @Module({
-    imports: [
-        CqrsModule,
-        PassportModule,
-        AuthAdaptersModule,
-    ],
+    imports: [CqrsModule, PassportModule, AuthAdaptersModule],
     providers: [
         JwtStrategy,
         JwtRefreshStrategy,

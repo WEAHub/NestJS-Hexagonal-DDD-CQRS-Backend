@@ -7,6 +7,7 @@ import { AuthRepository } from '../ports/outbound/repositories/AuthRepository'
 import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
 import { EVENTBUS } from '@core/shared/domain/services/eventbus/event-bus.service.module'
 import { AuthServicePort } from '../ports/inbound/services/AuthService.service.port'
+import { ApplicationException } from '@core/shared/exception/ApplicationException'
 
 export class AuthService implements AuthServicePort {
     constructor(
@@ -18,8 +19,8 @@ export class AuthService implements AuthServicePort {
         const _user: User = await this.auth.findByEmail(user.email)
 
         if (!_user) {
-            throw new EntityNotFoundException(
-                `User(email="${user.email}") Not found`,
+            throw new ApplicationException(
+                `User(email=${user.email}) Not found`,
             )
         }
 

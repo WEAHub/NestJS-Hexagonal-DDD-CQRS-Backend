@@ -1,4 +1,6 @@
 import { ApplicationException } from '@core/shared/exception/ApplicationException'
+import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
+import { ValidationException } from '@core/shared/exception/ValidationException'
 import {
     ExceptionFilter,
     Catch,
@@ -8,9 +10,13 @@ import {
 } from '@nestjs/common'
 import { Response, Request } from 'express'
 
-@Catch(ApplicationException)
+@Catch(
+    ApplicationException, //
+    ValidationException,
+    EntityNotFoundException,
+)
 export class GlobalExceptionFilter implements ExceptionFilter {
-    catch(exception: ApplicationException, host: ArgumentsHost) {
+    catch(exception: any, host: ArgumentsHost) {
         const ctx = host.switchToHttp()
         const response = ctx.getResponse<Response>()
         const request = ctx.getRequest<Request>()
