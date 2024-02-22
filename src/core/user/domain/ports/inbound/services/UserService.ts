@@ -7,5 +7,5 @@ export interface UserServicePort {
     save(user: User, options?: SaveOptions): Promise<User>
     checkUser(email: string): Promise<User>
     edit(user: User): Promise<User>
-    delete(userId: number): Promise<User>
+    delete(userId: number): Promise<boolean>
 }

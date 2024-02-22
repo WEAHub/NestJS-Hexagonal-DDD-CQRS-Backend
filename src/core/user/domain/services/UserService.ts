@@ -49,7 +49,7 @@ export class UserService implements UserServicePort {
         return this.user.save(user)
     }
 
-    async delete(userId: number): Promise<User> {
+    async delete(userId: number): Promise<boolean> {
         return this.user.delete(userId)
     }
 }
