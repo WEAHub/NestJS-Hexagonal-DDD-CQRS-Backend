@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs'
 import { UserLoginEvent } from '../UserLoginEvent'
-import { Log } from '@infrastructure/shared/Log'
+import { Log } from '@core/shared/utils/Log'
 
 @EventsHandler(UserLoginEvent)
 export class UserLoginEventHandler implements IEventHandler<UserLoginEvent> {

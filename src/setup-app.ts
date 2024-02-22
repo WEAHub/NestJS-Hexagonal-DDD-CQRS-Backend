@@ -1,5 +1,5 @@
-import { generateSwaggerDocs } from '@infrastructure/http-server/utils/generate-swagger-docs'
-import { ServerConfig } from '@infrastructure/shared/config/server.config'
+import { ServerConfig } from '@config/server.config'
+import { generateSwaggerDocs } from 'src/utils/generate-swagger-docs'
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 

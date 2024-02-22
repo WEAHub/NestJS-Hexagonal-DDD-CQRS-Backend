@@ -5,7 +5,7 @@ import { EventBusPublisher } from '@core/shared/domain/ports/inbound/EventBusPub
 import { UserLoginEvent } from '@core/auth/application/events/UserLoginEvent'
 import { AuthRepository } from '../ports/outbound/repositories/AuthRepository'
 import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
-import { EVENTBUS } from '@core/shared/domain/services/eventbus/event-bus.provider.module'
+import { EVENTBUS } from '@core/shared/domain/services/eventbus/event-bus.service.module'
 import { AuthServicePort } from '../ports/inbound/services/AuthService.service.port'
 
 export class AuthService implements AuthServicePort {

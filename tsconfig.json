@@ -18,13 +18,13 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@persistance/*": ["src/persistance/*"],
+      "@config/*": ["src/config/*"],
       "@core/*": ["src/core/*"],
       "@core-shared/*": ["src/core/shared/*"],
       "@core-user/*": ["src/core/user/*"],
       "@core-auth/*": ["src/core/auth/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
-      "@controllers/*": ["src/infrastructure/http-server/controllers/*"],
-      "@db-entities/*": ["src/infrastructure/persistance/shopy-database/entities/*"]
+      "@db-entities/*": ["src/persistance/shopy-database/entities/*"]
     }
   }
 }

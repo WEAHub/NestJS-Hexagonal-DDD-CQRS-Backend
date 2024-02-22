@@ -1,6 +1,4 @@
-import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/event-bus.provider.module'
-import { AdaptersModule } from '@infrastructure/adapters/adapters.module'
-import { PersistenceModule } from '@infrastructure/persistance/persistence.module'
+import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/event-bus.service.module'
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { GetUserQueryHandler } from './application/entrypoint/queries/handlers/GetUserQueryHandler'
@@ -8,6 +6,9 @@ import { UserUseCases } from './application/services/UserUseCases'
 import { UserServiceProvider } from './domain/services/UserService'
 import { CreateUserCommandHandler } from './application/entrypoint/commands/handlers/CreateUserHandler'
 import { PasswordService } from '@core/shared/domain/services/PasswordService'
+import { UserInfrastructureModule } from './infrastructure/infrastructure.module'
+import { PersistenceModule } from '@persistance/persistence.module'
+import { UserAdaptersModule } from './infrastructure/adapters/adapters.module'
 
 const eventHandlers = []
 const commandHandlers = [CreateUserCommandHandler]
@@ -26,9 +27,10 @@ const providers = [
 @Module({
     imports: [
         EventBusProviderModule,
-        AdaptersModule,
+        UserAdaptersModule,
         CqrsModule,
         PersistenceModule,
+        UserInfrastructureModule,
     ],
     providers,
     exports: providers,

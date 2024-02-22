@@ -1,10 +1,10 @@
 import { JwtService, JwtSignOptions } from '@nestjs/jwt'
 import { Token } from '../interfaces/Token'
 import { ConfigService } from '@nestjs/config'
-import { TokenConfig } from '@infrastructure/shared/config/token.config'
 import { Provider, UnauthorizedException } from '@nestjs/common'
 import { User } from '@core/user/domain/interfaces/User'
 import { TokenServicePort } from '../ports/inbound/services/TokenService.service.port'
+import { TokenConfig } from '@config/token.config'
 
 export class TokenService implements TokenServicePort {
     tokensConfig: TokenConfig = this.configService.get<TokenConfig>('token')

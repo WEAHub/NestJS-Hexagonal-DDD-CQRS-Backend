@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common'
-import { SharedModule } from '@infrastructure/shared/shared.module'
 import { CoreModule } from '@core/core.module'
-import { HttpServerModule } from '@infrastructure/http-server/http-server.module'
+import { ConfigLoaderModule } from 'src/config/config.module'
 
 @Module({
-    imports: [SharedModule, CoreModule, HttpServerModule],
+    imports: [ConfigLoaderModule, CoreModule],
     controllers: [],
     providers: [],
 })

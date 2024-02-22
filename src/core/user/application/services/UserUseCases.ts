@@ -1,4 +1,5 @@
 import { PasswordService } from '@core/shared/domain/services/PasswordService'
+import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { UserBuilder } from '@core/user/domain/builders/UserBuilder'
 import { User } from '@core/user/domain/interfaces/User'
 import { UserService } from '@core/user/domain/services/UserService'
@@ -9,7 +10,6 @@ import { Password } from '@core/user/domain/vo/Password'
 import { Phone } from '@core/user/domain/vo/Phone'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import { CreateUserSuccessDto } from '@core/user/shared/dto/CreateUserSuccess.dto'
-import { AppResponse } from '@infrastructure/http-server/model/app.response'
 import { HttpStatus, Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -53,6 +53,7 @@ export class UserUseCases {
             message: 'User created successfully',
             data: userEntity,
         }
+        
         return response
     }
 }
