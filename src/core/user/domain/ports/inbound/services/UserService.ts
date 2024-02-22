@@ -5,4 +5,5 @@ export interface UserServicePort {
     create(user: User): Promise<User>
     save(user: User): Promise<User>
     checkUser(email: string): Promise<User>
+    edit(user: User): Promise<User>
 }

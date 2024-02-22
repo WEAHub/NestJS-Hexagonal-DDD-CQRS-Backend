@@ -25,12 +25,12 @@ const providers = [
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([UserEntity]),
         CqrsModule,
         PersistenceModule,
+        TypeOrmModule.forFeature([UserEntity]),
     ],
-    providers: [...providers],
+    providers: providers,
     controllers,
-    exports: [...providers],
+    exports: providers,
 })
 export class UserAdaptersModule {}

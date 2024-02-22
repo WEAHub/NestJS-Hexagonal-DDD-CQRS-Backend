@@ -1,4 +1,5 @@
 import { UserLocation } from '@core/user/domain/interfaces/UserLocation'
+import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity({ name: 'users' })
@@ -26,4 +27,7 @@ export class UserEntity {
 
     @Column({ name: 'user_phone' })
     phone: string
+
+    @Column({ name: 'user_role' })
+    role: UserRoles
 }

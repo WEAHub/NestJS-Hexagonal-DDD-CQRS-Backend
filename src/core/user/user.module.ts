@@ -9,9 +9,10 @@ import { PasswordService } from '@core/shared/domain/services/PasswordService'
 import { UserInfrastructureModule } from './infrastructure/infrastructure.module'
 import { PersistenceModule } from '@persistance/persistence.module'
 import { UserAdaptersModule } from './infrastructure/adapters/adapters.module'
+import { EditUserCommandHandler } from './application/entrypoint/commands/handlers/EditUserHandler'
 
 const eventHandlers = []
-const commandHandlers = [CreateUserCommandHandler]
+const commandHandlers = [CreateUserCommandHandler, EditUserCommandHandler]
 const queryHandlers = [GetUserQueryHandler]
 const useCases = [UserUseCases]
 const services = [UserServiceProvider, PasswordService]

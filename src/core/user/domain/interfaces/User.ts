@@ -1,3 +1,4 @@
+import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
 import { UserLocation } from './UserLocation'
 
 export class User {
@@ -9,4 +10,5 @@ export class User {
     location: UserLocation
     email: string
     phone: string
+    role: UserRoles
 }

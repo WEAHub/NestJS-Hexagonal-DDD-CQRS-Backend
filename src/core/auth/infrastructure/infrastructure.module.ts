@@ -6,9 +6,15 @@ import { PassportModule } from '@nestjs/passport'
 import { AuthAdaptersModule } from './adapters/adapters.module'
 import { Module } from '@nestjs/common'
 import { PersistenceModule } from 'src/persistance/persistence.module'
+import { CqrsModule } from '@nestjs/cqrs'
 
 @Module({
-    imports: [PersistenceModule, PassportModule, AuthAdaptersModule],
+    imports: [
+        CqrsModule,
+        PersistenceModule,
+        PassportModule,
+        AuthAdaptersModule,
+    ],
     providers: [
         JwtStrategy,
         JwtRefreshStrategy,

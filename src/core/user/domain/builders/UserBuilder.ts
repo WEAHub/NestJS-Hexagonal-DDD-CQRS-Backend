@@ -1,4 +1,3 @@
-import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import { Name } from '../vo/Name'
 import { Password } from '../vo/Password'
 import { Avatar } from '../vo/Avatar'
@@ -6,9 +5,11 @@ import { Email } from '../vo/Email'
 import { Phone } from '../vo/Phone'
 import { User } from '../interfaces/User'
 import { UserLocation } from '../interfaces/UserLocation'
+import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
+import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 
 export class UserBuilder {
-    constructor(private user: CreateUserDto) {}
+    constructor(private user: CreateUserDto) { }
 
     firstName(name: Name): UserBuilder {
         this.user.firstName = name.getValue()
@@ -87,6 +88,7 @@ export class UserBuilder {
             avatar: this.user.avatar,
             email: this.user.email,
             phone: this.user.phone,
+            role: UserRoles.BUYER,
             location,
         }
     }

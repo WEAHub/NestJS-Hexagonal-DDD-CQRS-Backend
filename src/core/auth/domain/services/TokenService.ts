@@ -14,7 +14,7 @@ export class TokenService implements TokenServicePort {
         private configService: ConfigService,
     ) {}
 
-    async generateAccessToken(user: Partial<User>): Promise<string> {
+    async generateAccessToken(user: User): Promise<string> {
         return await this.generateToken(
             user,
             this.tokensConfig.accessExpiration,
@@ -22,7 +22,7 @@ export class TokenService implements TokenServicePort {
         )
     }
 
-    async generateRefreshToken(user: Partial<User>): Promise<string> {
+    async generateRefreshToken(user: User): Promise<string> {
         return await this.generateToken(
             user,
             this.tokensConfig.refreshExpiration,

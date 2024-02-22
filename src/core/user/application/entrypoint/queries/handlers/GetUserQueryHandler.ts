@@ -8,7 +8,6 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
     constructor(private user: UserUseCases) {}
 
     execute(user: GetUserQuery): Promise<User> {
-        const { id: userId } = user.user
-        return this.user.getUser(userId)
+        return this.user.getUser(user.userId)
     }
 }

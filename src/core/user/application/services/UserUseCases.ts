@@ -53,7 +53,11 @@ export class UserUseCases {
             message: 'User created successfully',
             data: userEntity,
         }
-        
+
         return response
+    }
+
+    async update(user: User): Promise<User> {
+        return this.userService.save(user)
     }
 }

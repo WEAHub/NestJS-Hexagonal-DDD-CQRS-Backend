@@ -43,6 +43,10 @@ export class UserService implements UserServicePort {
 
         return _user
     }
+
+    async edit(user: User): Promise<User> {
+        return this.user.save(user)
+    }
 }
 
 export const UserServiceProvider = {
