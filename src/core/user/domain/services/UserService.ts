@@ -5,6 +5,7 @@ import { User } from '../interfaces/User'
 import { UserRepository } from '../ports/outbound/repositories/UserRepository'
 import { HttpException, HttpStatus } from '@nestjs/common'
 import { UserServicePort } from '../ports/inbound/services/UserService'
+import { SaveOptions } from 'typeorm'
 
 export class UserService implements UserServicePort {
     constructor(private readonly user: UserRepository) {}
@@ -27,8 +28,8 @@ export class UserService implements UserServicePort {
         return await this.user.create(user)
     }
 
-    async save(user: User): Promise<User> {
-        return await this.user.save(user)
+    async save(user: User, options?: SaveOptions): Promise<User> {
+        return await this.user.save(user, options)
     }
 
     async checkUser(email: string): Promise<User> {

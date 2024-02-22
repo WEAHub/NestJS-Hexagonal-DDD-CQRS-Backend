@@ -9,7 +9,8 @@ import { Name } from '@core/user/domain/vo/Name'
 import { Password } from '@core/user/domain/vo/Password'
 import { Phone } from '@core/user/domain/vo/Phone'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
-import { CreateUserSuccessDto } from '@core/user/shared/dto/CreateUserSuccess.dto'
+import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
+import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
 import { HttpStatus, Injectable } from '@nestjs/common'
 
 @Injectable()
@@ -25,17 +26,10 @@ export class UserUseCases {
         return user
     }
 
-    async create(newUser: CreateUserDto): Promise<CreateUserSuccessDto> {
+    async create(newUser: CreateUserDto): Promise<AppResponse<User>> {
         await this.userService.checkUser(newUser.email)
 
-        const user: User = new UserBuilder(newUser)
-            .firstName(new Name(newUser.firstName))
-            .lastName(new Name(newUser.lastName))
-            .avatar(new Avatar(newUser.avatar))
-            .password(new Password(newUser.password))
-            .phone(new Phone(newUser.phone))
-            .email(new Email(newUser.email))
-            .build()
+        const user: User = this.buildUser(newUser)
 
         const encryptedPassword = await this.passwordService.encrypt(
             user.password,
@@ -48,7 +42,7 @@ export class UserUseCases {
 
         this.userService.save(userEntity)
 
-        const response: AppResponse = {
+        const response: AppResponse<User> = {
             status: HttpStatus.OK,
             message: 'User created successfully',
             data: userEntity,
@@ -57,7 +51,29 @@ export class UserUseCases {
         return response
     }
 
-    async update(user: User): Promise<User> {
-        return this.userService.save(user)
+    async update(user: EditUserDto): Promise<AppResponse<User>> {
+        const existingUser = await this.userService.getUser(user.id)
+        const _user: User = this.buildUser(user)
+        _user.id = existingUser.id
+
+        const data: User = await this.userService.save(_user)
+        const response: AppResponse<User> = {
+            message: 'User updated successfully',
+            status: HttpStatus.OK,
+            data,
+        }
+        return response
+    }
+
+    buildUser(newUser: Partial<EditUserDto>): User {
+        return new UserBuilder(newUser)
+            .firstName(new Name(newUser.firstName))
+            .lastName(new Name(newUser.lastName))
+            .avatar(new Avatar(newUser.avatar))
+            .password(new Password(newUser.password))
+            .phone(new Phone(newUser.phone))
+            .email(new Email(newUser.email))
+            .role(newUser?.role ?? UserRoles.BUYER)
+            .build()
     }
 }

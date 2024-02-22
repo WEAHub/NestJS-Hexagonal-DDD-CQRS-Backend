@@ -25,9 +25,9 @@ const providers = [
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([UserEntity]),
         CqrsModule,
         PersistenceModule,
+        TypeOrmModule.forFeature([UserEntity]),
     ],
     providers: providers,
     controllers,

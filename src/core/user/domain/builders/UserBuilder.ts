@@ -6,10 +6,12 @@ import { Phone } from '../vo/Phone'
 import { User } from '../interfaces/User'
 import { UserLocation } from '../interfaces/UserLocation'
 import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
-import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
+import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
+
+type UserDto = Partial<EditUserDto>
 
 export class UserBuilder {
-    constructor(private user: CreateUserDto) { }
+    constructor(private user: UserDto) {}
 
     firstName(name: Name): UserBuilder {
         this.user.firstName = name.getValue()
@@ -71,6 +73,11 @@ export class UserBuilder {
         return this
     }
 
+    role(role: UserRoles): UserBuilder {
+        this.user.role = role
+        return this
+    }
+
     build(): User {
         const location: UserLocation = {
             city: this.user.city,
@@ -88,7 +95,7 @@ export class UserBuilder {
             avatar: this.user.avatar,
             email: this.user.email,
             phone: this.user.phone,
-            role: UserRoles.BUYER,
+            role: this.user.role,
             location,
         }
     }
