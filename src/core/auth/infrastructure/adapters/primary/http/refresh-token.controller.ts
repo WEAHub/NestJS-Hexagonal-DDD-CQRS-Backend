@@ -5,10 +5,10 @@ import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 import { RefreshTokenControllerPort } from '@core/auth/domain/ports/inbound/controllers/refresh-token.controller.port'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
-import { RefreshJwtGuard } from '@core/shared/infrastructure/guards/jwt-refresh.guard'
 import { CurrentUser } from '@core/shared/infrastructure/decorators/current-user.decorator'
 import { Public } from '@core/shared/infrastructure/decorators/is-public.decorator'
 import { User } from '@core/user/domain/interfaces/User'
+import { RefreshJwtGuard } from '@core/auth/infrastructure/guards/jwt-refresh.guard'
 
 @ApiTags('Auth Refresh Controller')
 @UseFilters(GlobalExceptionFilter)
