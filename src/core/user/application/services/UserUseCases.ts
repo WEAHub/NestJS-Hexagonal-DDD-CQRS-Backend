@@ -65,6 +65,18 @@ export class UserUseCases {
         return response
     }
 
+    async delete(userId: number): Promise<AppResponse<null>> {
+        await this.userService.delete(userId)
+
+        const response: AppResponse<null> = {
+            message: `User(id=${userId}) Deleted succesfully`,
+            status: HttpStatus.OK,
+            data: null,
+        }
+
+        return response
+    }
+
     buildUser(newUser: Partial<EditUserDto>): User {
         return new UserBuilder(newUser)
             .firstName(new Name(newUser.firstName))

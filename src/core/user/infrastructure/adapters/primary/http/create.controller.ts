@@ -3,7 +3,7 @@ import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-fil
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { CreateUserCommand } from '@core/user/application/entrypoint/commands/CreateUser'
 import { User } from '@core/user/domain/interfaces/User'
-import { CreateUserControllerPort } from '@core/user/domain/ports/inbound/controllers/createUser.controller'
+import { CreateUserControllerPort } from '@core/user/domain/ports/inbound/controllers/create.controller'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import {
     UseFilters,
@@ -27,7 +27,7 @@ export class CreateUserController
     @Post()
     @Public()
     @HttpCode(HttpStatus.CREATED)
-    async createUser(@Body() user: CreateUserDto): Promise<AppResponse<User>> {
+    async create(@Body() user: CreateUserDto): Promise<AppResponse<User>> {
         return this.command.execute(new CreateUserCommand(user))
     }
 }

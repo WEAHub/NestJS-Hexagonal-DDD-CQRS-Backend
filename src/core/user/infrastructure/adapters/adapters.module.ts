@@ -8,12 +8,14 @@ import { CqrsModule } from '@nestjs/cqrs'
 import { PersistenceModule } from '@persistance/persistence.module'
 import { UserEntity } from './secondary/db/entities/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { EditUserController } from './primary/http/edit.controller'
+import { EditUserController } from './primary/http/update.controller'
+import { DeleteUserController } from './primary/http/delete.controller'
 
 const controllers = [
     CreateUserController, //
     GetUserController,
     EditUserController,
+    DeleteUserController,
 ]
 
 const providers = [

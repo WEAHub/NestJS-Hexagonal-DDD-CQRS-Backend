@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { User } from '@core/user/domain/interfaces/User'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
-import { EditUserControllerPort } from '@core/user/domain/ports/inbound/controllers/editUser.controller'
+import { EditUserControllerPort } from '@core/user/domain/ports/inbound/controllers/update.controller'
 import { EditUserCommand } from '@core/user/application/entrypoint/commands/EditUser'
 import { IsAdminGuard } from '@core/shared/infrastructure/guards/is-admin.guard'
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
@@ -18,7 +18,7 @@ export class EditUserController
 
     @UseGuards(IsAdminGuard)
     @Put()
-    async editUser(@Body() user: EditUserDto): Promise<User> {
+    async update(@Body() user: EditUserDto): Promise<User> {
         return this.command.execute(new EditUserCommand(user))
     }
 }

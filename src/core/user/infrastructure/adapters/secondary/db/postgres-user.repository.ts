@@ -13,10 +13,8 @@ export class PostgresUserRepository implements UserRepository {
         private repository: Repository<UserEntity>,
     ) {}
 
-    async findById(userId: number): Promise<User> {
-        return this.repository.findOneBy({
-            id: userId,
-        })
+    async findById(id: number): Promise<User> {
+        return this.repository.findOneBy({ id })
     }
 
     async create(user: User): Promise<User> {
@@ -31,9 +29,8 @@ export class PostgresUserRepository implements UserRepository {
         return this.repository.findOneBy({ email })
     }
 
-    async delete(userId: number): Promise<User> {
-        const user: User = await this.findById(userId)
-        this.repository.delete(user)
-        return user
+    async delete(id: number): Promise<boolean> {
+        const deleted = await this.repository.delete({ id })
+        return deleted.affected > 0
     }
 }

@@ -10,9 +10,14 @@ import { UserInfrastructureModule } from './infrastructure/infrastructure.module
 import { PersistenceModule } from '@persistance/persistence.module'
 import { UserAdaptersModule } from './infrastructure/adapters/adapters.module'
 import { EditUserCommandHandler } from './application/entrypoint/commands/handlers/EditUserHandler'
+import { DeleteUserCommandHandler } from './application/entrypoint/commands/handlers/DeleteUserHandler'
 
 const eventHandlers = []
-const commandHandlers = [CreateUserCommandHandler, EditUserCommandHandler]
+const commandHandlers = [
+    CreateUserCommandHandler,
+    EditUserCommandHandler,
+    DeleteUserCommandHandler,
+]
 const queryHandlers = [GetUserQueryHandler]
 const useCases = [UserUseCases]
 const services = [UserServiceProvider, PasswordService]
