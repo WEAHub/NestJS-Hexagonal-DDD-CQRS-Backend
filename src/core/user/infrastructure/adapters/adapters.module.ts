@@ -5,7 +5,6 @@ import { GetUserController } from './primary/http/get.controller'
 import { CreateUserController } from './primary/http/create.controller'
 import { InMemoryEventBus } from '@core/shared/domain/services/eventbus/in-memory-event-bus.service'
 import { CqrsModule } from '@nestjs/cqrs'
-import { PersistenceModule } from '@persistance/persistence.module'
 import { UserEntity } from './secondary/db/entities/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { EditUserController } from './primary/http/update.controller'
@@ -30,7 +29,6 @@ const providers = [
 @Module({
     imports: [
         CqrsModule,
-        PersistenceModule,
         TypeOrmModule.forFeature([UserEntity]),
     ],
     providers: providers,

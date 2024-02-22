@@ -5,7 +5,6 @@ import { LoginController } from './primary/http/login.controller'
 import { RefreshTokenController } from './primary/http/refresh-token.controller'
 import { PostgresAuthRepository } from './secondary/db/postgres-auth.repository'
 import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
-import { PersistenceModule } from '@persistance/persistence.module'
 import { UserEntity } from '@core/user/infrastructure/adapters/secondary/db/entities/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
@@ -26,7 +25,6 @@ const providers = [
 @Module({
     imports: [
         CqrsModule,
-        PersistenceModule,
         TypeOrmModule.forFeature([UserEntity]),
     ],
     providers: providers,
