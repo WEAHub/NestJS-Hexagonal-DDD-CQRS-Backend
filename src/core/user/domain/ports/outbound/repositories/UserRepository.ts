@@ -6,4 +6,5 @@ export interface UserRepository {
     create(user: User): Promise<User>
     save(user: User, options?: SaveOptions): Promise<User>
     findByEmail(email: string): Promise<User>
+    delete(userId: number): Promise<User>
 }

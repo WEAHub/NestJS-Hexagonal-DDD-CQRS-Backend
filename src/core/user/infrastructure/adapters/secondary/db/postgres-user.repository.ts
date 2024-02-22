@@ -30,4 +30,10 @@ export class PostgresUserRepository implements UserRepository {
     async findByEmail(email: string): Promise<User> {
         return this.repository.findOneBy({ email })
     }
+
+    async delete(userId: number): Promise<User> {
+        const user: User = await this.findById(userId)
+        this.repository.delete(user)
+        return user
+    }
 }

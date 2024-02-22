@@ -1,4 +1,4 @@
-import { Controller, Get, UseFilters } from '@nestjs/common'
+import { Controller, Get, Param, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { QueryBus } from '@nestjs/cqrs'
 import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
@@ -16,5 +16,10 @@ export class GetUserController implements GetUserControllerPort<User, User> {
     @Get()
     async getUser(@CurrentUser() user: User): Promise<User> {
         return this.query.execute(new GetUserQuery(user.id))
+    }
+
+    @Get(':id')
+    async getByID(@Param('id') id: number): Promise<User> {
+        return this.query.execute(new GetUserQuery(id))
     }
 }
