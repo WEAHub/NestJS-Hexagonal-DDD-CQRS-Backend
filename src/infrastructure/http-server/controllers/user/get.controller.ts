@@ -6,7 +6,7 @@ import { CurrentUser } from '@infrastructure/http-server/decorators/current-user
 import { Token } from '@core/auth/domain/interfaces/Token'
 import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
 import { User } from '@core/user/domain/interfaces/User'
-import { GetUserControllerPort } from '@core/user/domain/ports/outbound/controllers/getUser.controller'
+import { GetUserControllerPort } from '@core/user/domain/ports/inbound/controllers/getUser.controller'
 
 @ApiTags('Get User Controller')
 @UseFilters(GlobalExceptionFilter)

@@ -2,10 +2,11 @@ import { JwtService, JwtSignOptions } from '@nestjs/jwt'
 import { Token } from '../interfaces/Token'
 import { ConfigService } from '@nestjs/config'
 import { TokenConfig } from '@infrastructure/shared/config/token.config'
-import { UnauthorizedException } from '@nestjs/common'
+import { Provider, UnauthorizedException } from '@nestjs/common'
 import { User } from '@core/user/domain/interfaces/User'
+import { TokenServicePort } from '../ports/inbound/services/TokenService.service.port'
 
-export class TokenService {
+export class TokenService implements TokenServicePort {
     tokensConfig: TokenConfig = this.configService.get<TokenConfig>('token')
 
     constructor(
@@ -60,7 +61,7 @@ export class TokenService {
     }
 }
 
-export const TokenServiceProvider = {
+export const TokenServiceProvider: Provider = {
     provide: TokenService,
     useFactory: (configService: ConfigService, jwtService: JwtService) =>
         new TokenService(jwtService, configService),

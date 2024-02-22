@@ -3,8 +3,10 @@ import { ValidationException } from '@core/shared/exception/ValidationException'
 import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositories'
 import { User } from '../interfaces/User'
 import { UserRepository } from '../ports/outbound/repositories/UserRepository'
+import { HttpException, HttpStatus } from '@nestjs/common'
+import { UserServicePort } from '../ports/inbound/services/UserService'
 
-export class UserService {
+export class UserService implements UserServicePort {
     constructor(private readonly user: UserRepository) {}
 
     async getUser(userId: number): Promise<User> {
@@ -33,7 +35,10 @@ export class UserService {
         const _user: User = await this.user.findByEmail(email)
 
         if (_user) {
-            throw new ValidationException(`${email}Email already exists`)
+            throw new HttpException(
+                'Email already exists',
+                HttpStatus.UNAUTHORIZED,
+            )
         }
 
         return _user

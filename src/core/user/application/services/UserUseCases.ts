@@ -9,7 +9,8 @@ import { Password } from '@core/user/domain/vo/Password'
 import { Phone } from '@core/user/domain/vo/Phone'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import { CreateUserSuccessDto } from '@core/user/shared/dto/CreateUserSuccess.dto'
-import { Injectable } from '@nestjs/common'
+import { AppResponse } from '@infrastructure/http-server/model/app.response'
+import { HttpStatus, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class UserUseCases {
@@ -45,6 +46,13 @@ export class UserUseCases {
             password: encryptedPassword,
         })
 
-        return this.userService.save(userEntity)
+        this.userService.save(userEntity)
+
+        const response: AppResponse = {
+            status: HttpStatus.OK,
+            message: 'User created successfully',
+            data: userEntity,
+        }
+        return response
     }
 }

@@ -1,5 +1,5 @@
 import { CreateUserCommand } from '@core/user/application/entrypoint/commands/CreateUser'
-import { CreateUserControllerPort } from '@core/user/domain/ports/outbound/controllers/createUser.controller'
+import { CreateUserControllerPort } from '@core/user/domain/ports/inbound/controllers/createUser.controller'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'
 import { GlobalExceptionFilter } from '@infrastructure/http-server/exception-filters/global-exception.filter'

@@ -8,7 +8,7 @@ import { Public } from '@infrastructure/http-server/decorators/is-public.decorat
 import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/RefreshToken'
 import { Token } from '@core/auth/domain/interfaces/Token'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
-import { RefreshTokenControllerPort } from '@core/auth/domain/ports/outbound/controllers/refresh-token.controller.interface'
+import { RefreshTokenControllerPort } from '@core/auth/domain/ports/inbound/controllers/refresh-token.controller.port'
 
 @ApiTags('Auth Refresh Controller')
 @UseFilters(GlobalExceptionFilter)

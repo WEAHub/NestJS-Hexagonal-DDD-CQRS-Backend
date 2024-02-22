@@ -6,8 +6,9 @@ import { UserLoginEvent } from '@core/auth/application/events/UserLoginEvent'
 import { AuthRepository } from '../ports/outbound/repositories/AuthRepository'
 import { AUTH_REPOSITORY } from '@core/auth/shared/dependency-tokens/repositories'
 import { EVENTBUS } from '@core/shared/domain/services/eventbus/event-bus.provider.module'
+import { AuthServicePort } from '../ports/inbound/services/AuthService.service.port'
 
-export class AuthService {
+export class AuthService implements AuthServicePort {
     constructor(
         private readonly auth: AuthRepository,
         private readonly eventbus: EventBusPublisher,

@@ -5,7 +5,7 @@ import { GlobalExceptionFilter } from '../../exception-filters/global-exception.
 import { Public } from '@infrastructure/http-server/decorators/is-public.decorator'
 import { LoginCommand } from '@core/auth/application/entrypoint/commands/Login'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
-import { LoginControllerPort } from '@core/auth/domain/ports/outbound/controllers/login.controller.interface'
+import { LoginControllerPort } from '@core/auth/domain/ports/inbound/controllers/login.controller.port'
 import { LoginDto } from '@core/auth/shared/dto/Login.dto'
 
 @ApiTags('Auth Login Controller')
