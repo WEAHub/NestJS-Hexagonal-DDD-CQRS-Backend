@@ -30,12 +30,7 @@ const providers = [
 ]
 
 @Module({
-    imports: [
-        EventBusProviderModule,
-        UserAdaptersModule,
-        CqrsModule,
-        UserInfrastructureModule,
-    ],
+    imports: [EventBusProviderModule, CqrsModule, UserInfrastructureModule],
     providers,
     exports: providers,
 })

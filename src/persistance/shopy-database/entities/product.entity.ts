@@ -27,9 +27,9 @@ export class ProductEntity {
     @Column({ name: 'product_stock_total' })
     stockTotal: number
 
-    /*
+    /*     
     @Column({ name: 'product_modifiers', nullable: true, type: 'json' })
-    modifiers: ProductModifier
+    modifiers: ProductModifier 
     */
 
     @Column({ name: 'product_added_dt' })

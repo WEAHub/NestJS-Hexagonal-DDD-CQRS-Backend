@@ -9,7 +9,6 @@ import { RefreshTokenUseCases } from './application/services/RefreshUseCases'
 import { AuthServiceProvider } from './domain/services/AuthService'
 import { TokenServiceProvider } from './domain/services/TokenService'
 import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/event-bus.service.module'
-import { AuthAdaptersModule } from './infrastructure/adapters/adapters.module'
 import { AuthInfrastructureModule } from './infrastructure/infrastructure.module'
 
 const eventHandlers = [UserLoginEventHandler]
@@ -27,12 +26,7 @@ const providers = [
 ]
 
 @Module({
-    imports: [
-        EventBusProviderModule,
-        CqrsModule,
-        AuthAdaptersModule,
-        AuthInfrastructureModule,
-    ],
+    imports: [EventBusProviderModule, CqrsModule, AuthInfrastructureModule],
     providers,
     exports: providers,
 })
