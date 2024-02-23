@@ -53,8 +53,13 @@ export class UserUseCases {
 
     async update(user: EditUserDto): Promise<AppResponse<User>> {
         const existingUser = await this.userService.getUser(user.id)
-        const _user: User = this.buildUser(user)
+
+        const _user: User = this.buildUser(user, false)
         _user.id = existingUser.id
+
+        if (user.password) {
+            _user.password = await this.passwordService.encrypt(_user.password)
+        }
 
         const data: User = await this.userService.save(_user)
         const response: AppResponse<User> = {
@@ -77,15 +82,15 @@ export class UserUseCases {
         return response
     }
 
-    buildUser(newUser: Partial<EditUserDto>): User {
-        return new UserBuilder(newUser)
-            .firstName(new Name(newUser.firstName))
-            .lastName(new Name(newUser.lastName))
-            .avatar(new Avatar(newUser.avatar))
-            .password(new Password(newUser.password))
-            .phone(new Phone(newUser.phone))
-            .email(new Email(newUser.email))
-            .role(newUser?.role ?? UserRoles.BUYER)
+    buildUser(user: Partial<EditUserDto>, strict: boolean = true): User {
+        return new UserBuilder(user, strict)
+            .firstName(user.firstName)
+            .lastName(user.lastName)
+            .avatar(user.avatar)
+            .password(user.password)
+            .phone(user.phone)
+            .email(user.email)
+            .role(user?.role ?? UserRoles.BUYER)
             .build()
     }
 }

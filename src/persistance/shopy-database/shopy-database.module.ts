@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DatabaseConfig } from '@config/database.config'
-import { UserEntity } from '@core/user/infrastructure/adapters/secondary/db/entities/user.entity'
 
 @Module({
     imports: [
@@ -17,8 +16,8 @@ import { UserEntity } from '@core/user/infrastructure/adapters/secondary/db/enti
                     username: database.user,
                     password: database.password,
                     database: database.name,
-                    entities: [UserEntity],
                     synchronize: false,
+                    autoLoadEntities: true,
                     logging: ['query'],
                 }
             },

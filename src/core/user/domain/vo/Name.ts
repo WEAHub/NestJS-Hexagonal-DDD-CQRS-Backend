@@ -6,6 +6,6 @@ export class Name extends ValueObject<string> {
     }
 
     protected validate(name: string): boolean {
-        return Boolean(name.length)
+        return Boolean(name?.length)
     }
 }
