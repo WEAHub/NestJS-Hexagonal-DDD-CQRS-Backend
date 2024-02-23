@@ -8,7 +8,6 @@ import { UserLocation } from '../interfaces/UserLocation'
 import { UserRoles } from '@core/user/shared/enums/user-roles.enum'
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
 import { cleanEmptyValues } from '@core/shared/utils/clearEmptyValues'
-import { Logger } from '@nestjs/common'
 
 type UserDto = Partial<EditUserDto>
 
