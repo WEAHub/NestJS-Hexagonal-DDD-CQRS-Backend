@@ -7,7 +7,6 @@ import { UserServiceProvider } from './domain/services/UserService'
 import { CreateUserCommandHandler } from './application/entrypoint/commands/handlers/CreateUserHandler'
 import { PasswordService } from '@core/shared/domain/services/PasswordService'
 import { UserInfrastructureModule } from './infrastructure/infrastructure.module'
-import { UserAdaptersModule } from './infrastructure/adapters/adapters.module'
 import { EditUserCommandHandler } from './application/entrypoint/commands/handlers/EditUserHandler'
 import { DeleteUserCommandHandler } from './application/entrypoint/commands/handlers/DeleteUserHandler'
 

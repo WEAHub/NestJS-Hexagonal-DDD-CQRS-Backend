@@ -1,6 +1,5 @@
 import { LoginDto } from '@core/auth/shared/dto/Login.dto'
 import { User } from '@core/user/domain/interfaces/User'
-import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
 import { EventBusPublisher } from '@core/shared/domain/ports/inbound/EventBusPublisher'
 import { UserLoginEvent } from '@core/auth/application/events/UserLoginEvent'
 import { AuthRepository } from '../ports/outbound/repositories/AuthRepository'

@@ -1,4 +1,3 @@
-import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositories'
 import { User } from '../interfaces/User'

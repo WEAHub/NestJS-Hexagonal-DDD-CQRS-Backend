@@ -23,7 +23,7 @@
             "@core/*": ["src/core/*"],
             "@core-shared/*": ["src/core/shared/*"],
             "@core-user/*": ["src/core/user/*"],
-            "@core-auth/*": ["src/core/auth/*"],
+            "@core-auth/*": ["src/core/auth/*"]
         }
     }
 }
