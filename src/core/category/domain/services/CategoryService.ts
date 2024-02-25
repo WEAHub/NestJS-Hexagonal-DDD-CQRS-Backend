@@ -2,7 +2,6 @@ import { CATEGORY_REPOSITORY } from '@core/category/shared/dependency-tokens/rep
 import { Category } from '../interfaces/Category'
 import { CategoryServicePort } from '../ports/inbound/services/CategoryService'
 import { CategoryRepository } from '../ports/outbound/repositories/CategoryRepository'
-import { ValidationException } from '@core/shared/exception/ValidationException'
 
 export class CategoryService implements CategoryServicePort {
     constructor(private readonly category: CategoryRepository) {}

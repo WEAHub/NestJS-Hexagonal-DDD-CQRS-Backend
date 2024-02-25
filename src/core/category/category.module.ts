@@ -9,11 +9,13 @@ import { GetCategoryByNameQueryHandler } from './application/entrypoint/queries/
 import { GetCategoryByIdHandler } from './application/entrypoint/queries/handlers/GetCategoryByIdHandler'
 import { CreateCategoryCommandHandler } from './application/entrypoint/commands/handlers/CreateCategoryHandler'
 import { DeleteCategoryCommandHandler } from './application/entrypoint/commands/handlers/DeleteCategoryHandler'
+import { UpdateCategoryCommandHandler } from './application/entrypoint/commands/handlers/UpdateCategoryHandler'
 
 const eventHandlers = []
 const commandHandlers = [
     CreateCategoryCommandHandler,
     DeleteCategoryCommandHandler,
+    UpdateCategoryCommandHandler,
 ]
 const queryHandlers = [
     GetAllCategoryHandler,

@@ -8,11 +8,13 @@ import { CATEGORY_REPOSITORY } from '@core/category/shared/dependency-tokens/rep
 import { GetCategoryController } from './primary/http/get.controller'
 import { CreateCategoryController } from './primary/http/create.controller'
 import { DeleteCategoryController } from './primary/http/delete.controller'
+import { UpdateCategoryController } from './primary/http/update.controller'
 
 const controllers = [
     GetCategoryController,
     CreateCategoryController,
     DeleteCategoryController,
+    UpdateCategoryController,
 ]
 
 const providers = [

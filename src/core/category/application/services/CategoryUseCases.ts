@@ -2,6 +2,7 @@ import { CategoryBuilder } from '@core/category/domain/builders/CategoryBuilder'
 import { Category } from '@core/category/domain/interfaces/Category'
 import { CategoryService } from '@core/category/domain/services/CategoryService'
 import { CreateCategoryDto } from '@core/category/shared/dto/CreateCategory.dto'
+import { UpdateCategoryDto } from '@core/category/shared/dto/UpdateCategory.dto'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { HttpStatus, Injectable } from '@nestjs/common'
@@ -55,8 +56,33 @@ export class CategoryUseCases {
         return response
     }
 
-    private buildCategory(category: CreateCategoryDto): Category {
-        return new CategoryBuilder(category)
+    async update(
+        id: number,
+        category: UpdateCategoryDto,
+    ): Promise<AppResponse<Category>> {
+        const existingCategory = await this.categoryService.findById(id)
+
+        if (!existingCategory) {
+            throw new ValidationException(`Invalid Category(id=${id})`)
+        }
+
+        const _category: Category = this.buildCategory(category, false)
+        _category.id = existingCategory.id
+
+        const data: Category = await this.categoryService.save(_category)
+        const response: AppResponse<Category> = {
+            message: 'Category updated successfully',
+            status: HttpStatus.OK,
+            data,
+        }
+        return response
+    }
+
+    private buildCategory(
+        category: CreateCategoryDto,
+        strict: boolean = true,
+    ): Category {
+        return new CategoryBuilder(category, strict)
             .name(category.name)
             .description(category.description)
             .build()
