@@ -5,4 +5,5 @@ export interface CategoryRepository {
     findById(id: number): Promise<Category>
     findAll(): Promise<Category[]>
     save(category: Category): Promise<Category>
+    delete(id: number): Promise<boolean>
 }

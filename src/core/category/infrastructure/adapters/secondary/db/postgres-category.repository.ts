@@ -27,4 +27,9 @@ export class PostgresCategoryRepository implements CategoryRepository {
     async save(category: Category): Promise<Category> {
         return this.repository.save(category)
     }
+
+    async delete(id: number): Promise<boolean> {
+        const deleted = await this.repository.delete({ id })
+        return deleted.affected > 0
+    }
 }

@@ -12,23 +12,19 @@ export class CategoryService implements CategoryServicePort {
     }
 
     async findByName(name: string): Promise<Category> {
-        const category: Category = await this.category.findByName(name)
-        if (!category) {
-            throw new ValidationException(`Invalid Category(name=${name})`)
-        }
-        return category
+        return await this.category.findByName(name)
     }
 
     async findById(id: number): Promise<Category> {
-        const category: Category = await this.category.findById(id)
-        if (!category) {
-            throw new ValidationException(`Invalid Category(id=${id})`)
-        }
-        return category
+        return await this.category.findById(id)
     }
 
     async save(category: Category): Promise<Category> {
         return this.category.save(category)
+    }
+
+    async delete(id: number): Promise<boolean> {
+        return this.category.delete(id)
     }
 }
 

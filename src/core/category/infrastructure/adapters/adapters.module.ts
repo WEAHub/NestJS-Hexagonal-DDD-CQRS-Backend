@@ -7,8 +7,13 @@ import { PostgresCategoryRepository } from './secondary/db/postgres-category.rep
 import { CATEGORY_REPOSITORY } from '@core/category/shared/dependency-tokens/repositories'
 import { GetCategoryController } from './primary/http/get.controller'
 import { CreateCategoryController } from './primary/http/create.controller'
+import { DeleteCategoryController } from './primary/http/delete.controller'
 
-const controllers = [GetCategoryController, CreateCategoryController]
+const controllers = [
+    GetCategoryController,
+    CreateCategoryController,
+    DeleteCategoryController,
+]
 
 const providers = [
     PostgresCategoryRepository,

@@ -15,7 +15,7 @@ import { CreateCategoryDto } from '@core/category/shared/dto/CreateCategory.dto'
 import { CreateCategoryCommand } from '@core/category/application/entrypoint/commands/CreateCategory'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 
-@ApiTags('Category Get Controller')
+@ApiTags('Category Create Controller')
 @UseFilters(GlobalExceptionFilter)
 @Controller('category')
 export class CreateCategoryController

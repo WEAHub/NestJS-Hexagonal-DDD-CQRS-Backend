@@ -1,5 +1,5 @@
 import { Controller, Get, UseFilters, UseGuards } from '@nestjs/common'
-import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/RefreshToken'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
@@ -20,7 +20,6 @@ export class RefreshTokenController
 
     @Public()
     @UseGuards(RefreshJwtGuard)
-    @ApiInternalServerErrorResponse({ description: 'Error server' })
     @Get('/refresh')
     async refresh(@CurrentUser() user: User): Promise<LoginSuccessDto> {
         return await this.command.execute(new RefreshTokenCommand(user))

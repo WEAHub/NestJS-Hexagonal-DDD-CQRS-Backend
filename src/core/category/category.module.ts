@@ -8,9 +8,13 @@ import { CategoryServiceProvider } from './domain/services/CategoryService'
 import { GetCategoryByNameQueryHandler } from './application/entrypoint/queries/handlers/GetCategoryByNameHandler'
 import { GetCategoryByIdHandler } from './application/entrypoint/queries/handlers/GetCategoryByIdHandler'
 import { CreateCategoryCommandHandler } from './application/entrypoint/commands/handlers/CreateCategoryHandler'
+import { DeleteCategoryCommandHandler } from './application/entrypoint/commands/handlers/DeleteCategoryHandler'
 
 const eventHandlers = []
-const commandHandlers = [CreateCategoryCommandHandler]
+const commandHandlers = [
+    CreateCategoryCommandHandler,
+    DeleteCategoryCommandHandler,
+]
 const queryHandlers = [
     GetAllCategoryHandler,
     GetCategoryByNameQueryHandler,

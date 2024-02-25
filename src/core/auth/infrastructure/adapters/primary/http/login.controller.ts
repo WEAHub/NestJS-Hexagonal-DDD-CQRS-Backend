@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UseFilters } from '@nestjs/common'
-import { ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { LoginCommand } from '@core/auth/application/entrypoint/commands/Login'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
@@ -17,7 +17,6 @@ export class LoginController
     constructor(private command: CommandBus) {}
 
     @Public()
-    @ApiInternalServerErrorResponse({ description: 'Error server' })
     @Post('/login')
     async login(@Body() user: LoginDto): Promise<LoginSuccessDto> {
         return await this.command.execute(new LoginCommand(user))
