@@ -1,12 +1,12 @@
-import { Body, Controller, Put, UseFilters, UseGuards } from '@nestjs/common'
+import { Body, Controller, Put, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { User } from '@core/user/domain/interfaces/User'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
 import { EditUserControllerPort } from '@core/user/domain/ports/inbound/controllers/update.controller'
 import { EditUserCommand } from '@core/user/application/entrypoint/commands/EditUser'
-import { IsAdminGuard } from '@core/shared/infrastructure/guards/is-admin.guard'
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
+import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 
 @ApiTags('Edit User Controller')
 @UseFilters(GlobalExceptionFilter)
@@ -16,7 +16,7 @@ export class EditUserController
 {
     constructor(private command: CommandBus) {}
 
-    @UseGuards(IsAdminGuard)
+    @IsAdmin()
     @Put()
     async update(@Body() user: EditUserDto): Promise<User> {
         return this.command.execute(new EditUserCommand(user))

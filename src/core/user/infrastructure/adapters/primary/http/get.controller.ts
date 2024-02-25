@@ -6,7 +6,7 @@ import { User } from '@core/user/domain/interfaces/User'
 import { GetUserControllerPort } from '@core/user/domain/ports/inbound/controllers/get.controller'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
 import { CurrentUser } from '@core/shared/infrastructure/decorators/current-user.decorator'
-import { IsAdminGuard } from '@core/shared/infrastructure/guards/is-admin.guard'
+import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 
 @ApiTags('Get User Controller')
 @UseFilters(GlobalExceptionFilter)
@@ -19,7 +19,7 @@ export class GetUserController implements GetUserControllerPort<User, User> {
         return this.query.execute(new GetUserQuery(user.id))
     }
 
-    @UseGuards(IsAdminGuard)
+    @IsAdmin()
     @Get(':id')
     async getByID(@Param('id') id: number): Promise<User> {
         return this.query.execute(new GetUserQuery(id))
