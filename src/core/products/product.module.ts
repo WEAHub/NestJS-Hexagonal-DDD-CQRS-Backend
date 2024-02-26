@@ -7,10 +7,16 @@ import { ProductInfrastructureModule } from './infrastructure/infrastructure.mod
 import { CreateProductCommandHandler } from './application/entrypoint/commands/handlers/CreateProductHandler'
 import { CategoryServiceProvider } from './domain/services/CategoryService'
 import { ProductServiceProvider } from './domain/services/ProductService'
+import { GetProductByIdHandler } from './application/entrypoint/queries/handlers/GetProductByIdHandler'
+import { GetProductByNameQueryHandler } from './application/entrypoint/queries/handlers/GetProductByNameHandler'
 
 const eventHandlers = []
 const commandHandlers = [CreateProductCommandHandler]
-const queryHandlers = [GetAllProductHandler]
+const queryHandlers = [
+    GetAllProductHandler,
+    GetProductByIdHandler,
+    GetProductByNameQueryHandler,
+]
 const useCases = [ProductUseCases]
 const services = [CategoryServiceProvider, ProductServiceProvider]
 

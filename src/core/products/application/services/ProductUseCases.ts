@@ -15,6 +15,22 @@ export class ProductUseCases {
         private categoryService: CategoryService,
     ) {}
 
+    async findByName(name: string): Promise<Product> {
+        const product: Product = await this.productService.findByName(name)
+        if (!product) {
+            throw new ValidationException(`Invalid Product(name=${name})`)
+        }
+        return product
+    }
+
+    async findById(id: number): Promise<Product> {
+        const product: Product = await this.productService.findById(id)
+        if (!product) {
+            throw new ValidationException(`Invalid Product(id=${id})`)
+        }
+        return product
+    }
+
     async findAll(): Promise<Product[]> {
         return this.productService.find()
     }
