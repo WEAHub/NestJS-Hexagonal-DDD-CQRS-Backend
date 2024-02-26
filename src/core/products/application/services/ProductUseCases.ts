@@ -38,11 +38,9 @@ export class ProductUseCases {
     }
 
     async create(product: CreateProductDto): Promise<AppResponse<Product>> {
-        const existingProduct = await this.productService.findByName(
-            product.name,
-        )
+        const productExists = await this.productService.findByName(product.name)
 
-        if (existingProduct) {
+        if (productExists) {
             throw new ValidationException(
                 `Product(name=${product.name}) already exists`,
             )
@@ -62,7 +60,6 @@ export class ProductUseCases {
         const buildedProduct: Product = this.buildProduct({
             ...product,
             category,
-            modifiers: {},
             productAddedDate: dateNow,
             productUpdateDate: dateNow,
         })
@@ -83,9 +80,10 @@ export class ProductUseCases {
         id: number,
         product: UpdateProductDto,
     ): Promise<AppResponse<Product>> {
-        const existingProduct = await this.productService.findById(id)
+        const { id: lastId, productAddedDate } =
+            await this.productService.findById(id)
 
-        if (!existingProduct) {
+        if (!lastId) {
             throw new ValidationException(`Invalid Product(id=${id})`)
         }
 
@@ -100,18 +98,19 @@ export class ProductUseCases {
         }
 
         const dateNow = new Date()
-        const _product: Product = this.buildProduct(
+        const validProduct: Product = this.buildProduct(
             {
                 ...product,
                 category,
-                productAddedDate: existingProduct.productAddedDate,
+                productAddedDate: productAddedDate,
                 productUpdateDate: dateNow,
             },
             false,
         )
-        _product.id = existingProduct.id
+        validProduct.id = lastId
 
-        const data: Product = await this.productService.save(_product)
+        const data: Product = await this.productService.save(validProduct)
+
         const response: AppResponse<Product> = {
             message: 'Product updated successfully',
             status: HttpStatus.OK,

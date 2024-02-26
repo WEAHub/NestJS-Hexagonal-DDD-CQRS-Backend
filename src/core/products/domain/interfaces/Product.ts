@@ -1,4 +1,5 @@
 import { Category } from '@core/category/domain/interfaces/Category'
+import { ProductModifier } from './ProductModifier'
 
 export interface Product {
     id?: number
@@ -7,9 +8,10 @@ export interface Product {
     description: string
     stock: number
     stockTotal: number
-    modifiers?: any
+    modifiers?: ProductModifier
     productAddedDate: Date
     productUpdateDate: Date
     category: Category
     price: number
+    published?: boolean
 }

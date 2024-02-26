@@ -45,10 +45,6 @@ export class UserService implements UserServicePort {
         return _user
     }
 
-    async edit(user: User): Promise<User> {
-        return this.user.save(user)
-    }
-
     async delete(userId: number): Promise<boolean> {
         return this.user.delete(userId)
     }

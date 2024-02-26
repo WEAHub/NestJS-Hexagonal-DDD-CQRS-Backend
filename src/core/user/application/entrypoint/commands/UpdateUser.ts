@@ -1,5 +1,5 @@
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
 
-export class EditUserCommand {
+export class UpdateUserCommand {
     constructor(public readonly user: EditUserDto) {}
 }

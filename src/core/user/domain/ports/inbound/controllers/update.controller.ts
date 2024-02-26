@@ -1,3 +1,3 @@
-export interface EditUserControllerPort<R, B> {
+export interface UpdateUserControllerPort<R, B> {
     update(user: R): Promise<B>
 }

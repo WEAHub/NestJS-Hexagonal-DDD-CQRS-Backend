@@ -7,13 +7,13 @@ import { UserServiceProvider } from './domain/services/UserService'
 import { CreateUserCommandHandler } from './application/entrypoint/commands/handlers/CreateUserHandler'
 import { PasswordService } from '@core/shared/domain/services/PasswordService'
 import { UserInfrastructureModule } from './infrastructure/infrastructure.module'
-import { EditUserCommandHandler } from './application/entrypoint/commands/handlers/EditUserHandler'
+import { UpdateUserCommandHandler } from './application/entrypoint/commands/handlers/UpdateUserHandler'
 import { DeleteUserCommandHandler } from './application/entrypoint/commands/handlers/DeleteUserHandler'
 
 const eventHandlers = []
 const commandHandlers = [
     CreateUserCommandHandler,
-    EditUserCommandHandler,
+    UpdateUserCommandHandler,
     DeleteUserCommandHandler,
 ]
 const queryHandlers = [GetUserQueryHandler]

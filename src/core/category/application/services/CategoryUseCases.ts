@@ -59,14 +59,14 @@ export class CategoryUseCases {
         id: number,
         category: UpdateCategoryDto,
     ): Promise<AppResponse<Category>> {
-        const existingCategory = await this.categoryService.findById(id)
+        const categoryExists = await this.categoryService.findById(id)
 
-        if (!existingCategory) {
+        if (!categoryExists) {
             throw new ValidationException(`Invalid Category(id=${id})`)
         }
 
         const _category: Category = this.buildCategory(category, false)
-        _category.id = existingCategory.id
+        _category.id = categoryExists.id
 
         const data: Category = await this.categoryService.save(_category)
         const response: AppResponse<Category> = {

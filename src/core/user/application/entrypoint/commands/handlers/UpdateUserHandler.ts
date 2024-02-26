@@ -1,14 +1,14 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { UserUseCases } from '@core/user/application/services/UserUseCases'
-import { EditUserCommand } from '../EditUser'
+import { UpdateUserCommand } from '../UpdateUser'
 
-@CommandHandler(EditUserCommand)
-export class EditUserCommandHandler
-    implements ICommandHandler<EditUserCommand>
+@CommandHandler(UpdateUserCommand)
+export class UpdateUserCommandHandler
+    implements ICommandHandler<UpdateUserCommand>
 {
     constructor(private user: UserUseCases) {}
 
-    async execute(command: EditUserCommand) {
+    async execute(command: UpdateUserCommand) {
         return this.user.update(command.user)
     }
 }
