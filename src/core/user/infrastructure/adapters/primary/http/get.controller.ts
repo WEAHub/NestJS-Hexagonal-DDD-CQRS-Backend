@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseFilters, UseGuards } from '@nestjs/common'
+import { Controller, Get, Param, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { QueryBus } from '@nestjs/cqrs'
 import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
