@@ -27,10 +27,8 @@ export class ProductEntity {
     @Column({ name: 'product_stock_total' })
     stockTotal: number
 
-    /*     
-    @Column({ name: 'product_modifiers', nullable: true, type: 'json' })
-    modifiers: ProductModifier 
-    */
+    @Column({ name: 'product_price' })
+    price: number
 
     @Column({ name: 'product_added_dt' })
     productAddedDate: Date
@@ -38,7 +36,12 @@ export class ProductEntity {
     @Column({ name: 'product_update_dt' })
     productUpdateDate: Date
 
-    @ManyToOne(() => CategoryEntity)
-    @JoinColumn({ name: 'category_id' })
+    @ManyToOne(() => CategoryEntity, (category) => category.products)
+    @JoinColumn({ name: 'product_category_id' })
     category: CategoryEntity
+
+    /*
+    @Column({ name: 'product_modifiers', nullable: true, type: 'json' })
+    modifiers: ProductModifier 
+    */
 }

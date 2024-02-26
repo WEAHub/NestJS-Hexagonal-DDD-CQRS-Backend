@@ -1,9 +1,7 @@
 import { Category } from '@core/category/domain/interfaces/Category'
 
-export interface CategoryServicePort {
-    findAll(): Promise<Category[]>
+export interface CategoryRepository {
     findByName(name: string): Promise<Category>
     findById(id: number): Promise<Category>
-    save(category: Category): Promise<Category>
-    delete(id: number): Promise<boolean>
+    findAll(): Promise<Category[]>
 }
