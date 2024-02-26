@@ -76,6 +76,7 @@ export class ProductBuilder {
             productUpdateDate: new Date(),
             productAddedDate: this.product.productAddedDate,
             category: this.product.category,
+            modifiers: this.product.modifiers,
         }
     }
 }

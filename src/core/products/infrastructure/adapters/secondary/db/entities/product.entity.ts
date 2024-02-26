@@ -6,6 +6,7 @@ import {
     JoinColumn,
 } from 'typeorm'
 import { CategoryEntity } from './category.entity'
+import { ProductModifier } from '@core/products/domain/interfaces/ProductModifier'
 
 @Entity({ name: 'products' })
 export class ProductEntity {
@@ -40,8 +41,6 @@ export class ProductEntity {
     @JoinColumn({ name: 'product_category_id' })
     category: CategoryEntity
 
-    /*
     @Column({ name: 'product_modifiers', nullable: true, type: 'json' })
-    modifiers: ProductModifier 
-    */
+    modifiers: ProductModifier
 }

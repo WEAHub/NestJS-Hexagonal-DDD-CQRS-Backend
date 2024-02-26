@@ -4,6 +4,7 @@ import { Product } from '@core/products/domain/interfaces/Product'
 import { CategoryService } from '@core/products/domain/services/CategoryService'
 import { ProductService } from '@core/products/domain/services/ProductService'
 import { CreateProductDto } from '@core/products/shared/dto/CreateProduct.dto'
+import { UpdateProductDto } from '@core/products/shared/dto/UpdateProduct.dto'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { HttpStatus, Injectable } from '@nestjs/common'
@@ -60,6 +61,7 @@ export class ProductUseCases {
         const buildedProduct: Product = this.buildProduct({
             ...product,
             category,
+            modifiers: {},
             productAddedDate: dateNow,
             productUpdateDate: dateNow,
         })
@@ -71,6 +73,48 @@ export class ProductUseCases {
             status: HttpStatus.OK,
             message: 'Product created successfully',
             data: savedProduct,
+        }
+
+        return response
+    }
+
+    async update(
+        id: number,
+        product: UpdateProductDto,
+    ): Promise<AppResponse<Product>> {
+        const existingProduct = await this.productService.findById(id)
+
+        if (!existingProduct) {
+            throw new ValidationException(`Invalid Product(id=${id})`)
+        }
+
+        const category: Category = await this.categoryService.findById(
+            product.categoryId,
+        )
+
+        if (!category) {
+            throw new ValidationException(
+                `Category(id=${product.categoryId}) doesn't exists`,
+            )
+        }
+
+        const dateNow = new Date()
+        const _product: Product = this.buildProduct(
+            {
+                ...product,
+                category,
+                productAddedDate: existingProduct.productAddedDate,
+                productUpdateDate: dateNow,
+            },
+            false,
+        )
+        _product.id = existingProduct.id
+
+        const data: Product = await this.productService.save(_product)
+        const response: AppResponse<Product> = {
+            message: 'Product updated successfully',
+            status: HttpStatus.OK,
+            data,
         }
 
         return response

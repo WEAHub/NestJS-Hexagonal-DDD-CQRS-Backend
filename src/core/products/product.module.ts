@@ -9,9 +9,13 @@ import { CategoryServiceProvider } from './domain/services/CategoryService'
 import { ProductServiceProvider } from './domain/services/ProductService'
 import { GetProductByIdHandler } from './application/entrypoint/queries/handlers/GetProductByIdHandler'
 import { GetProductByNameQueryHandler } from './application/entrypoint/queries/handlers/GetProductByNameHandler'
+import { UpdateProductCommandHandler } from './application/entrypoint/commands/handlers/UpdateProductHandler'
 
 const eventHandlers = []
-const commandHandlers = [CreateProductCommandHandler]
+const commandHandlers = [
+    CreateProductCommandHandler,
+    UpdateProductCommandHandler,
+]
 const queryHandlers = [
     GetAllProductHandler,
     GetProductByIdHandler,
