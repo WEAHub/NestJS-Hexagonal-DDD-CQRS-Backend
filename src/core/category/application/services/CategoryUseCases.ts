@@ -50,7 +50,6 @@ export class CategoryUseCases {
         const response: AppResponse<null> = {
             status: HttpStatus.OK,
             message: `Category(id=${id}) Deleted successfully`,
-            data: null,
         }
 
         return response

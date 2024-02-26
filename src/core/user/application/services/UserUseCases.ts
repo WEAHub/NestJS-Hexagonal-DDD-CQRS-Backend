@@ -71,7 +71,6 @@ export class UserUseCases {
         const response: AppResponse<null> = {
             message: `User(id=${userId}) Deleted succesfully`,
             status: HttpStatus.OK,
-            data: null,
         }
 
         return response

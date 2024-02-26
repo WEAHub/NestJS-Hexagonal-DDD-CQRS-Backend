@@ -13,11 +13,13 @@ import { CategoryEntity } from './secondary/db/entities/category.entity'
 import { CreateProductController } from './primary/http/create.controller'
 import { PostgresCategoryRepository } from './secondary/db/postgres-category.repository'
 import { UpdateProductController } from './primary/http/update.controller'
+import { DeleteProductController } from './primary/http/delete.controller'
 
 const controllers = [
     CreateProductController,
     GetProductController,
     UpdateProductController,
+    DeleteProductController,
 ]
 
 const providers = [

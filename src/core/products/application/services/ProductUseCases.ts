@@ -5,6 +5,7 @@ import { CategoryService } from '@core/products/domain/services/CategoryService'
 import { ProductService } from '@core/products/domain/services/ProductService'
 import { CreateProductDto } from '@core/products/shared/dto/CreateProduct.dto'
 import { UpdateProductDto } from '@core/products/shared/dto/UpdateProduct.dto'
+import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { HttpStatus, Injectable } from '@nestjs/common'
@@ -115,6 +116,23 @@ export class ProductUseCases {
             message: 'Product updated successfully',
             status: HttpStatus.OK,
             data,
+        }
+
+        return response
+    }
+
+    async delete(id: number): Promise<AppResponse<null>> {
+        const deleted: boolean = await this.productService.delete(id)
+
+        if (!deleted) {
+            throw new EntityNotFoundException(
+                `Product(id=${id}) doesn't exists`,
+            )
+        }
+
+        const response: AppResponse<null> = {
+            status: HttpStatus.OK,
+            message: `Product(id=${id}) deleted successfully!.`,
         }
 
         return response
