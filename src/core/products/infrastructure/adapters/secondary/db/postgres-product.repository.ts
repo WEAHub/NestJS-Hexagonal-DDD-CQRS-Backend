@@ -42,8 +42,9 @@ export class PostgresProductRepository implements ProductRepository {
         const data: Product[] = await this.repository
             .createQueryBuilder('products')
             .where(whereConditions)
-            .take(limit)
+            .leftJoinAndSelect('products.category', 'categories')
             .skip(page - 1)
+            .take(limit)
             .getMany()
 
         const count: number = await this.repository

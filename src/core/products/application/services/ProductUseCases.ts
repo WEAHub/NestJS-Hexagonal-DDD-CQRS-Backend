@@ -40,7 +40,9 @@ export class ProductUseCases {
         const whereConditions = {}
 
         if (query.categoryId) {
-            Object.assign(whereConditions, { categoryId: query.categoryId })
+            Object.assign(whereConditions, {
+                category: query.categoryId,
+            })
         }
 
         if (!query.limit) {
