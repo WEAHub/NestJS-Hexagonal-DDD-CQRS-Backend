@@ -5,6 +5,7 @@ import { Number } from '../vo/Number'
 import { DateVo } from '../vo/Date'
 import { Category } from '@core/category/domain/interfaces/Category'
 import { ProductModifier } from '../interfaces/ProductModifier'
+import { ProductModifierBuilder } from './ProductModifierBuilder'
 
 export class ProductBuilder {
     constructor(
@@ -68,7 +69,11 @@ export class ProductBuilder {
 
     modifiers(modifiers: ProductModifier): ProductBuilder {
         if (!this.strict && !modifiers) return this
-        this.product.modifiers = modifiers
+
+        this.product.modifiers = new ProductModifierBuilder(
+            this.product,
+        ).build()
+
         return this
     }
 

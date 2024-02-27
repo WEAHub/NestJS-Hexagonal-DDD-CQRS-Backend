@@ -146,6 +146,7 @@ export class ProductUseCases {
             .price(product.price)
             .stock(product.stock)
             .stockTotal(product.stockTotal)
+            .modifiers(product.modifiers)
             .build()
     }
 }

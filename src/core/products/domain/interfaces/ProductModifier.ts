@@ -1,5 +1,5 @@
 export interface ProductModifier {
     discountPercent?: number
-    finalPrice?: number
+    discountPrice?: number
     hasChoice?: boolean
 }
