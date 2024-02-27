@@ -68,7 +68,7 @@ export class ProductBuilder {
     }
 
     modifiers(modifiers: ProductModifier): ProductBuilder {
-        if (!this.strict && !modifiers) return this
+        if ((!this.strict && !modifiers) || !modifiers) return this
 
         this.product.modifiers = new ProductModifierBuilder(
             this.product,

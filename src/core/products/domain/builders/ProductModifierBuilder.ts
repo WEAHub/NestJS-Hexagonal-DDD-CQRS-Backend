@@ -12,7 +12,9 @@ export class ProductModifierBuilder {
         }
 
         Object.entries(this.modifiers).forEach(([k, v]) => {
-            modifierAction[k](v)
+            if (modifierAction[k]) {
+                modifierAction[k](v)
+            }
         })
 
         return this.modifiers

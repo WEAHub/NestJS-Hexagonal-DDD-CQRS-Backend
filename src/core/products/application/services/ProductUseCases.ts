@@ -1,10 +1,13 @@
 import { Category } from '@core/category/domain/interfaces/Category'
 import { ProductBuilder } from '@core/products/domain/builders/ProductBuilder'
+import { Paginated } from '@core/products/domain/interfaces/Paginated'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { CategoryService } from '@core/products/domain/services/CategoryService'
 import { ProductService } from '@core/products/domain/services/ProductService'
 import { CreateProductDto } from '@core/products/shared/dto/CreateProduct.dto'
+import { GetProductDto } from '@core/products/shared/dto/GetProduct.dto'
 import { UpdateProductDto } from '@core/products/shared/dto/UpdateProduct.dto'
+import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 import { EntityNotFoundException } from '@core/shared/exception/EntityNotFoundException'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
@@ -33,8 +36,32 @@ export class ProductUseCases {
         return product
     }
 
-    async findAll(): Promise<Product[]> {
-        return this.productService.find()
+    async findAll(query: GetProductDto): Promise<Paginated<Product>> {
+        const whereConditions = {}
+
+        if (query.categoryId) {
+            Object.assign(whereConditions, { categoryId: query.categoryId })
+        }
+
+        if (!query.limit) {
+            query.limit = 10
+        }
+
+        if (!query.sort) {
+            query.sort = ProductSorts.DESC
+        }
+
+        if (!query.page) {
+            query.page = 1
+        }
+
+        const paginatedProducts: Paginated<Product> =
+            await this.productService.paginatedQuery(
+                query.page,
+                query.limit,
+                whereConditions,
+            )
+        return paginatedProducts
     }
 
     async create(product: CreateProductDto): Promise<AppResponse<Product>> {

@@ -9,7 +9,7 @@ export class GetProductByIdHandler
 {
     constructor(private product: ProductUseCases) {}
 
-    execute(Product: GetProductByIdQuery): Promise<Product> {
-        return this.product.findById(Product.id)
+    execute(product: GetProductByIdQuery): Promise<Product> {
+        return this.product.findById(product.id)
     }
 }

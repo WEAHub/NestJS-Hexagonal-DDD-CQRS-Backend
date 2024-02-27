@@ -1,3 +1,4 @@
+import { Paginated, PaginatedValues } from '../interfaces/Paginated'
 import { Product } from '../interfaces/Product'
 import { ProductServicePort } from '../ports/inbound/services/ProductService'
 import { ProductRepository } from '../ports/outbound/repositories/ProductRepository'
@@ -8,10 +9,6 @@ export class ProductService implements ProductServicePort {
 
     async find(): Promise<Product[]> {
         return this.product.find({ relations: ['category'] })
-    }
-
-    async findAll(): Promise<Product[]> {
-        return this.product.findAll()
     }
 
     async findByName(name: string): Promise<Product> {
@@ -28,6 +25,24 @@ export class ProductService implements ProductServicePort {
 
     async delete(id: number): Promise<boolean> {
         return await this.product.delete(id)
+    }
+
+    async paginatedQuery(
+        page: number,
+        size: number,
+        whereConditions: object,
+    ): Promise<Paginated<Product>> {
+        const { data, count }: PaginatedValues<Product> =
+            await this.product.paginatedQuery(page, size, whereConditions)
+
+        const paginated: Paginated<Product> = {
+            page,
+            size,
+            data,
+            count,
+        }
+
+        return paginated
     }
 }
 

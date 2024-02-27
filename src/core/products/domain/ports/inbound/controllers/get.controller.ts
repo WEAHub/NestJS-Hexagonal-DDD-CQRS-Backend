@@ -1,5 +1,5 @@
-export interface GetProductControllerPort<C> {
-    findAll(): Promise<C[]> /* 
-    findByName(name: A): Promise<C>
-    findById(id: B): Promise<C> */
+export interface GetProductControllerPort<A, B, C> {
+    findAll(productOptions: A): Promise<C>
+    findByName(name: string): Promise<B>
+    findById(id: number): Promise<B>
 }

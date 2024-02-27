@@ -4,6 +4,7 @@ import { Repository, FindManyOptions } from 'typeorm'
 import { ProductEntity } from './entities/Product.entity'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
+import { PaginatedValues } from '@core/products/domain/interfaces/Paginated'
 
 @Injectable()
 export class PostgresProductRepository implements ProductRepository {
@@ -24,10 +25,6 @@ export class PostgresProductRepository implements ProductRepository {
         return this.repository.findOneBy({ name })
     }
 
-    async findAll(): Promise<Product[]> {
-        return this.repository.find()
-    }
-
     async save(product: Product): Promise<Product> {
         return this.repository.save(product)
     }
@@ -35,5 +32,29 @@ export class PostgresProductRepository implements ProductRepository {
     async delete(id: number): Promise<boolean> {
         const deleted = await this.repository.delete({ id })
         return deleted.affected > 0
+    }
+
+    async paginatedQuery(
+        page: number,
+        limit: number,
+        whereConditions: object,
+    ): Promise<PaginatedValues<Product>> {
+        const data: Product[] = await this.repository
+            .createQueryBuilder('products')
+            .where(whereConditions)
+            .take(limit)
+            .skip(page - 1)
+            .getMany()
+
+        const count: number = await this.repository
+            .createQueryBuilder('products')
+            .where(whereConditions)
+            .getCount()
+
+        const result: PaginatedValues<Product> = {
+            data,
+            count,
+        }
+        return result
     }
 }
