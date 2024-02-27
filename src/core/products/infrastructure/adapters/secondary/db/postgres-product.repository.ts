@@ -41,19 +41,18 @@ export class PostgresProductRepository implements ProductRepository {
         sort: ProductSorts,
         whereConditions: object,
     ): Promise<PaginatedValues<Product>> {
-        const data: Product[] = await this.repository
+        const query = this.repository
             .createQueryBuilder('products')
             .where(whereConditions)
+
+        const count: number = await query.getCount()
+
+        const data: Product[] = await query
             .leftJoinAndSelect('products.category', 'categories')
             .skip(page - 1)
             .take(limit)
             .orderBy('products.id', sort)
             .getMany()
-
-        const count: number = await this.repository
-            .createQueryBuilder('products')
-            .where(whereConditions)
-            .getCount()
 
         const result: PaginatedValues<Product> = {
             data,
