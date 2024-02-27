@@ -5,6 +5,7 @@ import { ProductEntity } from './entities/Product.entity'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
 import { PaginatedValues } from '@core/products/domain/interfaces/Paginated'
+import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 
 @Injectable()
 export class PostgresProductRepository implements ProductRepository {
@@ -37,6 +38,7 @@ export class PostgresProductRepository implements ProductRepository {
     async paginatedQuery(
         page: number,
         limit: number,
+        sort: ProductSorts,
         whereConditions: object,
     ): Promise<PaginatedValues<Product>> {
         const data: Product[] = await this.repository
@@ -45,6 +47,7 @@ export class PostgresProductRepository implements ProductRepository {
             .leftJoinAndSelect('products.category', 'categories')
             .skip(page - 1)
             .take(limit)
+            .orderBy('products.id', sort)
             .getMany()
 
         const count: number = await this.repository

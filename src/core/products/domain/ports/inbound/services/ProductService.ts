@@ -1,5 +1,6 @@
 import { Paginated } from '@core/products/domain/interfaces/Paginated'
 import { Product } from '@core/products/domain/interfaces/Product'
+import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 
 export interface ProductServicePort {
     find(): Promise<Product[]>
@@ -9,6 +10,7 @@ export interface ProductServicePort {
     paginatedQuery(
         page: number,
         limit: number,
+        sort: ProductSorts,
         whereConditions: object,
     ): Promise<Paginated<Product>>
 }

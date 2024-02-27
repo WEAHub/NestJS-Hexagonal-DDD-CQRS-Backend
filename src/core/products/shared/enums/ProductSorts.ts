@@ -1,4 +1,4 @@
 export enum ProductSorts {
-    ASC = 'asc',
+    ASC = 'ASC',
     DESC = 'DESC',
 }

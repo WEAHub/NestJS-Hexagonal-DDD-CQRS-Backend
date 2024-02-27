@@ -1,3 +1,4 @@
+import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 import { Paginated, PaginatedValues } from '../interfaces/Paginated'
 import { Product } from '../interfaces/Product'
 import { ProductServicePort } from '../ports/inbound/services/ProductService'
@@ -30,10 +31,11 @@ export class ProductService implements ProductServicePort {
     async paginatedQuery(
         page: number,
         size: number,
+        sort: ProductSorts,
         whereConditions: object,
     ): Promise<Paginated<Product>> {
         const { data, count }: PaginatedValues<Product> =
-            await this.product.paginatedQuery(page, size, whereConditions)
+            await this.product.paginatedQuery(page, size, sort, whereConditions)
 
         const paginated: Paginated<Product> = {
             page,

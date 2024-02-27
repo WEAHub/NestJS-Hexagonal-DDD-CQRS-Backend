@@ -61,6 +61,7 @@ export class ProductUseCases {
             await this.productService.paginatedQuery(
                 query.page,
                 query.limit,
+                query.sort,
                 whereConditions,
             )
         return paginatedProducts

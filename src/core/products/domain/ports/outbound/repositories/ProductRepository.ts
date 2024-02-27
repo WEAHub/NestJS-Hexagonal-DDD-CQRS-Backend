@@ -1,6 +1,7 @@
 import { PaginatedValues } from '@core/products/domain/interfaces/Paginated'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { ProductEntity } from '@core/products/infrastructure/adapters/secondary/db/entities/Product.entity'
+import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 import { FindManyOptions } from 'typeorm'
 
 export interface ProductRepository {
@@ -12,6 +13,7 @@ export interface ProductRepository {
     paginatedQuery(
         page: number,
         limit: number,
+        sort: ProductSorts,
         whereConditions: object,
     ): Promise<PaginatedValues<Product>>
 }
