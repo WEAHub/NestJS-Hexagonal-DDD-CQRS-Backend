@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common'
-import { InMemoryEventBus } from '@core/shared/domain/services/eventbus/in-memory-event-bus.service'
 import { CqrsModule } from '@nestjs/cqrs'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ProductEntity } from './secondary/db/entities/Product.entity'
@@ -25,7 +24,6 @@ const controllers = [
 const providers = [
     PostgresProductRepository,
     PostgresCategoryRepository,
-    InMemoryEventBus,
     {
         provide: PRODUCT_REPOSITORY,
         useExisting: PostgresProductRepository,

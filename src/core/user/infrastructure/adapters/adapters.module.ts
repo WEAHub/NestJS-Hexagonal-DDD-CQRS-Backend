@@ -3,7 +3,6 @@ import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositorie
 import { PostgresUserRepository } from './secondary/db/postgres-user.repository'
 import { GetUserController } from './primary/http/get.controller'
 import { CreateUserController } from './primary/http/create.controller'
-import { InMemoryEventBus } from '@core/shared/domain/services/eventbus/in-memory-event-bus.service'
 import { CqrsModule } from '@nestjs/cqrs'
 import { UserEntity } from './secondary/db/entities/user.entity'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -19,7 +18,6 @@ const controllers = [
 
 const providers = [
     PostgresUserRepository,
-    InMemoryEventBus,
     {
         provide: USER_REPOSITORY,
         useExisting: PostgresUserRepository,

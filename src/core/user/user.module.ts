@@ -1,4 +1,3 @@
-import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/event-bus.service.module'
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { GetUserQueryHandler } from './application/entrypoint/queries/handlers/GetUserQueryHandler'
@@ -29,7 +28,7 @@ const providers = [
 ]
 
 @Module({
-    imports: [EventBusProviderModule, CqrsModule, UserInfrastructureModule],
+    imports: [CqrsModule, UserInfrastructureModule],
     providers,
     exports: providers,
 })

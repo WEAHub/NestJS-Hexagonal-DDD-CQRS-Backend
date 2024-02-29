@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common'
-import { InMemoryEventBus } from '@core/shared/domain/services/eventbus/in-memory-event-bus.service'
 import { CqrsModule } from '@nestjs/cqrs'
 import { LoginController } from './primary/http/login.controller'
 import { RefreshTokenController } from './primary/http/refresh-token.controller'
@@ -15,7 +14,6 @@ const controllers = [
 
 const providers = [
     PostgresAuthRepository,
-    InMemoryEventBus,
     {
         provide: AUTH_REPOSITORY,
         useExisting: PostgresAuthRepository,

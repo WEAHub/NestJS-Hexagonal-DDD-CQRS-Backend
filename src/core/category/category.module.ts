@@ -1,4 +1,3 @@
-import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/event-bus.service.module'
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { CategoryInfrastructureModule } from './infrastructure/infrastructure.module'
@@ -57,7 +56,7 @@ const providers = [
 ]
 
 @Module({
-    imports: [EventBusProviderModule, CqrsModule, CategoryInfrastructureModule],
+    imports: [CqrsModule, CategoryInfrastructureModule],
     providers,
     exports: providers,
 })
