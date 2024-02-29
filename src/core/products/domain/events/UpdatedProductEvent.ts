@@ -1,8 +1,8 @@
-import { Product } from '../interfaces/Product'
+import { DomainEvent } from '@core/shared/ddd/DomainEvent'
 
-export class UpdatedProductEvent {
-    constructor(
-        public readonly product: Product,
-        public readonly updatedProduct: Product,
-    ) {}
+export class UpdatedProductEvent extends DomainEvent<number> {
+    EVENT_NAME = 'shopy.products.updated'
+    constructor(public readonly id: number) {
+        super(id)
+    }
 }

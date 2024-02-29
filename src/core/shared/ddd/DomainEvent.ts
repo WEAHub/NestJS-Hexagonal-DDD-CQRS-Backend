@@ -16,11 +16,17 @@ export abstract class EventBase {
 }
 
 export abstract class DomainEvent<T> extends EventBase {
+    abstract EVENT_NAME: string
+
     constructor(private readonly data: T) {
         super(generateId(), new Date())
     }
 
     getData(): T {
         return this.data
+    }
+
+    getName(): string {
+        return this.EVENT_NAME
     }
 }

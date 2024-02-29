@@ -45,11 +45,10 @@ export class Product extends AggregateRoot {
     }
 
     updated(): void {
-        //this.apply(new UpdatedProductEvent(this.product.name.getValue()))
+        this.apply(new UpdatedProductEvent(this.product.id))
     }
 
     deleted(): void {
-        //this.apply(new DeletedProductEvent())
         this.apply(new DeletedProductEvent(this.product.id))
     }
 

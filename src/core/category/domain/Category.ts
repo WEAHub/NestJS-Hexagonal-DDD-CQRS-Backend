@@ -26,18 +26,8 @@ export class Category extends AggregateRoot {
         this.apply(new CreatedCategoryEvent(this.name.getValue()))
     }
 
-    update(properties: CategoryProperties) {
-        const beforeUpdate = new Category(this)
-
-        this.name = properties.name
-        this.description = properties.description
-
-        this.apply(
-            new UpdatedCategoryEvent(
-                beforeUpdate.toPrimitives(),
-                this.toPrimitives(),
-            ),
-        )
+    updated() {
+        this.apply(new UpdatedCategoryEvent(this.id))
     }
 
     delete(): void {

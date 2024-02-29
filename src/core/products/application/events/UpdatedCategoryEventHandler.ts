@@ -7,8 +7,6 @@ export class UpdatedProductEventHandler
     implements IEventHandler<UpdatedProductEvent>
 {
     async handle(event: UpdatedProductEvent): Promise<void> {
-        Logger.log(
-            `Product(name="${event.product.name}") updated to ${event.updatedProduct.name}`,
-        )
+        Logger.log(`Product(name="${event.id}") updated`)
     }
 }

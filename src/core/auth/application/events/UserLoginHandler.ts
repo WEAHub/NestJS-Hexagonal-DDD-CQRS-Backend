@@ -7,6 +7,6 @@ export class UserLoginEventHandler implements IEventHandler<UserLoginEvent> {
     constructor() {}
 
     async handle(event: UserLoginEvent) {
-        Logger.log(`User(id=${event.getName()} logged in`)
+        Logger.log(`User(email=${event.getData()}) logged in`)
     }
 }

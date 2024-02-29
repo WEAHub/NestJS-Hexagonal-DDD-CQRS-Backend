@@ -37,7 +37,7 @@ export class UpdateCategoryUseCase {
             data,
         }
 
-        _category.update(_category)
+        _category.updated()
         _category.commit()
         return response
     }

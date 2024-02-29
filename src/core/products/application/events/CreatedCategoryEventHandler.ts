@@ -7,6 +7,9 @@ export class CreatedProductEventHandler
     implements IEventHandler<CreatedProductEvent>
 {
     async handle(event: CreatedProductEvent): Promise<void> {
-        Logger.log(`Product(name="${event.productName}") created`)
+        Logger.log(
+            `Product(name="${event.productName}") created`,
+            event.getName(),
+        )
     }
 }
