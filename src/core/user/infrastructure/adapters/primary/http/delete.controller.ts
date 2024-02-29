@@ -4,7 +4,7 @@ import { CommandBus } from '@nestjs/cqrs'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
 import { DeleteUserControllerPort } from '@core/user/domain/ports/inbound/controllers/delete.controller'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
-import { DeleteUserCommand } from '@core/user/application/entrypoint/commands/DeleteUser'
+import { DeleteUserCommand } from '@core/user/domain/commands/DeleteUser'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 
 @ApiTags('Edit User Controller')

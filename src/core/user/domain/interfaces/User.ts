@@ -7,8 +7,8 @@ export class User {
     lastName: string
     password: string
     avatar: string
-    location: UserLocation
+    location?: UserLocation
     email: string
     phone: string
-    role: UserRoles
+    role?: UserRoles
 }

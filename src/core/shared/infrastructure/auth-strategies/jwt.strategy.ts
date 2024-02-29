@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config'
 import { TokenConfig } from 'src/config/token.config'
 import { QueryBus } from '@nestjs/cqrs'
 import { Token } from '@core/auth/domain/interfaces/Token'
-import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
+import { GetUserQuery } from '@core/user/domain/queries/GetUserQuery'
 import { User } from '@core/user/domain/interfaces/User'
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { QueryBus } from '@nestjs/cqrs'
-import { GetUserQuery } from '@core/user/application/entrypoint/queries/GetUserQuery'
+import { GetUserQuery } from '@core/user/domain/queries/GetUserQuery'
 import { User } from '@core/user/domain/interfaces/User'
 import { GetUserControllerPort } from '@core/user/domain/ports/inbound/controllers/get.controller'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'

@@ -1,30 +1,23 @@
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
-import { GetUserQueryHandler } from './application/entrypoint/queries/handlers/GetUserQueryHandler'
-import { UserUseCases } from './application/services/UserUseCases'
-import { UserServiceProvider } from './domain/services/UserService'
-import { CreateUserCommandHandler } from './application/entrypoint/commands/handlers/CreateUserHandler'
-import { PasswordService } from '@core/shared/domain/services/PasswordService'
 import { UserInfrastructureModule } from './infrastructure/infrastructure.module'
-import { UpdateUserCommandHandler } from './application/entrypoint/commands/handlers/UpdateUserHandler'
-import { DeleteUserCommandHandler } from './application/entrypoint/commands/handlers/DeleteUserHandler'
 
-const eventHandlers = []
-const commandHandlers = [
-    CreateUserCommandHandler,
-    UpdateUserCommandHandler,
-    DeleteUserCommandHandler,
-]
-const queryHandlers = [GetUserQueryHandler]
-const useCases = [UserUseCases]
-const services = [UserServiceProvider, PasswordService]
+import UseCases from './application/use-cases'
+import Events from './application/events'
+import CommandHandlers from './application/commands'
+import Queries from './application/queries'
+import { UserFactory } from './domain/UserFactory'
+import { PasswordService } from '@core/shared/domain/services/PasswordService'
+
+const Services = [PasswordService]
 
 const providers = [
-    ...services,
-    ...eventHandlers,
-    ...commandHandlers,
-    ...queryHandlers,
-    ...useCases,
+    UserFactory,
+    ...CommandHandlers,
+    ...Queries,
+    ...Events,
+    ...UseCases,
+    ...Services,
 ]
 
 @Module({

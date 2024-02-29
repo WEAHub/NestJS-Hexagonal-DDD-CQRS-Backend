@@ -61,6 +61,9 @@ export class UpdateProductUseCases {
             data,
         }
 
+        product.updated()
+        product.commit()
+
         return response
     }
 }
