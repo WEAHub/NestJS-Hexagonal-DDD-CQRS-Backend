@@ -1,36 +1,20 @@
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
-import { GetAllProductHandler } from './application/entrypoint/queries/handlers/GetAllProductHandler'
-import { ProductUseCases } from './application/services/ProductUseCases'
-import { ProductInfrastructureModule } from './infrastructure/infrastructure.module'
-import { CreateProductCommandHandler } from './application/entrypoint/commands/handlers/CreateProductHandler'
-import { CategoryServiceProvider } from './domain/services/CategoryService'
-import { ProductServiceProvider } from './domain/services/ProductService'
-import { GetProductByIdHandler } from './application/entrypoint/queries/handlers/GetProductByIdHandler'
-import { GetProductByNameQueryHandler } from './application/entrypoint/queries/handlers/GetProductByNameHandler'
-import { UpdateProductCommandHandler } from './application/entrypoint/commands/handlers/UpdateProductHandler'
-import { DeleteProductCommandHandler } from './application/entrypoint/commands/handlers/DeleteProduct'
 
-const eventHandlers = []
-const commandHandlers = [
-    CreateProductCommandHandler,
-    UpdateProductCommandHandler,
-    DeleteProductCommandHandler,
-]
-const queryHandlers = [
-    GetAllProductHandler,
-    GetProductByIdHandler,
-    GetProductByNameQueryHandler,
-]
-const useCases = [ProductUseCases]
-const services = [CategoryServiceProvider, ProductServiceProvider]
+import { ProductInfrastructureModule } from './infrastructure/infrastructure.module'
+import { ProductFactory } from './domain/ProductFactory'
+
+import UseCases from './application/use-cases'
+import Events from './application/events'
+import CommandHandlers from './application/commands'
+import Queries from './application/queries'
 
 const providers = [
-    ...services,
-    ...eventHandlers,
-    ...commandHandlers,
-    ...queryHandlers,
-    ...useCases,
+    ProductFactory,
+    ...CommandHandlers,
+    ...Queries,
+    ...Events,
+    ...UseCases,
 ]
 
 @Module({

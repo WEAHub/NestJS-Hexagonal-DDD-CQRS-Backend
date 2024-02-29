@@ -1,14 +1,14 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
-import { GetAllProductQuery } from '../GetAllProduct'
-import { ProductUseCases } from '@core/products/application/services/ProductUseCases'
+import { GetAllProductQuery } from '../../domain/queries/GetAllProduct'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { Paginated } from '@core/products/domain/interfaces/Paginated'
+import { GetProductUseCases } from '../use-cases/GetProductUseCases'
 
 @QueryHandler(GetAllProductQuery)
 export class GetAllProductHandler implements IQueryHandler<GetAllProductQuery> {
-    constructor(private product: ProductUseCases) {}
+    constructor(private useCases: GetProductUseCases) {}
 
     execute(query: GetAllProductQuery): Promise<Paginated<Product>> {
-        return this.product.findAll(query.productOptions)
+        return this.useCases.findAll(query.productOptions)
     }
 }

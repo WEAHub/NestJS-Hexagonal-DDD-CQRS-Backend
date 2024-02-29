@@ -1,4 +1,4 @@
-import { DeleteProductCommand } from '@core/products/application/entrypoint/commands/DeleteProduct'
+import { DeleteProductCommand } from '@core/products/domain/commands/DeleteProduct'
 import { DeleteProductControllerPort } from '@core/products/domain/ports/inbound/controllers/delete.controller'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'

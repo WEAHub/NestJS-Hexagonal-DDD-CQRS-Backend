@@ -1,6 +1,6 @@
 export interface Paginated<T> {
     page: number
-    size: number
+    limit: number
     count: number
     data: T[]
 }

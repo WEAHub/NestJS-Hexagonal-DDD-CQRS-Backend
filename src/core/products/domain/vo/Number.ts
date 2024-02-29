@@ -1,6 +1,6 @@
 import { ValueObject } from '@core/shared/ddd/ValueObject'
 
-export class Number extends ValueObject<number> {
+export class NumberVo extends ValueObject<number> {
     constructor(number: number) {
         super(number, `${number} is invalid name`)
     }

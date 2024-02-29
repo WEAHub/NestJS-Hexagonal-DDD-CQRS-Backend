@@ -1,11 +1,13 @@
 import { Product } from '../interfaces/Product'
 import { ProductModifier } from '../interfaces/ProductModifier'
 
-export class ProductModifierBuilder {
-    modifiers: ProductModifier = this.product.modifiers
+export class ModifiersBuilder {
+    modifiers: ProductModifier = this.product?.modifiers
     constructor(private product: Partial<Product>) {}
 
     build(): ProductModifier {
+        if (!this.modifiers) return {}
+
         const modifierAction = {
             discountPercent: (percent: number) =>
                 this.applyDiscountPercent(percent),

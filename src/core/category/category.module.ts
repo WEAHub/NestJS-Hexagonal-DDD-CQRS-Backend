@@ -1,58 +1,18 @@
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { CategoryInfrastructureModule } from './infrastructure/infrastructure.module'
-
 import { CategoryFactory } from './domain/CategoryFactory'
-import { CreateCategoryCommandHandler } from './application/commands/CreateCategoryHandler'
-import { DeleteCategoryCommandHandler } from './application/commands/DeleteCategoryHandler'
-import { UpdateCategoryCommandHandler } from './application/commands/UpdateCategoryHandler'
-import { CreatedCategoryEventHandler } from './application/events/CreatedCategoryEventHandler'
-import { DeletedCategoryEventHandler } from './application/events/DeletedCategoryEventHandler'
-import { UpdatedCategoryEventHandler } from './application/events/UpdatedCategoryEventHandler'
-import { GetAllCategoryHandler } from './application/queries/handlers/GetAllCategoryHandler'
-import { GetCategoryByIdHandler } from './application/queries/handlers/GetCategoryByIdHandler'
-import { GetCategoryByNameQueryHandler } from './application/queries/handlers/GetCategoryByNameHandler'
-import { CreateCategoryUseCase } from './application/use-cases/CreateCategoryUseCases'
-import { DeleteCategoryUseCase } from './application/use-cases/DeleteCategoryUseCases'
-import { GetCategoryUseCases } from './application/use-cases/GetCategoryUseCases'
-import { UpdateCategoryUseCase } from './application/use-cases/UpdateCategoryUseCases'
-
-const eventHandlers = [
-    CreatedCategoryEventHandler,
-    UpdatedCategoryEventHandler,
-    DeletedCategoryEventHandler,
-]
-
-const commandHandlers = [
-    CreateCategoryCommandHandler,
-    DeleteCategoryCommandHandler,
-    UpdateCategoryCommandHandler,
-]
-
-const queryHandlers = [
-    GetAllCategoryHandler,
-    GetCategoryByNameQueryHandler,
-    GetCategoryByIdHandler,
-]
-
-const useCases = [
-    CreateCategoryUseCase,
-    GetCategoryUseCases,
-    UpdateCategoryUseCase,
-    DeleteCategoryUseCase,
-]
-
-const services = []
-
-const domain = [CategoryFactory]
+import UseCases from './application/use-cases'
+import Events from './application/events'
+import CommandHandlers from './application/commands'
+import Queries from './application/queries'
 
 const providers = [
-    ...domain,
-    ...services,
-    ...eventHandlers,
-    ...commandHandlers,
-    ...queryHandlers,
-    ...useCases,
+    CategoryFactory,
+    ...CommandHandlers,
+    ...Queries,
+    ...Events,
+    ...UseCases,
 ]
 
 @Module({

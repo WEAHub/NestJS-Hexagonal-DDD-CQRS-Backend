@@ -37,8 +37,13 @@ export class ProductEntity {
     @Column({ name: 'product_update_dt' })
     productUpdateDate: Date
 
+    @Column({ name: 'product_category_id' })
+    categoryId: number
+
     @ManyToOne(() => CategoryEntity, (category) => category.products)
-    @JoinColumn({ name: 'product_category_id' })
+    @JoinColumn({
+        name: 'product_category_id',
+    })
     category: CategoryEntity
 
     @Column({ name: 'product_modifiers', nullable: true, type: 'json' })

@@ -1,14 +1,14 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
-import { DeleteProductCommand } from '../DeleteProduct'
-import { ProductUseCases } from '@core/products/application/services/ProductUseCases'
+import { DeleteProductCommand } from '../../domain/commands/DeleteProduct'
+import { DeleteProductUseCases } from '../use-cases/DeleteProductUseCases'
 
 @CommandHandler(DeleteProductCommand)
 export class DeleteProductCommandHandler
     implements ICommandHandler<DeleteProductCommand>
 {
-    constructor(private product: ProductUseCases) {}
+    constructor(private useCases: DeleteProductUseCases) {}
 
     async execute(command: DeleteProductCommand) {
-        return this.product.delete(command.id)
+        return this.useCases.delete(command.id)
     }
 }

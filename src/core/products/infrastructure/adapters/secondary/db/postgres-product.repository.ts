@@ -48,7 +48,6 @@ export class PostgresProductRepository implements ProductRepository {
         const count: number = await query.getCount()
 
         const data: Product[] = await query
-            .leftJoinAndSelect('products.category', 'categories')
             .skip(page - 1)
             .take(limit)
             .orderBy('products.id', sort)

@@ -1,4 +1,4 @@
-import { CreateProductCommand } from '@core/products/application/entrypoint/commands/CreateProduct'
+import { CreateProductCommand } from '@core/products/domain/commands/CreateProduct'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { CreateProductControllerPort } from '@core/products/domain/ports/inbound/controllers/create.controller'
 import { CreateProductDto } from '@core/products/shared/dto/CreateProduct.dto'

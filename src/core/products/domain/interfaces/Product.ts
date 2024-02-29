@@ -1,4 +1,3 @@
-import { Category } from '@core/category/domain/interfaces/Category'
 import { ProductModifier } from './ProductModifier'
 
 export interface Product {
@@ -11,7 +10,7 @@ export interface Product {
     modifiers?: ProductModifier
     productAddedDate: Date
     productUpdateDate: Date
-    category: Category
+    categoryId: number
     price: number
     published?: boolean
 }
