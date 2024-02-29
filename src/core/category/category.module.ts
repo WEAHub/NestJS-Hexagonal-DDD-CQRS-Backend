@@ -2,30 +2,53 @@ import { EventBusProviderModule } from '@core/shared/domain/services/eventbus/ev
 import { Module } from '@nestjs/common'
 import { CqrsModule } from '@nestjs/cqrs'
 import { CategoryInfrastructureModule } from './infrastructure/infrastructure.module'
-import { GetAllCategoryHandler } from './application/entrypoint/queries/handlers/GetAllCategoryHandler'
-import { CategoryUseCases } from './application/services/CategoryUseCases'
-import { CategoryServiceProvider } from './domain/services/CategoryService'
-import { GetCategoryByNameQueryHandler } from './application/entrypoint/queries/handlers/GetCategoryByNameHandler'
-import { GetCategoryByIdHandler } from './application/entrypoint/queries/handlers/GetCategoryByIdHandler'
-import { CreateCategoryCommandHandler } from './application/entrypoint/commands/handlers/CreateCategoryHandler'
-import { DeleteCategoryCommandHandler } from './application/entrypoint/commands/handlers/DeleteCategoryHandler'
-import { UpdateCategoryCommandHandler } from './application/entrypoint/commands/handlers/UpdateCategoryHandler'
 
-const eventHandlers = []
+import { CategoryFactory } from './domain/CategoryFactory'
+import { CreateCategoryCommandHandler } from './application/commands/CreateCategoryHandler'
+import { DeleteCategoryCommandHandler } from './application/commands/DeleteCategoryHandler'
+import { UpdateCategoryCommandHandler } from './application/commands/UpdateCategoryHandler'
+import { CreatedCategoryEventHandler } from './application/events/CreatedCategoryEventHandler'
+import { DeletedCategoryEventHandler } from './application/events/DeletedCategoryEventHandler'
+import { UpdatedCategoryEventHandler } from './application/events/UpdatedCategoryEventHandler'
+import { GetAllCategoryHandler } from './application/queries/handlers/GetAllCategoryHandler'
+import { GetCategoryByIdHandler } from './application/queries/handlers/GetCategoryByIdHandler'
+import { GetCategoryByNameQueryHandler } from './application/queries/handlers/GetCategoryByNameHandler'
+import { CreateCategoryUseCase } from './application/use-cases/CreateCategoryUseCases'
+import { DeleteCategoryUseCase } from './application/use-cases/DeleteCategoryUseCases'
+import { GetCategoryUseCases } from './application/use-cases/GetCategoryUseCases'
+import { UpdateCategoryUseCase } from './application/use-cases/UpdateCategoryUseCases'
+
+const eventHandlers = [
+    CreatedCategoryEventHandler,
+    UpdatedCategoryEventHandler,
+    DeletedCategoryEventHandler,
+]
+
 const commandHandlers = [
     CreateCategoryCommandHandler,
     DeleteCategoryCommandHandler,
     UpdateCategoryCommandHandler,
 ]
+
 const queryHandlers = [
     GetAllCategoryHandler,
     GetCategoryByNameQueryHandler,
     GetCategoryByIdHandler,
 ]
-const useCases = [CategoryUseCases]
-const services = [CategoryServiceProvider]
+
+const useCases = [
+    CreateCategoryUseCase,
+    GetCategoryUseCases,
+    UpdateCategoryUseCase,
+    DeleteCategoryUseCase,
+]
+
+const services = []
+
+const domain = [CategoryFactory]
 
 const providers = [
+    ...domain,
     ...services,
     ...eventHandlers,
     ...commandHandlers,

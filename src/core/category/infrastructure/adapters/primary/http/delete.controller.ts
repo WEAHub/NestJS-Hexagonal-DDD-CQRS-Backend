@@ -1,4 +1,4 @@
-import { DeleteCategoryCommand } from '@core/category/application/entrypoint/commands/DeleteCategory'
+import { DeleteCategoryCommand } from '@core/category/domain/commands/DeleteCategory'
 import { DeleteCategoryControllerPort } from '@core/category/domain/ports/inbound/controllers/delete.controller'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'

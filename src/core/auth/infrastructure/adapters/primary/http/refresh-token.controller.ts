@@ -1,7 +1,7 @@
 import { Controller, Get, UseFilters, UseGuards } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
-import { RefreshTokenCommand } from '@core/auth/application/entrypoint/commands/RefreshToken'
+import { RefreshTokenCommand } from '@core/auth/domain/commands/RefreshToken'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 import { RefreshTokenControllerPort } from '@core/auth/domain/ports/inbound/controllers/refresh-token.controller.port'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'

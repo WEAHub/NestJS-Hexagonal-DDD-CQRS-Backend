@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
-import { LoginCommand } from '@core/auth/application/entrypoint/commands/Login'
+import { LoginCommand } from '@core/auth/domain/commands/Login'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 import { LoginControllerPort } from '@core/auth/domain/ports/inbound/controllers/login.controller.port'
 import { LoginDto } from '@core/auth/shared/dto/Login.dto'

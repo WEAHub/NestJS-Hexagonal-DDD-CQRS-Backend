@@ -12,8 +12,8 @@ import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-fil
 import { Category } from '@core/category/domain/interfaces/Category'
 import { CreateCategoryControllerPort } from '@core/category/domain/ports/inbound/controllers/create.controller'
 import { CreateCategoryDto } from '@core/category/shared/dto/CreateCategory.dto'
-import { CreateCategoryCommand } from '@core/category/application/entrypoint/commands/CreateCategory'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
+import { CreateCategoryCommand } from '@core/category/domain/commands/CreateCategory'
 
 @ApiTags('Category Create Controller')
 @UseFilters(GlobalExceptionFilter)
