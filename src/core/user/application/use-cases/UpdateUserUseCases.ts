@@ -28,7 +28,7 @@ export class UpdateUserUseCases {
             )
         }
 
-        const user = this.userFactory.create(userProps)
+        const user = this.userFactory.create({ ...existingUser, ...userProps })
 
         if (userProps.password) {
             const newPasswordEncrypted = await this.passwordService.encrypt(
@@ -44,6 +44,10 @@ export class UpdateUserUseCases {
             status: HttpStatus.OK,
             data,
         }
+
+        user.updated()
+        user.commit()
+
         return response
     }
 }

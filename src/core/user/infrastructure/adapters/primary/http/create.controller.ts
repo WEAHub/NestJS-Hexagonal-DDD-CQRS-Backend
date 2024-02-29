@@ -20,14 +20,14 @@ import { ApiTags } from '@nestjs/swagger'
 @UseFilters(GlobalExceptionFilter)
 @Controller('user')
 export class CreateUserController
-    implements CreateUserControllerPort<CreateUserDto, AppResponse<User>>
+    implements CreateUserControllerPort<CreateUserDto, AppResponse<null>>
 {
     constructor(private command: CommandBus) {}
 
     @Post()
     @Public()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() user: CreateUserDto): Promise<AppResponse<User>> {
+    async create(@Body() user: CreateUserDto): Promise<AppResponse<null>> {
         return this.command.execute(new CreateUserCommand(user))
     }
 }

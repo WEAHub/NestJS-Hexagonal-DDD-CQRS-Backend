@@ -18,9 +18,9 @@ export class CreateUserUseCases {
     @Inject()
     private readonly userFactory: UserFactory
 
-    async create(newUser: CreateUserDto): Promise<AppResponse<User>> {
+    async create(userProps: CreateUserDto): Promise<AppResponse<User>> {
         const userExists: User = await this.repository.findByEmail(
-            newUser.email,
+            userProps.email,
         )
 
         if (userExists) {
@@ -30,7 +30,7 @@ export class CreateUserUseCases {
             )
         }
 
-        const user = this.userFactory.create(newUser)
+        const user = this.userFactory.create(userProps)
 
         const encryptedPassword = await this.passwordService.encrypt(
             user.user.password.getValue(),
@@ -43,10 +43,9 @@ export class CreateUserUseCases {
 
         this.repository.save(userEntity)
 
-        const response: AppResponse<User> = {
+        const response: AppResponse<null> = {
             status: HttpStatus.OK,
             message: 'User created successfully',
-            data: userEntity,
         }
 
         user.created()

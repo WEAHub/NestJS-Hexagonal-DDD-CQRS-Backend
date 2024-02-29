@@ -7,6 +7,10 @@ import { User as IUser } from './interfaces/User'
 import { Avatar } from './vo/Avatar'
 import { Email } from './vo/Email'
 import { Phone } from './vo/Phone'
+import { CreatedUserEvent } from './events/CreatedUserEvent'
+import { DeletedUserEvent } from './events/DeletedUserEvent'
+import { UpdatedUserEvent } from './events/UpdatedUserEvent'
+import { ChangedUserPassword } from './events/ChangedUserPasswordEvent'
 
 export interface UserProperties {
     id?: number
@@ -29,20 +33,20 @@ export class User extends AggregateRoot {
     }
 
     created(): void {
-        // this.apply(new CreatedProductEvent(this.product.name.getValue()))
+        this.apply(new CreatedUserEvent(this.user.id))
     }
 
     updated(): void {
-        // this.apply(new UpdatedProductEvent(this.product.id))
+        this.apply(new UpdatedUserEvent(this.user.id))
     }
 
     deleted(): void {
-        // this.apply(new DeletedProductEvent(this.product.id))
+        this.apply(new DeletedUserEvent(this.user.id))
     }
 
     changePassword(newPassword: string): void {
         this.user.password = new Password(newPassword, true)
-        // this.apply(new ChangedUserPassword(this.product.id))
+        this.apply(new ChangedUserPassword(this.user.id))
     }
 
     toPrimitives(): IUser {
