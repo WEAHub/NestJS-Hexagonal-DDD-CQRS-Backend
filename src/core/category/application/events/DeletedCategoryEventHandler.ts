@@ -7,6 +7,6 @@ export class DeletedCategoryEventHandler
     implements IEventHandler<DeletedCategoryEvent>
 {
     async handle(event: DeletedCategoryEvent): Promise<void> {
-        Logger.log(`Category(name="${event.id}") deleted`)
+        Logger.log(`Category(name="${event.id}") deleted`, event.getName())
     }
 }

@@ -7,6 +7,6 @@ export class DeletedProductEventHandler
     implements IEventHandler<DeletedProductEvent>
 {
     async handle(event: DeletedProductEvent): Promise<void> {
-        Logger.log(`Product(name="${event.id}") deleted`)
+        Logger.log(`Product(name="${event.id}") deleted`, event.getName())
     }
 }

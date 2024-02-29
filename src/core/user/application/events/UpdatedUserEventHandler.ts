@@ -7,6 +7,6 @@ export class UpdatedUserEventHandler
     implements IEventHandler<UpdatedUserEvent>
 {
     async handle(event: UpdatedUserEvent): Promise<void> {
-        Logger.log(`User(id="${event.id}") updated`)
+        Logger.log(`User(id=${event.id}) updated`, event.getName())
     }
 }

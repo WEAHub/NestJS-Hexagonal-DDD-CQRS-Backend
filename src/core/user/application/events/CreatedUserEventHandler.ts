@@ -7,6 +7,6 @@ export class CreatedUserEventHandler
     implements IEventHandler<CreatedUserEvent>
 {
     async handle(event: CreatedUserEvent): Promise<void> {
-        Logger.log(`User(id="${event.id}") created`, event.getName())
+        Logger.log(`User(id=${event.id}) created`, event.getName())
     }
 }

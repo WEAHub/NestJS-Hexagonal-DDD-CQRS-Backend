@@ -7,6 +7,9 @@ export class CreatedCategoryEventHandler
     implements IEventHandler<CreatedCategoryEvent>
 {
     async handle(event: CreatedCategoryEvent): Promise<void> {
-        Logger.log(`Category(name="${event.categoryName}") created`)
+        Logger.log(
+            `Category(name="${event.categoryName}") created`,
+            event.getName(),
+        )
     }
 }

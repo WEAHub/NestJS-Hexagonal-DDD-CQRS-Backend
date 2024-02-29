@@ -7,6 +7,6 @@ export class UpdatedCategoryEventHandler
     implements IEventHandler<UpdatedCategoryEvent>
 {
     async handle(event: UpdatedCategoryEvent): Promise<void> {
-        Logger.log(`Category(name="${event.id}") updated}`)
+        Logger.log(`Category(name="${event.id}") updated}`, event.getName())
     }
 }

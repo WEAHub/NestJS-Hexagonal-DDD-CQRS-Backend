@@ -7,6 +7,6 @@ export class DeletedUserEventHandler
     implements IEventHandler<DeletedUserEvent>
 {
     async handle(event: DeletedUserEvent): Promise<void> {
-        Logger.log(`User(id="${event.id}") deleted`)
+        Logger.log(`User(id=${event.id}) deleted`, event.getName())
     }
 }

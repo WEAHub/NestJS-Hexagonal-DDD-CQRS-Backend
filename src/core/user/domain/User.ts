@@ -10,7 +10,7 @@ import { Phone } from './vo/Phone'
 import { CreatedUserEvent } from './events/CreatedUserEvent'
 import { DeletedUserEvent } from './events/DeletedUserEvent'
 import { UpdatedUserEvent } from './events/UpdatedUserEvent'
-import { ChangedUserPassword } from './events/ChangedUserPasswordEvent'
+import { ChangedUserPasswordEvent } from './events/ChangedUserPasswordEvent'
 
 export interface UserProperties {
     id?: number
@@ -46,7 +46,7 @@ export class User extends AggregateRoot {
 
     changePassword(newPassword: string): void {
         this.user.password = new Password(newPassword, true)
-        this.apply(new ChangedUserPassword(this.user.id))
+        this.apply(new ChangedUserPasswordEvent(this.user.id))
     }
 
     toPrimitives(): IUser {
