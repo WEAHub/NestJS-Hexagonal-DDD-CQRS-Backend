@@ -1,11 +1,11 @@
 import { TokenService } from '@core/auth/domain/services/TokenService'
 import { LoginSuccessDto } from '@core/auth/shared/dto/LoginSuccess.dto'
 import { User } from '@core/user/domain/interfaces/User'
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class RefreshTokenUseCases {
-    constructor(private tokenService: TokenService) {}
+    @Inject() private readonly tokenService: TokenService
 
     async refreshToken(user: User): Promise<LoginSuccessDto> {
         const accessToken: string =
