@@ -6,7 +6,8 @@ import { Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class GetCategoryUseCases {
-    @Inject(CATEGORY_REPOSITORY) private readonly repository: CategoryRepository
+    @Inject(CATEGORY_REPOSITORY)
+    private readonly repository: CategoryRepository
 
     async findAll(): Promise<Category[]> {
         return this.repository.findAll()

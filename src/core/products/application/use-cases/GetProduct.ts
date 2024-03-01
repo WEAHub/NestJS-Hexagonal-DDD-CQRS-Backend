@@ -14,7 +14,8 @@ import { Injectable, Inject } from '@nestjs/common'
 import { Product as IProduct } from '@core/products/domain/interfaces/Product'
 @Injectable()
 export class GetProductUseCases {
-    @Inject(PRODUCT_REPOSITORY) private readonly repository: ProductRepository
+    @Inject(PRODUCT_REPOSITORY)
+    private readonly repository: ProductRepository
 
     async findByName(name: string): Promise<IProduct> {
         const product: IProduct = await this.repository.findByName(name)

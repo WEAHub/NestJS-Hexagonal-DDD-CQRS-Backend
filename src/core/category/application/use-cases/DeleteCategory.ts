@@ -7,8 +7,11 @@ import { HttpStatus, Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class DeleteCategoryUseCase {
-    @Inject(CATEGORY_REPOSITORY) private readonly repository: CategoryRepository
-    @Inject() private readonly categoryFactory: CategoryFactory
+    @Inject(CATEGORY_REPOSITORY)
+    private readonly repository: CategoryRepository
+
+    @Inject()
+    private readonly categoryFactory: CategoryFactory
 
     async delete(id: number): Promise<AppResponse<null>> {
         const category = await this.repository.findById(id)

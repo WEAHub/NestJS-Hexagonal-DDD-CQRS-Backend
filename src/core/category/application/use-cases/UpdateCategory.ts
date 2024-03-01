@@ -9,8 +9,11 @@ import { HttpStatus, Inject, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class UpdateCategoryUseCase {
-    @Inject(CATEGORY_REPOSITORY) private readonly repository: CategoryRepository
-    @Inject() private readonly categoryFactory: CategoryFactory
+    @Inject(CATEGORY_REPOSITORY)
+    private readonly repository: CategoryRepository
+
+    @Inject()
+    private readonly categoryFactory: CategoryFactory
 
     async update(
         id: number,

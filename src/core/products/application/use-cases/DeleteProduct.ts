@@ -6,7 +6,9 @@ import { Injectable, Inject, HttpStatus } from '@nestjs/common'
 
 @Injectable()
 export class DeleteProductUseCases {
-    @Inject(PRODUCT_REPOSITORY) private readonly repository: ProductRepository
+    @Inject(PRODUCT_REPOSITORY)
+    private readonly repository: ProductRepository
+
     async delete(id: number): Promise<AppResponse<null>> {
         const deleted: boolean = await this.repository.delete(id)
 
