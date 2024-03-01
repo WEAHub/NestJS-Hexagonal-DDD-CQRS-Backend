@@ -15,7 +15,7 @@ export class TokenService implements TokenServicePort {
     ) {}
 
     async generateAccessToken(user: User): Promise<string> {
-        return await this.generateToken(
+        return this.generateToken(
             user,
             this.tokensConfig.accessExpiration,
             this.tokensConfig.accessKey,
@@ -23,7 +23,7 @@ export class TokenService implements TokenServicePort {
     }
 
     async generateRefreshToken(user: User): Promise<string> {
-        return await this.generateToken(
+        return this.generateToken(
             user,
             this.tokensConfig.refreshExpiration,
             this.tokensConfig.refreshKey,
@@ -46,7 +46,7 @@ export class TokenService implements TokenServicePort {
             secret: key,
         }
 
-        return await this.jwtService.signAsync(token, signOptions)
+        return this.jwtService.signAsync(token, signOptions)
     }
 
     async verify(token: string, secret: string): Promise<Token> {
