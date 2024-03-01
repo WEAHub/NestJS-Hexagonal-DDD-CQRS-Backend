@@ -2,10 +2,11 @@ import { PasswordService } from '@core/shared/domain/services/PasswordService'
 import { UserFactory } from '@core/user/domain/UserFactory'
 import { UserRepository } from '@core/user/domain/ports/outbound/repositories/UserRepository'
 import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositories'
-import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common'
+import { Injectable, Inject, HttpStatus } from '@nestjs/common'
 import { User } from '@core/user/domain/interfaces/User'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
+import { ValidationException } from '@core/shared/exception/ValidationException'
 
 @Injectable()
 export class UpdateUserUseCases {
@@ -22,10 +23,7 @@ export class UpdateUserUseCases {
         const existingUser = await this.repository.findById(userProps.id)
 
         if (!existingUser) {
-            throw new HttpException(
-                "User doesn't exists",
-                HttpStatus.UNAUTHORIZED,
-            )
+            throw new ValidationException("User doesn't exists")
         }
 
         const user = this.userFactory.create({ ...existingUser, ...userProps })

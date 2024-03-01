@@ -1,11 +1,12 @@
 import { PasswordService } from '@core/shared/domain/services/PasswordService'
+import { ValidationException } from '@core/shared/exception/ValidationException'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { UserFactory } from '@core/user/domain/UserFactory'
 import { User } from '@core/user/domain/interfaces/User'
 import { UserRepository } from '@core/user/domain/ports/outbound/repositories/UserRepository'
 import { USER_REPOSITORY } from '@core/user/shared/dependency-tokens/repositories'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common'
+import { Injectable, Inject, HttpStatus } from '@nestjs/common'
 
 @Injectable()
 export class CreateUserUseCases {
@@ -24,10 +25,7 @@ export class CreateUserUseCases {
         )
 
         if (userExists) {
-            throw new HttpException(
-                'Email already exists',
-                HttpStatus.UNAUTHORIZED,
-            )
+            throw new ValidationException('Email already exists')
         }
 
         const user = this.userFactory.create(userProps)
