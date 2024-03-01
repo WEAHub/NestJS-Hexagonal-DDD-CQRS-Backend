@@ -1,6 +1,7 @@
 import { compare, hash } from 'bcrypt'
+import { PasswordServicePort } from '../ports/inbound/services/PasswordService.port'
 
-export class PasswordService {
+export class PasswordService implements PasswordServicePort {
     private rounds = 10
 
     async encrypt(password: string): Promise<string> {
