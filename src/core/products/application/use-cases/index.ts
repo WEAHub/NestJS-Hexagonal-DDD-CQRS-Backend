@@ -1,7 +1,7 @@
-import { CreateProductUseCases } from './CreateProductUseCases'
-import { DeleteProductUseCases } from './DeleteProductUseCases'
-import { GetProductUseCases } from './GetProductUseCases'
-import { UpdateProductUseCases } from './UpdateProductUseCases'
+import { CreateProductUseCases } from './CreateProduct'
+import { DeleteProductUseCases } from './DeleteProduct'
+import { GetProductUseCases } from './GetProduct'
+import { UpdateProductUseCases } from './UpdateProduct'
 
 export default [
     GetProductUseCases,

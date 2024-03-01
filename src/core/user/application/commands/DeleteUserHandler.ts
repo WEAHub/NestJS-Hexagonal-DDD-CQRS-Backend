@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { DeleteUserCommand } from '../../domain/commands/DeleteUser'
-import { DeleteUserUseCases } from '../use-cases/DeleteUserUsecases'
+import { DeleteUserUseCases } from '../use-cases/DeleteUser'
 
 @CommandHandler(DeleteUserCommand)
 export class DeleteUserCommandHandler

@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { DeleteCategoryCommand } from '../../domain/commands/DeleteCategory'
-import { DeleteCategoryUseCase } from '../use-cases/DeleteCategoryUseCases'
+import { DeleteCategoryUseCase } from '../use-cases/DeleteCategory'
 
 @CommandHandler(DeleteCategoryCommand)
 export class DeleteCategoryCommandHandler

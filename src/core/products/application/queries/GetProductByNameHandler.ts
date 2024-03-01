@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { GetProductByNameQuery } from '../../domain/queries/GetProductByName'
 import { Product } from '@core/products/domain/interfaces/Product'
-import { GetProductUseCases } from '../use-cases/GetProductUseCases'
+import { GetProductUseCases } from '../use-cases/GetProduct'
 
 @QueryHandler(GetProductByNameQuery)
 export class GetProductByNameQueryHandler

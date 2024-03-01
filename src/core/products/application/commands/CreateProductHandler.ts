@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { CreateProductCommand } from '../../domain/commands/CreateProduct'
-import { CreateProductUseCases } from '../use-cases/CreateProductUseCases'
+import { CreateProductUseCases } from '../use-cases/CreateProduct'
 
 @CommandHandler(CreateProductCommand)
 export class CreateProductCommandHandler

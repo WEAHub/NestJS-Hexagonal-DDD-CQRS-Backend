@@ -1,7 +1,7 @@
-import { CreateUserUseCases } from './CreateUserUseCases'
-import { DeleteUserUseCases } from './DeleteUserUsecases'
-import { GetUserUseCases } from './GetUserUseCases'
-import { UpdateUserUseCases } from './UpdateUserUseCases'
+import { CreateUserUseCases } from './CreateUser'
+import { DeleteUserUseCases } from './DeleteUser'
+import { GetUserUseCases } from './GetUser'
+import { UpdateUserUseCases } from './UpdateUser'
 
 export default [
     CreateUserUseCases,

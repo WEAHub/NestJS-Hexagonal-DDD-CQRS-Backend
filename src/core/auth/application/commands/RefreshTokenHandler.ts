@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { RefreshTokenCommand } from '../../domain/commands/RefreshToken'
-import { RefreshTokenUseCases } from '@core/auth/application/use-cases/RefreshUseCases'
+import { RefreshTokenUseCases } from '@core/auth/application/use-cases/Refresh'
 
 @CommandHandler(RefreshTokenCommand)
 export class RefreshTokenHandler

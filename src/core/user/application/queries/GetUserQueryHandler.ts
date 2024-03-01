@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { GetUserQuery } from '../../domain/queries/GetUserQuery'
 import { User } from '@core/user/domain/interfaces/User'
-import { GetUserUseCases } from '../use-cases/GetUserUseCases'
+import { GetUserUseCases } from '../use-cases/GetUser'
 
 @QueryHandler(GetUserQuery)
 export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {

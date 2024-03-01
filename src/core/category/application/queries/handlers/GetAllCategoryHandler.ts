@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { GetAllCategoryQuery } from '../GetAllCategory'
 import { Category } from '@core/category/domain/interfaces/Category'
-import { GetCategoryUseCases } from '../../use-cases/GetCategoryUseCases'
+import { GetCategoryUseCases } from '../../use-cases/GetCategory'
 
 @QueryHandler(GetAllCategoryQuery)
 export class GetAllCategoryHandler

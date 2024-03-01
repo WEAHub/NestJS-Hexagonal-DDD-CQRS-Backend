@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { CreateUserCommand } from '../../domain/commands/CreateUser'
-import { CreateUserUseCases } from '../use-cases/CreateUserUseCases'
+import { CreateUserUseCases } from '../use-cases/CreateUser'
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler

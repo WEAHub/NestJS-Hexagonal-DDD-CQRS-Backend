@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { LoginCommand } from '../../domain/commands/Login'
-import { LoginUseCases } from '@core/auth/application/use-cases/LoginUseCases'
+import { LoginUseCases } from '@core/auth/application/use-cases/Login'
 
 @CommandHandler(LoginCommand)
 export class LoginHandler implements ICommandHandler<LoginCommand> {

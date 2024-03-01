@@ -1,4 +1,4 @@
-import { LoginUseCases } from './LoginUseCases'
-import { RefreshTokenUseCases } from './RefreshUseCases'
+import { LoginUseCases } from './Login'
+import { RefreshTokenUseCases } from './Refresh'
 
 export default [LoginUseCases, RefreshTokenUseCases]

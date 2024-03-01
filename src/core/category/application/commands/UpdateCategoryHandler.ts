@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { UpdateCategoryCommand } from '../../domain/commands/UpdateCategory'
-import { UpdateCategoryUseCase } from '../use-cases/UpdateCategoryUseCases'
+import { UpdateCategoryUseCase } from '../use-cases/UpdateCategory'
 
 @CommandHandler(UpdateCategoryCommand)
 export class UpdateCategoryCommandHandler

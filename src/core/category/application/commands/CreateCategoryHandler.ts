@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { CreateCategoryCommand } from '../../domain/commands/CreateCategory'
-import { CreateCategoryUseCase } from '../use-cases/CreateCategoryUseCases'
+import { CreateCategoryUseCase } from '../use-cases/CreateCategory'
 
 @CommandHandler(CreateCategoryCommand)
 export class CreateCategoryCommandHandler

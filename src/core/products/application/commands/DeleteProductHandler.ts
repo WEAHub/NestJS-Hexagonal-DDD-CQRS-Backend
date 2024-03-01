@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs'
 import { DeleteProductCommand } from '../../domain/commands/DeleteProduct'
-import { DeleteProductUseCases } from '../use-cases/DeleteProductUseCases'
+import { DeleteProductUseCases } from '../use-cases/DeleteProduct'
 
 @CommandHandler(DeleteProductCommand)
 export class DeleteProductCommandHandler
