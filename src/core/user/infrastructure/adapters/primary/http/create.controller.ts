@@ -2,7 +2,6 @@ import { Public } from '@core/shared/infrastructure/decorators/is-public.decorat
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { CreateUserCommand } from '@core/user/domain/commands/CreateUser'
-import { User } from '@core/user/domain/interfaces/User'
 import { CreateUserControllerPort } from '@core/user/domain/ports/inbound/controllers/create.controller'
 import { CreateUserDto } from '@core/user/shared/dto/CreateUser.dto'
 import {
