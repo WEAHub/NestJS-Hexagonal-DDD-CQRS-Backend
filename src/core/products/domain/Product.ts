@@ -17,8 +17,8 @@ export interface ProductProperties {
     stock: NumberVo
     stockTotal: NumberVo
     modifiers?: ProductModifier
-    productAddedDate?: DateVo
-    productUpdateDate?: DateVo
+    addedDate?: DateVo
+    updateDate?: DateVo
     categoryId: NumberVo
     price: NumberVo
     published: boolean
@@ -52,7 +52,7 @@ export class Product extends AggregateRoot {
         this.apply(new DeletedProductEvent(this.product.id))
     }
 
-    toPrimitives(): IProduct {
+    toPrimitives(): Partial<IProduct> {
         return {
             id: this.product.id,
             name: this.product.name.getValue(),
@@ -61,8 +61,8 @@ export class Product extends AggregateRoot {
             stock: this.product.stock.getValue(),
             stockTotal: this.product.stockTotal.getValue(),
             modifiers: this.product.modifiers,
-            productAddedDate: this.product.productAddedDate.getValue(),
-            productUpdateDate: this.product.productUpdateDate.getValue(),
+            addedDate: this.product.addedDate.getValue(),
+            updateDate: this.product.updateDate.getValue(),
             categoryId: this.product.categoryId.getValue(),
             price: this.product.price.getValue(),
             published: this.product.published,

@@ -14,6 +14,7 @@ export class RefreshTokenUseCases {
             await this.tokenService.generateRefreshToken(user)
 
         const refreshResponse: LoginSuccessDto = {
+            ...user,
             accessToken,
             refreshToken,
         }

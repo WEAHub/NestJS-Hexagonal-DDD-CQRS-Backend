@@ -26,7 +26,7 @@ export class PostgresProductRepository implements ProductRepository {
         return this.repository.findOneBy({ name })
     }
 
-    async save(product: Product): Promise<Product> {
+    async save(product: Partial<Product>): Promise<Product> {
         return this.repository.save(product)
     }
 

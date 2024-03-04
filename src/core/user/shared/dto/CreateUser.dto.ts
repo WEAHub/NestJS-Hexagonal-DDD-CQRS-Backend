@@ -30,12 +30,12 @@ export class CreateUserDto {
     @IsString()
     avatar: string
 
-    @ApiProperty({ description: 'Product Modifiers', required: true })
+    @ApiProperty({ description: 'User location', required: true })
     @IsOptional()
     @Type(() => UserLocationDto)
     @IsNotEmptyObject()
     @ValidateNested()
-    modifiers: UserLocationDto
+    location: UserLocationDto
 
     @ApiProperty({ description: 'Email', required: true })
     @IsNotEmpty()

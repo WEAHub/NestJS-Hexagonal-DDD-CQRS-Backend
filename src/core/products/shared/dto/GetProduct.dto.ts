@@ -18,7 +18,7 @@ export class GetProductDto {
     @IsNumber()
     @IsOptional()
     @Max(100)
-    @Min(1)
+    @Min(0)
     @Type(() => Number)
     limit: number
 
@@ -30,5 +30,5 @@ export class GetProductDto {
     @IsNumber()
     @Type(() => Number)
     @IsOptional()
-    categoryId: number
+    category: number
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Put, UseFilters } from '@nestjs/common'
+import { Body, Controller, Param, Put, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { User } from '@core/user/domain/interfaces/User'
@@ -18,8 +18,12 @@ export class UpdateUserController
     constructor(private command: CommandBus) {}
 
     @IsAdmin()
-    @Put()
-    async update(@Body() user: EditUserDto): Promise<AppResponse<User>> {
-        return this.command.execute(new UpdateUserCommand(user))
+    @Put(':id')
+    async update(
+        @Param('id') id: number,
+        // TODO: Se le puede aplicar el decorador @CurrentUser para ahorrarle una query al caso de uso
+        @Body() user: EditUserDto,
+    ): Promise<AppResponse<User>> {
+        return this.command.execute(new UpdateUserCommand(id, user))
     }
 }

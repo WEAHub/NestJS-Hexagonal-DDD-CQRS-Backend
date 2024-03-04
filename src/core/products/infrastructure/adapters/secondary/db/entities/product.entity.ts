@@ -32,10 +32,10 @@ export class ProductEntity {
     price: number
 
     @Column({ name: 'product_added_dt' })
-    productAddedDate: Date
+    addedDate: Date
 
     @Column({ name: 'product_update_dt' })
-    productUpdateDate: Date
+    updateDate: Date
 
     @Column({ name: 'product_category_id' })
     categoryId: number
@@ -48,4 +48,10 @@ export class ProductEntity {
 
     @Column({ name: 'product_modifiers', nullable: true, type: 'json' })
     modifiers: ProductModifier
+
+    @Column({ name: 'product_stars' })
+    stars: number
+
+    @Column({ name: 'product_published' })
+    published: boolean
 }

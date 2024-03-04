@@ -1,3 +1,3 @@
 export interface UpdateUserControllerPort<R, B> {
-    update(user: R): Promise<B>
+    update(id: number, user: R): Promise<B>
 }

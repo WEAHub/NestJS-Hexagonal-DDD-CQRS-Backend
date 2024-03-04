@@ -44,16 +44,15 @@ export class UpdateProductUseCases {
         const dateNow = new Date()
 
         const product = this.productFactory.create({
+            ...beforeProduct,
             ...productProps,
-            id,
             categoryId: category.id,
-            productAddedDate: beforeProduct.productAddedDate,
-            productUpdateDate: dateNow,
+            addedDate: beforeProduct.addedDate,
+            updateDate: dateNow,
+            stars: beforeProduct.stars,
         })
 
-        const data: IProduct = await this.repository.save(
-            product.toPrimitives(),
-        )
+        const data = await this.repository.save(product.toPrimitives())
 
         const response: AppResponse<IProduct> = {
             message: 'Product updated successfully',

@@ -8,7 +8,7 @@ export interface ProductRepository {
     find(options: FindManyOptions<ProductEntity>): Promise<Product[]>
     findByName(name: string): Promise<Product>
     findById(id: number): Promise<Product>
-    save(product: Product): Promise<Product>
+    save(product: Partial<Product>): Promise<Product>
     delete(id: number): Promise<boolean>
     paginatedQuery(
         page: number,

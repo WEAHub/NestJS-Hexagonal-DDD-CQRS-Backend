@@ -9,6 +9,6 @@ export class UpdateUserCommandHandler
     constructor(private useCases: UpdateUserUseCases) {}
 
     async execute(command: UpdateUserCommand) {
-        return this.useCases.update(command.user)
+        return this.useCases.update(command.id, command.user)
     }
 }

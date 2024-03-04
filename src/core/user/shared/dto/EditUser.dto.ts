@@ -2,17 +2,21 @@ import { ApiProperty } from '@nestjs/swagger'
 import {
     IsEnum,
     IsNotEmpty,
+    IsNotEmptyObject,
     IsNumber,
     IsOptional,
     IsString,
+    ValidateNested,
 } from 'class-validator'
 import { UserRoles } from '../enums/user-roles.enum'
+import { Type } from 'class-transformer'
+import { UserLocationDto } from './UserLocation.dto'
 
 export class EditUserDto {
-    @ApiProperty({ description: 'User Id', required: true })
+    /*     @ApiProperty({ description: 'User Id', required: true })
     @IsNotEmpty()
     @IsNumber()
-    id: number
+    id: number */
 
     @ApiProperty({ description: 'First name', required: true })
     @IsString()
@@ -34,35 +38,11 @@ export class EditUserDto {
     @IsOptional()
     avatar: string
 
-    @ApiProperty({ description: 'Street name', required: true })
-    @IsString()
+    @ApiProperty({ description: 'User location', required: true })
     @IsOptional()
-    street: string
-
-    @ApiProperty({ description: 'Street number', required: true })
-    @IsNumber()
-    @IsOptional()
-    number: number
-
-    @ApiProperty({ description: 'City name', required: true })
-    @IsString()
-    @IsOptional()
-    city: string
-
-    @ApiProperty({ description: 'Postal code', required: true })
-    @IsNumber()
-    @IsOptional()
-    postalCode: number
-
-    @ApiProperty({ description: 'Latitude', required: true })
-    @IsNumber()
-    @IsOptional()
-    lat: number
-
-    @ApiProperty({ description: 'Longitude', required: true })
-    @IsNumber()
-    @IsOptional()
-    lng: number
+    @Type(() => UserLocationDto)
+    @ValidateNested()
+    location: UserLocationDto
 
     @ApiProperty({ description: 'Email', required: true })
     @IsString()

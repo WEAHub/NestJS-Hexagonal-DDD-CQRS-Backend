@@ -48,9 +48,12 @@ export class LoginUseCases {
             await this.tokenService.generateRefreshToken(_user)
 
         const loginResponse: LoginSuccessDto = {
+            ..._user,
             accessToken,
             refreshToken,
         }
+
+        delete loginResponse.password
 
         userAuth.logged()
         userAuth.commit()

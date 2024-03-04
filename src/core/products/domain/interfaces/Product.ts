@@ -8,9 +8,10 @@ export interface Product {
     stock: number
     stockTotal: number
     modifiers?: ProductModifier
-    productAddedDate: Date
-    productUpdateDate: Date
+    addedDate: Date
+    updateDate: Date
     categoryId: number
     price: number
+    stars: number
     published?: boolean
 }

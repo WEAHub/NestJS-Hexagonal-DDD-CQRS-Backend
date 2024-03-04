@@ -23,10 +23,9 @@ export class PaginatedQueryBuilder {
     }
 
     create(): PaginatedQueryParameters {
-        if (this.query.categoryId) {
-            this.addWhereCondition({ category: this.query.categoryId })
+        if (this.query.category) {
+            this.addWhereCondition({ categoryId: this.query.category })
         }
-
         this.parameters.limit = this.query.limit ?? this.defaultParameters.limit
         this.parameters.sort = this.query.sort ?? this.defaultParameters.sort
         this.parameters.page = this.query.page ?? this.defaultParameters.page

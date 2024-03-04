@@ -19,8 +19,11 @@ export class UpdateUserUseCases {
     @Inject()
     private readonly userFactory: UserFactory
 
-    async update(userProps: EditUserDto): Promise<AppResponse<User>> {
-        const existingUser = await this.repository.findById(userProps.id)
+    async update(
+        id: number,
+        userProps: EditUserDto,
+    ): Promise<AppResponse<User>> {
+        const existingUser = await this.repository.findById(id)
 
         if (!existingUser) {
             throw new ValidationException("User doesn't exists")

@@ -50,8 +50,9 @@ export class CreateProductUseCases {
         const product = this.productFactory.create({
             ...productProps,
             categoryId: category.id,
-            productAddedDate: dateNow,
-            productUpdateDate: dateNow,
+            addedDate: dateNow,
+            updateDate: dateNow,
+            stars: null,
         })
 
         const savedProduct: IProduct = await this.repository.save(

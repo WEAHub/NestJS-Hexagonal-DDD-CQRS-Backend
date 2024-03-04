@@ -2,6 +2,7 @@ import { ProductModifier } from '@core/products/domain/interfaces/ProductModifie
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
+    IsBoolean,
     IsNotEmpty,
     IsNotEmptyObject,
     IsNumber,
@@ -13,44 +14,48 @@ import { ProductModifierDto } from './ProductModifier.dto'
 
 export class UpdateProductDto {
     @ApiProperty({ description: 'Product Name', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     name: string
 
     @ApiProperty({ description: 'Product Image', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     image: string
 
     @ApiProperty({ description: 'Product Description', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     description: string
 
     @ApiProperty({ description: 'Product Stock', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     stock: number
 
     @ApiProperty({ description: 'Product Stock total', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     stockTotal: number
 
     @ApiProperty({ description: 'Product Modifiers', required: true })
     @IsOptional()
     @Type(() => ProductModifierDto)
-    @IsNotEmptyObject()
     @ValidateNested()
     modifiers: ProductModifier
 
     @ApiProperty({ description: 'Product Category', required: true })
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     categoryId: number
 
-    @ApiProperty({ description: 'Product PRice', required: true })
-    @IsNotEmpty()
+    @ApiProperty({ description: 'Product Price', required: true })
+    @IsOptional()
     @IsNumber()
     price: number
+
+    @ApiProperty({ description: 'Product Publish State', required: true })
+    @IsOptional()
+    @IsBoolean()
+    published: boolean
 }

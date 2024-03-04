@@ -1,14 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger'
-import { IsNotEmpty, IsString } from 'class-validator'
+import { UserLocation } from '@core/user/domain/interfaces/UserLocation'
 
-export class LoginSuccessDto {
-    @ApiProperty({ description: 'Access Token' })
-    @IsNotEmpty()
-    @IsString()
+export interface LoginSuccessDto {
+    id?: number
+    firstName: string
+    lastName: string
+    avatar: string
+    location?: UserLocation
+    email: string
+    phone: string
+    role?: string
     accessToken: string
-
-    @ApiProperty({ description: 'Refresh Token' })
-    @IsNotEmpty()
-    @IsString()
     refreshToken: string
+    password?: string
 }
