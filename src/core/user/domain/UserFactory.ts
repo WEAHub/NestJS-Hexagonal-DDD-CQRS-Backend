@@ -15,47 +15,18 @@ export class UserFactory {
     create(options: IUser): User {
         const properties: UserProperties = {
             ...options, //id
-
-            firstName: options?.firstName
-                ? new Name(options.firstName)
-                : undefined,
-
-            lastName: options?.lastName
-                ? new Name(options.lastName)
-                : undefined,
-
-            password: this.checkProp(
-                options?.password,
-                () => new Password(options.password),
-            ),
-
-            avatar: this.checkProp(
-                options?.avatar,
-                () => new Avatar(options.avatar),
-            ),
-
+            firstName: new Name(options.firstName),
+            lastName: new Name(options.lastName),
+            password: new Password(options.password),
+            avatar: new Avatar(options.avatar),
             location: options.location ?? {},
-
-            email: this.checkProp(
-                options?.email,
-                () => new Email(options.email),
-            ),
-
-            phone: this.checkProp(
-                options?.phone,
-                () => new Phone(options.phone),
-            ),
+            email: new Email(options.email),
+            phone: new Phone(options.phone),
 
             role: options?.role ?? UserRoles.BUYER,
         }
 
         const _user = new User(properties)
         return this.eventPublisher.mergeObjectContext(_user)
-    }
-
-    private checkProp(value: any, callback: () => any): any {
-        return (
-            (value !== undefined && value !== null && callback()) ?? undefined
-        )
     }
 }
