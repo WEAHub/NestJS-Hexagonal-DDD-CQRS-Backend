@@ -1,13 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import {
-    IsEnum,
-    IsNotEmpty,
-    IsNotEmptyObject,
-    IsNumber,
-    IsOptional,
-    IsString,
-    ValidateNested,
-} from 'class-validator'
+import { IsEnum, IsOptional, IsString, ValidateNested } from 'class-validator'
 import { UserRoles } from '../enums/user-roles.enum'
 import { Type } from 'class-transformer'
 import { UserLocationDto } from './UserLocation.dto'

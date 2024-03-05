@@ -3,17 +3,17 @@ import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
 import { User } from '@core/user/domain/interfaces/User'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
-import { UpdateUserControllerPort } from '@core/user/domain/ports/inbound/controllers/update.controller'
 import { UpdateUserCommand } from '@core/user/domain/commands/UpdateUser'
 import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
 import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
+import { UpdateCartControllerPort } from '@core/carts/domain/ports/inbound/controllers/update.controller'
 
 @ApiTags('Edit User Controller')
 @UseFilters(GlobalExceptionFilter)
 @Controller('user')
 export class UpdateCartController
-    implements UpdateUserControllerPort<EditUserDto, AppResponse<User>>
+    implements UpdateCartControllerPort<EditUserDto, AppResponse<User>>
 {
     constructor(private command: CommandBus) {}
 

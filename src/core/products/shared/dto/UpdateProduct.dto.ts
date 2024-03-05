@@ -3,8 +3,6 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsBoolean,
-    IsNotEmpty,
-    IsNotEmptyObject,
     IsNumber,
     IsOptional,
     IsString,
