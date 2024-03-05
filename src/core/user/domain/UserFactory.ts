@@ -22,7 +22,6 @@ export class UserFactory {
             location: options.location ?? {},
             email: new Email(options.email),
             phone: new Phone(options.phone),
-
             role: options?.role ?? UserRoles.BUYER,
         }
 

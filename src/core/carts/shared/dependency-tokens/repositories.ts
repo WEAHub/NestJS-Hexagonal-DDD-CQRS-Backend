@@ -1,0 +1,1 @@
+export const CARTS_REPOSITORY = 'CARTS_REPOSITORY'

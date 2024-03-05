@@ -34,18 +34,17 @@ export class CreateUserUseCases {
             user.user.password.getValue(),
         )
 
-        const userEntity: User = await this.repository.create({
+        const userEntity: User = await this.repository.save({
             ...user.toPrimitives(),
             password: encryptedPassword,
         })
-
-        this.repository.save(userEntity)
 
         const response: AppResponse<null> = {
             status: HttpStatus.OK,
             message: 'User created successfully',
         }
 
+        user.user.id = userEntity.id
         user.created()
         user.commit()
 
