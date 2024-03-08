@@ -1,1 +1,3 @@
-export default []
+import { GetInvoicePreviewQueryHandler } from './GetInvoicePreviewhandler'
+
+export default [GetInvoicePreviewQueryHandler]

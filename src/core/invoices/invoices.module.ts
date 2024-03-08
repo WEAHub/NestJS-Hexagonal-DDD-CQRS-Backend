@@ -5,9 +5,10 @@ import UseCases from './application/use-cases'
 import Events from './application/events'
 import CommandHandlers from './application/commands'
 import Queries from './application/queries'
+import { InvoiceFactory } from './domain/InvoiceFactory'
 
 const providers = [
-    //InvoicesFactory,
+    InvoiceFactory,
     ...CommandHandlers,
     ...Queries,
     ...Events,

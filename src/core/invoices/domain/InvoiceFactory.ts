@@ -3,23 +3,30 @@ import { EventPublisher } from '@nestjs/cqrs'
 
 import { Invoice as IInvoice } from './interfaces/Invoice'
 import { Invoice, InvoiceProperties } from './Invoice'
-import { NumberVo } from './vo/Number'
 import { DateVo } from './vo/Date'
+import { Product } from './interfaces/Product'
 
 export class InvoiceFactory {
     @Inject(EventPublisher) private readonly eventPublisher: EventPublisher
 
     create(options: IInvoice): Invoice {
+        const amount: number = this.calculateAmount(options.products)
+
         const properties: InvoiceProperties = {
             ...options, //id
-            address: options.address,
-            products: options.products,
-            amount: new NumberVo(options.amount),
+            amount,
             date: new DateVo(options.date),
-            userId: new NumberVo(options.userId),
         }
 
         const _invoice = new Invoice(properties)
         return this.eventPublisher.mergeObjectContext(_invoice)
+    }
+
+    private calculateAmount(products: Product[]): number {
+        return products.reduce((p, n) => {
+            const { modifiers, price } = n
+            const _price = modifiers?.discountPrice ?? price
+            return p + _price * n.quantity
+        }, 0)
     }
 }

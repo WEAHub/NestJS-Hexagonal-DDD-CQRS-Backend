@@ -15,4 +15,5 @@ export interface Product {
     stars: number
     published?: boolean
     visits: number
+    quantity?: number
 }

@@ -5,5 +5,5 @@ export interface InvoicesRepository {
     findById(id: number): Promise<Invoice>
     findAll(): Promise<Invoice[]>
     save(invoice: Invoice): Promise<Invoice>
-    delete(id: number): Promise<boolean>
+    getNextInvoiceId(): Promise<number>
 }

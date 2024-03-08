@@ -32,4 +32,14 @@ export class PostgresInvoicesRepository implements InvoicesRepository {
         const deleted = await this.repository.delete({ id })
         return deleted.affected > 0
     }
+
+    async getNextInvoiceId(): Promise<number> {
+        const maxId = await this.repository
+            .createQueryBuilder('invoices')
+            .select('MAX(invoices.invoice_id)', 'maxId')
+            .getRawOne()
+
+        const nextId = maxId.maxId ? maxId.maxId + 1 : 1
+        return nextId
+    }
 }

@@ -5,6 +5,7 @@ import { CreatedCartEvent } from './events/CreatedCartEvent'
 import { UpdatedCartEvent } from './events/UpdatedCartEvent'
 import { DateVo } from './vo/Date'
 import { NumberVo } from './vo/Number'
+
 export interface CartProperties {
     id?: number
     userId: NumberVo
@@ -29,10 +30,6 @@ export class Cart extends AggregateRoot {
         this.cart.products = products
         this.cart.updatedDate = new DateVo(new Date())
         this.apply(new UpdatedCartEvent(this.cart.id))
-    }
-
-    deleted(): void {
-        //this.apply(new DeletedUserEvent(this.user.id))
     }
 
     toPrimitives(): ICart {
