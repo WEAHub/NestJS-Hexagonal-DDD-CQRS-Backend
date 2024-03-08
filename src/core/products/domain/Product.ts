@@ -22,6 +22,7 @@ export interface ProductProperties {
     categoryId: NumberVo
     price: NumberVo
     published: boolean
+    visits: number
 }
 
 export class Product extends AggregateRoot {

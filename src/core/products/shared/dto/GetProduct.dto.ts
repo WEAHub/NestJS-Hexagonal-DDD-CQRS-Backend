@@ -27,6 +27,11 @@ export class GetProductDto {
     @IsOptional()
     page: number
 
+    @IsString()
+    @Type(() => String)
+    @IsOptional()
+    sortColumn: string
+
     @IsNumber()
     @Type(() => Number)
     @IsOptional()

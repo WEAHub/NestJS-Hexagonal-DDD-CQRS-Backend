@@ -39,6 +39,7 @@ export class PostgresProductRepository implements ProductRepository {
         page: number,
         limit: number,
         sort: ProductSorts,
+        sortColumn: string,
         whereConditions: object,
     ): Promise<PaginatedValues<Product>> {
         const query = this.repository
@@ -50,7 +51,7 @@ export class PostgresProductRepository implements ProductRepository {
         const data: Product[] = await query
             .skip(page - 1)
             .take(limit)
-            .orderBy('products.id', sort)
+            .orderBy(`products.${sortColumn}`, sort)
             .getMany()
 
         const result: PaginatedValues<Product> = {

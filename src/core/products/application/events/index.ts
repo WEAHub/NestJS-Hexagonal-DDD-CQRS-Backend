@@ -1,6 +1,6 @@
-import { CreatedProductEventHandler } from './CreatedCategoryEventHandler'
-import { DeletedProductEventHandler } from './DeletedCategoryEventHandler'
-import { UpdatedProductEventHandler } from './UpdatedCategoryEventHandler'
+import { CreatedProductEventHandler } from './CreatedProductHandler'
+import { DeletedProductEventHandler } from './DeletedProductHandler'
+import { UpdatedProductEventHandler } from './UpdatedProductHandler'
 
 export default [
     CreatedProductEventHandler,

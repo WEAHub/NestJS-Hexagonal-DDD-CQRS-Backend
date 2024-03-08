@@ -1,8 +1,8 @@
-import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
+import { CartProduct } from '../interfaces/CartProduct'
 
-export class UpdateUserCommand {
+export class UpdateCartCommand {
     constructor(
         public readonly id: number,
-        public readonly user: EditUserDto,
+        public readonly products: CartProduct[],
     ) {}
 }

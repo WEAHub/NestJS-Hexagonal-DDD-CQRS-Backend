@@ -14,6 +14,7 @@ export interface ProductRepository {
         page: number,
         limit: number,
         sort: ProductSorts,
+        sortColumn: string,
         whereConditions: object,
     ): Promise<PaginatedValues<Product>>
 }

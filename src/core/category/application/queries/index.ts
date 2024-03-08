@@ -1,6 +1,6 @@
-import { GetAllCategoryHandler } from './handlers/GetAllCategoryHandler'
-import { GetCategoryByIdHandler } from './handlers/GetCategoryByIdHandler'
-import { GetCategoryByNameQueryHandler } from './handlers/GetCategoryByNameHandler'
+import { GetAllCategoryHandler } from './GetAllCategoryHandler'
+import { GetCategoryByIdHandler } from './GetCategoryByIdHandler'
+import { GetCategoryByNameQueryHandler } from './GetCategoryByNameHandler'
 
 export default [
     GetAllCategoryHandler,

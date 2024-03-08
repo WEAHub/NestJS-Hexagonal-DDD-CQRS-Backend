@@ -1,7 +1,7 @@
-import { CategoryRepository } from '@core/category/domain/ports/outbound/repositories/CategoryRepository'
 import { ProductFactory } from '@core/products/domain/ProductFactory'
 import { Category } from '@core/products/domain/interfaces/Category'
 import { Product as IProduct } from '@core/products/domain/interfaces/Product'
+import { CategoryRepository } from '@core/products/domain/ports/outbound/repositories/CategoryRepository'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
 import {
     CATEGORY_REPOSITORY,
@@ -52,7 +52,8 @@ export class CreateProductUseCases {
             categoryId: category.id,
             addedDate: dateNow,
             updateDate: dateNow,
-            stars: null,
+            stars: 0,
+            visits: 0,
         })
 
         const savedProduct: IProduct = await this.repository.save(

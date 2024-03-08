@@ -5,10 +5,12 @@ import { Type } from 'class-transformer'
 import { UserLocationDto } from './UserLocation.dto'
 
 export class EditUserDto {
-    /*     @ApiProperty({ description: 'User Id', required: true })
+    /*     
+    @ApiProperty({ description: 'User Id', required: true })
     @IsNotEmpty()
     @IsNumber()
-    id: number */
+    id: number 
+    */
 
     @ApiProperty({ description: 'First name', required: true })
     @IsString()

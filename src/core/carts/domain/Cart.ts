@@ -1,9 +1,10 @@
-import { DateVo } from '@core/products/domain/vo/Date'
 import { CartProduct } from './interfaces/CartProduct'
-import { NumberVo } from '@core/products/domain/vo/Number'
 import { AggregateRoot } from '@nestjs/cqrs'
 import { Cart as ICart } from './interfaces/Cart'
 import { CreatedCartEvent } from './events/CreatedCartEvent'
+import { UpdatedCartEvent } from './events/UpdatedCartEvent'
+import { DateVo } from './vo/Date'
+import { NumberVo } from './vo/Number'
 export interface CartProperties {
     id?: number
     userId: NumberVo
@@ -24,8 +25,10 @@ export class Cart extends AggregateRoot {
         this.apply(new CreatedCartEvent(this.cart))
     }
 
-    updated(): void {
-        //this.apply(new UpdatedUserEvent(this.user.id))
+    updated(products: CartProduct[]): void {
+        this.cart.products = products
+        this.cart.updatedDate = new DateVo(new Date())
+        this.apply(new UpdatedCartEvent(this.cart.id))
     }
 
     deleted(): void {

@@ -26,6 +26,7 @@ export class ProductFactory {
             updateDate: new DateVo(options.updateDate),
             categoryId: new NumberVo(options.categoryId),
             price: new NumberVo(options.price),
+            visits: options.visits,
             published: options.published,
         }
 

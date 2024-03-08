@@ -2,8 +2,8 @@ import { Inject } from '@nestjs/common'
 import { EventPublisher } from '@nestjs/cqrs'
 import { Cart as ICart } from './interfaces/Cart'
 import { Cart, CartProperties } from './Cart'
-import { NumberVo } from '@core/products/domain/vo/Number'
-import { DateVo } from '@core/products/domain/vo/Date'
+import { NumberVo } from './vo/Number'
+import { DateVo } from './vo/Date'
 
 export class CartFactory {
     @Inject(EventPublisher) private readonly eventPublisher: EventPublisher

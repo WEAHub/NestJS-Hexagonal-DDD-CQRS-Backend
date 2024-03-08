@@ -5,8 +5,11 @@ export interface PaginatedQueryParameters {
     page?: number
     limit?: number
     sort?: ProductSorts
+    sortColumn?: string
     whereConditions?: object
 }
+
+const sortColumnKeys = ['visits', 'id', 'stars', 'updateDate']
 
 export class PaginatedQueryBuilder {
     private parameters: PaginatedQueryParameters = {}
@@ -15,6 +18,7 @@ export class PaginatedQueryBuilder {
         whereConditions: {},
         limit: 10,
         page: 1,
+        sortColumn: 'id',
         sort: ProductSorts.DESC,
     }
 
@@ -26,6 +30,9 @@ export class PaginatedQueryBuilder {
         if (this.query.category) {
             this.addWhereCondition({ categoryId: this.query.category })
         }
+
+        this.parameters.sortColumn = this.checkSortColumn(this.query.sortColumn)
+
         this.parameters.limit = this.query.limit ?? this.defaultParameters.limit
         this.parameters.sort = this.query.sort ?? this.defaultParameters.sort
         this.parameters.page = this.query.page ?? this.defaultParameters.page
@@ -33,7 +40,11 @@ export class PaginatedQueryBuilder {
         return this.parameters
     }
 
-    addWhereCondition(condition: object) {
+    private addWhereCondition(condition: object) {
         Object.assign(this.parameters.whereConditions, condition)
+    }
+
+    private checkSortColumn(sortColumn: string): string {
+        return sortColumnKeys.find((k) => sortColumn === k) ?? 'id'
     }
 }

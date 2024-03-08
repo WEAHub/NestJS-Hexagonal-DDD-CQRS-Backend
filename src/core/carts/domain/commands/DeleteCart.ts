@@ -1,3 +1,3 @@
-export class DeleteUserCommand {
+export class DeleteCartCommand {
     constructor(public readonly id: number) {}
 }

@@ -1,4 +1,3 @@
-import { CategoryRepository } from '@core/category/domain/ports/outbound/repositories/CategoryRepository'
 import { CATEGORY_REPOSITORY } from '@core/products/shared/dependency-tokens/repositories'
 import { Product as IProduct } from '@core/products/domain/interfaces/Product'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
@@ -9,6 +8,7 @@ import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { Injectable, Inject, HttpStatus } from '@nestjs/common'
 import { Category } from '@core/products/domain/interfaces/Category'
 import { ProductFactory } from '@core/products/domain/ProductFactory'
+import { CategoryRepository } from '@core/products/domain/ports/outbound/repositories/CategoryRepository'
 
 @Injectable()
 export class UpdateProductUseCases {

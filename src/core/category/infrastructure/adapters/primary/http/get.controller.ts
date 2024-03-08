@@ -5,9 +5,9 @@ import { Public } from '@core/shared/infrastructure/decorators/is-public.decorat
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
 import { GetCategoryControllerPort } from '@core/category/domain/ports/inbound/controllers/get.controller'
 import { Category } from '@core/category/domain/interfaces/Category'
-import { GetAllCategoryQuery } from '@core/category/application/queries/GetAllCategory'
-import { GetCategoryByIdQuery } from '@core/category/application/queries/GetCategoryById'
-import { GetCategoryByNameQuery } from '@core/category/application/queries/GetCategoryByName'
+import { GetAllCategoryQuery } from '@core/category/domain/queries/GetAllCategory'
+import { GetCategoryByIdQuery } from '@core/category/domain/queries/GetCategoryById'
+import { GetCategoryByNameQuery } from '@core/category/domain/queries/GetCategoryByName'
 
 @ApiTags('Category Get Controller')
 @UseFilters(GlobalExceptionFilter)

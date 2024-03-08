@@ -12,6 +12,7 @@ import { GetProductDto } from '@core/products/shared/dto/GetProduct.dto'
 import { ValidationException } from '@core/shared/exception/ValidationException'
 import { Injectable, Inject } from '@nestjs/common'
 import { Product as IProduct } from '@core/products/domain/interfaces/Product'
+
 @Injectable()
 export class GetProductUseCases {
     @Inject(PRODUCT_REPOSITORY)
@@ -27,23 +28,29 @@ export class GetProductUseCases {
 
     async findById(id: number): Promise<IProduct> {
         const product: IProduct = await this.repository.findById(id)
+
         if (!product) {
             throw new ValidationException(`Invalid Product(id=${id})`)
         }
-        return product
+
+        product.visits++
+
+        return await this.repository.save(product)
     }
 
     async findAll(query: GetProductDto): Promise<Paginated<IProduct>> {
         const queryParameters: PaginatedQueryParameters =
             new PaginatedQueryBuilder(query).create()
 
-        const { page, limit, sort, whereConditions } = queryParameters
+        const { page, limit, sort, sortColumn, whereConditions } =
+            queryParameters
 
         const { data, count }: PaginatedValues<IProduct> =
             await this.repository.paginatedQuery(
                 page,
                 limit,
                 sort,
+                sortColumn,
                 whereConditions,
             )
 
@@ -54,5 +61,10 @@ export class GetProductUseCases {
             count,
         }
         return paginatedProducts
+    }
+
+    async increaseVisits(product: IProduct): Promise<void> {
+        product.visits++
+        this.repository.save(product)
     }
 }

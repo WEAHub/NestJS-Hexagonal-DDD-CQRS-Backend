@@ -54,4 +54,7 @@ export class ProductEntity {
 
     @Column({ name: 'product_published' })
     published: boolean
+
+    @Column({ name: 'product_visits' })
+    visits: number
 }

@@ -1,3 +1,4 @@
+import { CartProduct } from '@core/carts/domain/interfaces/CartProduct'
 import { Cart } from '../../../interfaces/Cart'
 import { SaveOptions } from 'typeorm'
 
@@ -7,4 +8,5 @@ export interface CartsRepository {
     create(cart: Cart): Promise<Cart>
     save(cart: Cart, options?: SaveOptions): Promise<Cart>
     delete(id: number): Promise<boolean>
+    aggregateProducts(products: CartProduct[]): Promise<CartProduct[]>
 }

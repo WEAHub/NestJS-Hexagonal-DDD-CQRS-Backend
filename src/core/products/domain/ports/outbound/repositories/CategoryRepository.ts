@@ -1,4 +1,4 @@
-import { Category } from '@core/category/domain/interfaces/Category'
+import { Category } from '@core/products/domain/interfaces/Category'
 
 export interface CategoryRepository {
     findByName(name: string): Promise<Category>

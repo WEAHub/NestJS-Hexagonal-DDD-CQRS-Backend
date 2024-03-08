@@ -18,7 +18,7 @@ import { DatabaseConfig } from '@config/database.config'
                     database: database.name,
                     synchronize: false,
                     autoLoadEntities: true,
-                    logging: ['query'],
+                    //logging: ['query'],
                 }
             },
             inject: [ConfigService],

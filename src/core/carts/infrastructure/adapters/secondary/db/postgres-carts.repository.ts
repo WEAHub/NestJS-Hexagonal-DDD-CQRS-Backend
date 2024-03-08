@@ -1,20 +1,30 @@
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { SaveOptions } from 'typeorm'
 import { CartEntity } from './entities/cart.entity'
 import { CartsRepository } from '@core/carts/domain/ports/outbound/repositories/CartsRepository'
 import { Cart } from '@core/carts/domain/interfaces/Cart'
+import { CartProduct } from '@core/carts/domain/interfaces/CartProduct'
+import { ProductRepository } from '@core/carts/domain/ports/outbound/repositories/ProductRepository'
+import { PRODUCT_REPOSITORY } from '@core/carts/shared/dependency-tokens/repositories'
 
 @Injectable()
 export class PostgresCartsRepository implements CartsRepository {
     constructor(
         @InjectRepository(CartEntity)
         private repository: Repository<CartEntity>,
+
+        @Inject(PRODUCT_REPOSITORY)
+        private productRepository: ProductRepository,
     ) {}
 
     async findById(id: number): Promise<Cart> {
         return this.repository.findOneBy({ id })
+    }
+
+    async findByUserId(userId: number): Promise<Cart> {
+        return this.repository.findOneBy({ userId })
     }
 
     async create(cart: Cart): Promise<Cart> {
@@ -25,12 +35,19 @@ export class PostgresCartsRepository implements CartsRepository {
         return this.repository.save(cart, options)
     }
 
-    async findByUserId(userId: number): Promise<Cart> {
-        return this.repository.findOneBy({ userId })
-    }
-
     async delete(id: number): Promise<boolean> {
         const deleted = await this.repository.delete({ id })
         return deleted.affected > 0
+    }
+
+    async aggregateProducts(products: CartProduct[]): Promise<CartProduct[]> {
+        return Promise.all(
+            products.map(async (product) => ({
+                ...product,
+                product: await this.productRepository.findById(
+                    product.productId,
+                ),
+            })),
+        )
     }
 }

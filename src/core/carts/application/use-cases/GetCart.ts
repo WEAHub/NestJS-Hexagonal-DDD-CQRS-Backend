@@ -17,6 +17,7 @@ export class GetCartUseCases {
             )
         }
 
+        cart.products = await this.repository.aggregateProducts(cart.products)
         return cart
     }
 }

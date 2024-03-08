@@ -1,29 +1,29 @@
 import { Body, Controller, Param, Put, UseFilters } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CommandBus } from '@nestjs/cqrs'
-import { User } from '@core/user/domain/interfaces/User'
 import { GlobalExceptionFilter } from '@core/shared/infrastructure/exception-filters/global-exception.filter'
-import { UpdateUserCommand } from '@core/user/domain/commands/UpdateUser'
-import { EditUserDto } from '@core/user/shared/dto/EditUser.dto'
-import { IsAdmin } from '@core/shared/infrastructure/decorators/is-admin.decorator'
 import { AppResponse } from '@core/shared/infrastructure/model/app.response'
 import { UpdateCartControllerPort } from '@core/carts/domain/ports/inbound/controllers/update.controller'
+import { UpdateCartDto } from '@core/carts/shared/dto/UpdateCart.dto'
+import { Cart } from '@core/carts/domain/interfaces/Cart'
+import { UpdateCartCommand } from '@core/carts/domain/commands/UpdateCart'
 
 @ApiTags('Edit User Controller')
 @UseFilters(GlobalExceptionFilter)
-@Controller('user')
+@Controller('carts')
 export class UpdateCartController
-    implements UpdateCartControllerPort<EditUserDto, AppResponse<User>>
+    implements UpdateCartControllerPort<UpdateCartDto, AppResponse<Cart>>
 {
     constructor(private command: CommandBus) {}
 
-    @IsAdmin()
     @Put(':id')
     async update(
         @Param('id') id: number,
         // TODO: Se le puede aplicar el decorador @CurrentUser para ahorrarle una query al caso de uso
-        @Body() user: EditUserDto,
-    ): Promise<AppResponse<User>> {
-        return this.command.execute(new UpdateUserCommand(id, user))
+        @Body() products: UpdateCartDto,
+    ): Promise<AppResponse<Cart>> {
+        return this.command.execute(
+            new UpdateCartCommand(id, products.products),
+        )
     }
 }
