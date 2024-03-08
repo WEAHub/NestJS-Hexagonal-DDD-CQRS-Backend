@@ -9,7 +9,7 @@ import { GetAllProductQuery } from '@core/products/domain/queries/GetAllProduct'
 import { GetProductByIdQuery } from '@core/products/domain/queries/GetProductById'
 import { GetProductByNameQuery } from '@core/products/domain/queries/GetProductByName'
 import { GetProductDto } from '@core/products/shared/dto/GetProduct.dto'
-import { Paginated } from '@core/products/domain/interfaces/Paginated'
+import { Paginated } from '@core/shared/domain/interfaces/Paginated'
 
 @ApiTags('Product Get Controller')
 @UseFilters(GlobalExceptionFilter)

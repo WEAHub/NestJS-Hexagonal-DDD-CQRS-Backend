@@ -4,7 +4,7 @@ import { Repository, FindManyOptions } from 'typeorm'
 import { ProductEntity } from './entities/Product.entity'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
-import { PaginatedValues } from '@core/products/domain/interfaces/Paginated'
+import { PaginatedValues } from '@core/shared/domain/interfaces/Paginated'
 import { ProductSorts } from '@core/products/shared/enums/ProductSorts'
 
 @Injectable()

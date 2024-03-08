@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module'
 import { CategoryModule } from './category/category.module'
 import { ProductModule } from './products/product.module'
 import { CartsModule } from './carts/carts.module'
+import { InvoicesModule } from './invoices/invoices.module'
 
 const featureModules = [
     AuthModule, //
@@ -13,6 +14,7 @@ const featureModules = [
     CategoryModule,
     ProductModule,
     CartsModule,
+    InvoicesModule,
 ]
 
 @Module({

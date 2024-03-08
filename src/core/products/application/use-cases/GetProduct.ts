@@ -5,7 +5,7 @@ import {
 import {
     Paginated,
     PaginatedValues,
-} from '@core/products/domain/interfaces/Paginated'
+} from '@core/shared/domain/interfaces/Paginated'
 import { ProductRepository } from '@core/products/domain/ports/outbound/repositories/ProductRepository'
 import { PRODUCT_REPOSITORY } from '@core/products/shared/dependency-tokens/repositories'
 import { GetProductDto } from '@core/products/shared/dto/GetProduct.dto'
