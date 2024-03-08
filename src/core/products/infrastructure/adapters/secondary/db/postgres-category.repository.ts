@@ -15,12 +15,4 @@ export class PostgresCategoryRepository implements CategoryRepository {
     async findById(id: number): Promise<Category> {
         return this.repository.findOneBy({ id })
     }
-
-    async findByName(name: string): Promise<Category> {
-        return this.repository.findOneBy({ name })
-    }
-
-    async findAll(): Promise<Category[]> {
-        return this.repository.find()
-    }
 }
