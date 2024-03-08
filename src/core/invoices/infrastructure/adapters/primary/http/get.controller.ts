@@ -10,7 +10,7 @@ import { ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Get Invoices Controller')
 @UseFilters(GlobalExceptionFilter)
-@Controller('invoice')
+@Controller('checkout')
 export class GetInvoiceController implements GetInvoiceControllerPort {
     constructor(private query: QueryBus) {}
 
