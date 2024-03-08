@@ -21,7 +21,6 @@ export class Invoice extends AggregateRoot {
     }
 
     toPrimitives(): IInvoice {
-        console.log(this.invoice)
         return {
             id: this.invoice?.id,
             products: this.invoice.products,
