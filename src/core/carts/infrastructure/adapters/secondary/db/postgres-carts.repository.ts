@@ -8,6 +8,7 @@ import { Cart } from '@core/carts/domain/interfaces/Cart'
 import { CartProduct } from '@core/carts/domain/interfaces/CartProduct'
 import { ProductRepository } from '@core/carts/domain/ports/outbound/repositories/ProductRepository'
 import { PRODUCT_REPOSITORY } from '@core/carts/shared/dependency-tokens/repositories'
+import { Product } from '@core/carts/domain/interfaces/Product'
 
 @Injectable()
 export class PostgresCartsRepository implements CartsRepository {
@@ -41,13 +42,14 @@ export class PostgresCartsRepository implements CartsRepository {
     }
 
     async aggregateProducts(products: CartProduct[]): Promise<CartProduct[]> {
-        return Promise.all(
-            products.map(async (product) => ({
-                ...product,
-                product: await this.productRepository.findById(
-                    product.productId,
-                ),
-            })),
-        )
+        const productIds: number[] = products.map((p) => p.productId)
+
+        const _products: Product[] =
+            await this.productRepository.findByArrayIds(productIds)
+
+        return products.map((p) => ({
+            ...p,
+            product: _products.find((_p) => _p.id === p.productId),
+        }))
     }
 }

@@ -12,6 +12,13 @@ export class PostgresProductRepository implements ProductRepository {
         private repository: Repository<ProductEntity>,
     ) {}
 
+    async findByArrayIds(ids: number[]): Promise<Product[]> {
+        return this.repository
+            .createQueryBuilder('products')
+            .where('product_id IN (:...ids)', { ids })
+            .getMany()
+    }
+
     async findById(id: number): Promise<Product> {
         return this.repository.findOneBy({ id })
     }
