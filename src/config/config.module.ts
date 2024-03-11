@@ -4,6 +4,7 @@ import * as Joi from 'joi'
 import databaseConfig from './database.config'
 import serverConfig from './server.config'
 import tokenConfig from './token.config'
+import aesConfig from './aes.config'
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import tokenConfig from './token.config'
                 databaseConfig, //
                 serverConfig,
                 tokenConfig,
+                aesConfig,
             ],
             validationSchema: Joi.object({
                 SERVER_PORT: Joi.number().default(3000),
@@ -26,6 +28,8 @@ import tokenConfig from './token.config'
                 TOKEN_ACCESS_EXPIRATION: Joi.string().required(),
                 TOKEN_REFRESH_KEY: Joi.string().required(),
                 TOKEN_REFRESH_EXPIRATION: Joi.string().required(),
+                AES_KEY: Joi.string().required(),
+                AES_IV: Joi.string().required(),
             }),
             validationOptions: {
                 allowUnknown: true,

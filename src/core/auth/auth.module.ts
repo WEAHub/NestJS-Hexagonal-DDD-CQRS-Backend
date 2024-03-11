@@ -8,6 +8,7 @@ import { TokenServiceProvider } from './domain/services/TokenService'
 import UseCases from './application/use-cases'
 import Events from './application/events'
 import Commands from './application/commands'
+import { CryptoServiceProvider } from '@core/shared/domain/services/CryptoService'
 
 const Services = [PasswordService, TokenServiceProvider]
 
