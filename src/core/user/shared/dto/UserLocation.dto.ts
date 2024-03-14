@@ -22,6 +22,11 @@ export class UserLocationDto {
     @IsNumber()
     number: number
 
+    @ApiProperty({ description: 'Door', required: true })
+    @IsNotEmpty()
+    @IsString()
+    door: string
+
     @ApiProperty({ description: 'City name', required: true })
     @IsNotEmpty()
     @IsString()

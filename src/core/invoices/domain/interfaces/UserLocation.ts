@@ -6,4 +6,5 @@ export class UserLocation {
     lat?: number
     lng?: number
     address?: string
+    door: string
 }
