@@ -6,6 +6,9 @@ import Events from './application/events'
 import CommandHandlers from './application/commands'
 import Queries from './application/queries'
 import { InvoiceFactory } from './domain/InvoiceFactory'
+import { CryptoServiceProvider } from '@core/shared/domain/services/CryptoService'
+
+const Services = [CryptoServiceProvider]
 
 const providers = [
     InvoiceFactory,
@@ -13,6 +16,7 @@ const providers = [
     ...Queries,
     ...Events,
     ...UseCases,
+    ...Services,
 ]
 
 @Module({

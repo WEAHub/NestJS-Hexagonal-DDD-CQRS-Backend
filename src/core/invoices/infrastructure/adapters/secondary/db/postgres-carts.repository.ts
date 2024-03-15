@@ -20,4 +20,11 @@ export class PostgresCartsRepository implements CartsRepository {
     async findByUserId(userId: number): Promise<Cart> {
         return this.repository.findOneBy({ userId })
     }
+
+    async emptyCartByUserId(userId: number): Promise<void> {
+        const cart = await this.findByUserId(userId)
+        cart.products = []
+        this.repository.save(cart)
+        return
+    }
 }

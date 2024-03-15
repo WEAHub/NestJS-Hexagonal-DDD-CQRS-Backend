@@ -12,16 +12,10 @@ import { CartEntity } from './secondary/db/entities/cart.entity'
 import { ProductEntity } from './secondary/db/entities/Product.entity'
 import { PostgresProductRepository } from './secondary/db/postgres-products.repository'
 import { PostgresCartsRepository } from './secondary/db/postgres-carts.repository'
+import { CreateInvoiceController } from './primary/http/create.controller'
 import { GetInvoiceController } from './primary/http/get.controller'
 
-const controllers = [
-    GetInvoiceController,
-    /*     
-    CreateInvoicesController,
-    DeleteInvoicesController,
-    UpdateInvoicesController, 
-    */
-]
+const controllers = [GetInvoiceController, CreateInvoiceController]
 
 const providers = [
     PostgresInvoicesRepository,

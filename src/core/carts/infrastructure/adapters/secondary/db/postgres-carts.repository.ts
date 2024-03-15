@@ -42,6 +42,8 @@ export class PostgresCartsRepository implements CartsRepository {
     }
 
     async aggregateProducts(products: CartProduct[]): Promise<CartProduct[]> {
+        if (!products.length) return []
+
         const productIds: number[] = products.map((p) => p.productId)
 
         const _products: Product[] =

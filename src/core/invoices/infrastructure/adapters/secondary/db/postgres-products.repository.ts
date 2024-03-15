@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { ProductEntity } from './entities/Product.entity'
-import { ProductRepository } from '@core/carts/domain/ports/outbound/repositories/ProductRepository'
-import { Product } from '@core/carts/domain/interfaces/Product'
+import { ProductRepository } from '@core/invoices/domain/ports/outbound/repositories/ProductRepository'
+import { Product } from '@core/invoices/domain/interfaces/Product'
 
 @Injectable()
 export class PostgresProductRepository implements ProductRepository {
@@ -21,5 +21,11 @@ export class PostgresProductRepository implements ProductRepository {
 
     async findById(id: number): Promise<Product> {
         return this.repository.findOneBy({ id })
+    }
+
+    async updateStock(id: number, stock: number): Promise<Product> {
+        const product = await this.findById(id)
+        product.stock = product.stock - stock
+        return this.repository.save(product)
     }
 }

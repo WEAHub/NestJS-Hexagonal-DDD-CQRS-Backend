@@ -29,7 +29,7 @@ export class Cart extends AggregateRoot {
     updated(products: CartProduct[]): void {
         this.cart.products = products
         this.cart.updatedDate = new DateVo(new Date())
-        this.apply(new UpdatedCartEvent(this.cart.id))
+        //this.apply(new UpdatedCartEvent(this.cart.id))
     }
 
     toPrimitives(): ICart {

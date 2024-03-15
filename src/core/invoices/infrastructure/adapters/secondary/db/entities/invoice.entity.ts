@@ -1,9 +1,10 @@
+import { UserLocation } from '@core/invoices/domain/interfaces/UserLocation'
 import { Product } from '@core/products/domain/interfaces/Product'
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity({ name: 'invoices' })
 export class InvoiceEntity {
-    @PrimaryGeneratedColumn({ name: 'invoices_id' })
+    @PrimaryGeneratedColumn({ name: 'invoice_id' })
     id: number
 
     @Column({ name: 'invoice_user_id' })
@@ -18,6 +19,6 @@ export class InvoiceEntity {
     @Column({ name: 'invoice_date' })
     date: Date
 
-    @Column({ name: 'invoice_address' })
-    address: string
+    @Column({ name: 'invoice_shipping', type: 'json' })
+    shipping: UserLocation
 }

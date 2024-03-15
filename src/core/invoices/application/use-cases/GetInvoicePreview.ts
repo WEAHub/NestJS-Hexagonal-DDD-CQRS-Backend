@@ -1,3 +1,4 @@
+import { CartProduct } from '@core/carts/domain/interfaces/CartProduct'
 import { InvoiceFactory } from '@core/invoices/domain/InvoiceFactory'
 import { Cart } from '@core/invoices/domain/interfaces/Cart'
 import { Invoice as IInvoice } from '@core/invoices/domain/interfaces/Invoice'
@@ -35,6 +36,7 @@ export class GetInvoicePreviewUseCases {
         const products: Product[] =
             await this.productRepository.findByArrayIds(productIds)
 
+        // set quantity products from cart products
         products.forEach((p) => {
             const { quantity } = cart.products.find(
                 (_p) => _p.productId === p.id,
@@ -42,11 +44,9 @@ export class GetInvoicePreviewUseCases {
             p.quantity = quantity
         })
 
-        const id = await this.repository.getNextInvoiceId()
         const _invoice = this.invoiceFactory.create({
-            id,
             products,
-            address: user.location.address,
+            shipping: user.location,
             userId: user.id,
             date: new Date(),
         })

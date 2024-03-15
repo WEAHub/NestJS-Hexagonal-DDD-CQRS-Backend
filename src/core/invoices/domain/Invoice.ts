@@ -2,6 +2,8 @@ import { Invoice as IInvoice } from './interfaces/Invoice'
 import { AggregateRoot } from '@nestjs/cqrs'
 import { DateVo } from './vo/Date'
 import { Product } from './interfaces/Product'
+import { UserLocation } from './interfaces/UserLocation'
+import { CreatedInvoiceEvent } from './events/InvoiceCreated'
 
 export interface InvoiceProperties {
     id?: number
@@ -9,7 +11,7 @@ export interface InvoiceProperties {
     products: Product[]
     date: DateVo
     amount?: number
-    address: string
+    shipping: UserLocation
 }
 
 export class Invoice extends AggregateRoot {
@@ -20,6 +22,10 @@ export class Invoice extends AggregateRoot {
         this.invoice = properties
     }
 
+    paid(): void {
+        this.apply(new CreatedInvoiceEvent(this.toPrimitives()))
+    }
+
     toPrimitives(): IInvoice {
         return {
             id: this.invoice?.id,
@@ -27,7 +33,7 @@ export class Invoice extends AggregateRoot {
             userId: this.invoice.userId,
             date: this.invoice.date.getValue(),
             amount: this.invoice.amount,
-            address: this.invoice.address,
+            shipping: this.invoice.shipping,
         }
     }
 }

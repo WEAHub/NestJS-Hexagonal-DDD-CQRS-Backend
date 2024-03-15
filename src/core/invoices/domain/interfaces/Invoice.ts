@@ -1,10 +1,11 @@
 import { Product } from './Product'
+import { UserLocation } from './UserLocation'
 
 export interface Invoice {
     id?: number
     userId: number
     products: Product[]
     amount?: number
-    address: string
+    shipping: UserLocation
     date: Date
 }
